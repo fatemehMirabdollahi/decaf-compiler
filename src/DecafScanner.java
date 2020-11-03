@@ -62,7 +62,10 @@ public class DecafScanner {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\u0200\0";
+    "\12\0\1\1\2\0\1\2\35\0\1\3\1\0\1\3"+
+    "\1\4\1\0\1\5\11\6\7\0\4\7\1\10\1\7"+
+    "\21\11\1\12\2\11\4\0\1\13\1\0\6\7\21\11"+
+    "\1\12\2\11\u0185\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[512];
@@ -89,10 +92,11 @@ public class DecafScanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1";
+    "\1\0\1\1\2\2\2\3\1\4\1\5\2\1\1\4"+
+    "\1\1\1\3\1\4\1\0\1\5\34\4";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[2];
+    int [] result = new int[44];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -117,10 +121,15 @@ public class DecafScanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\1";
+    "\0\0\0\14\0\30\0\14\0\44\0\60\0\74\0\110"+
+    "\0\124\0\140\0\154\0\170\0\140\0\204\0\220\0\234"+
+    "\0\250\0\264\0\300\0\314\0\330\0\344\0\360\0\374"+
+    "\0\u0108\0\u0114\0\u0120\0\u012c\0\u0138\0\u0144\0\u0150\0\u015c"+
+    "\0\u0168\0\u0174\0\u0180\0\u018c\0\u0198\0\u01a4\0\u01b0\0\u01bc"+
+    "\0\u01c8\0\u01d4\0\u01e0\0\14";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[2];
+    int [] result = new int[44];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -143,10 +152,22 @@ public class DecafScanner {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\0";
+    "\1\2\1\3\1\4\2\2\1\5\1\6\4\7\1\2"+
+    "\16\0\1\4\15\0\1\10\2\6\3\11\1\12\5\0"+
+    "\1\10\2\6\4\11\6\0\7\13\5\0\2\10\1\11"+
+    "\1\14\2\11\6\0\6\11\6\0\4\15\2\11\6\0"+
+    "\7\16\3\0\1\17\1\0\2\20\4\11\6\0\7\21"+
+    "\5\0\2\20\12\0\2\20\4\11\6\0\7\22\5\0"+
+    "\7\23\5\0\7\24\5\0\7\25\5\0\7\26\5\0"+
+    "\7\27\5\0\7\30\5\0\7\31\5\0\7\32\5\0"+
+    "\7\33\5\0\7\34\5\0\7\35\5\0\7\36\5\0"+
+    "\7\37\5\0\7\40\5\0\7\41\5\0\7\42\5\0"+
+    "\7\43\5\0\7\44\5\0\7\45\5\0\7\46\5\0"+
+    "\7\47\5\0\7\50\5\0\7\51\5\0\7\52\5\0"+
+    "\7\53\5\0\7\54";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[2];
+    int [] result = new int[492];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -189,10 +210,10 @@ public class DecafScanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11";
+    "\1\0\1\11\1\1\1\11\12\1\1\0\34\1\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[2];
+    int [] result = new int[44];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -610,10 +631,30 @@ public class DecafScanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { System.out.print(yytext());
+            { yybegin(YYINITIAL);return new Token(yytext(),Type.undefind);
             }
             // fall through
-          case 2: break;
+          case 6: break;
+          case 2:
+            { yybegin(YYINITIAL);/*return new Token(yytext(),Type.undefind);*/
+            }
+            // fall through
+          case 7: break;
+          case 3:
+            { yybegin(YYINITIAL);return new Token(yytext(),Type.integer);
+            }
+            // fall through
+          case 8: break;
+          case 4:
+            { return new Token(yytext(),Type.id);
+            }
+            // fall through
+          case 9: break;
+          case 5:
+            { yybegin(YYINITIAL);return new Token(yytext(),Type.real);
+            }
+            // fall through
+          case 10: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

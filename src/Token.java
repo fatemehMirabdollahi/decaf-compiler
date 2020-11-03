@@ -1,4 +1,4 @@
-enum Type{keyword, id, integer, real, str_char, spChar, comment, op_punc, undefind}
+enum Type{keyword, id, integer, real, str_char, spChar, comment, op_punc, undefind, end}
 public class Token {
 
     private String value;
