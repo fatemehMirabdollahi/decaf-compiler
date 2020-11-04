@@ -1,6 +1,2 @@
-2121
-3223
-4443
-sdfsdf
-0c0c
-0xd0f sdf
+"adada\nada"
+'sa'

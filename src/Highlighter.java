@@ -6,6 +6,7 @@ import java.io.FileWriter;
 public class Highlighter {
     public static void main(String[] args) throws IOException {
         String color = "";
+
         DecafScanner scanner = new DecafScanner(new FileReader("src/chum.txt"));
         while(true){
             Token token = scanner.tokenReader();
@@ -16,11 +17,11 @@ public class Highlighter {
                 case id: color = "violet"; break;
                 case integer: color = "orange"; break;
                 case real: color = "italic & orange"; break;
-                case str_char: color = "green"; break;
-                case spChar: color = "italic & green"; break;
-                case comment: color = "yellow"; break;
+                case str_char: color = "green";System.out.println(token.getValue()); break;
+                case spChar: color = "italic & green";  break;
+                case comment: color = "yellow";break;
                 case op_punc: color = "black"; break;
-                case undefind: color = "red"; break;
+                case undefind: color = "red"; System.out.println(token.getValue()); break;
                 }
             System.out.println(color);
         }

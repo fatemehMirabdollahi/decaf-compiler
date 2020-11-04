@@ -17,6 +17,10 @@ public class DecafScanner {
 
   // Lexical states.
   public static final int YYINITIAL = 0;
+  public static final int SPECIAL = 2;
+  public static final int STRING = 4;
+  public static final int CHARACTER = 6;
+  public static final int ENDOFCHAR = 8;
 
   /**
    * ZZ_LEXSTATE[l] is the state in the DFA for the lexical state l
@@ -25,7 +29,7 @@ public class DecafScanner {
    * l is of the form l = 2*k, k a non negative integer
    */
   private static final int ZZ_LEXSTATE[] = {
-     0, 0
+     0,  0,  1,  1,  2,  2,  3,  3,  4, 4
   };
 
   /**
@@ -62,10 +66,13 @@ public class DecafScanner {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\12\0\1\1\2\0\1\2\35\0\1\3\1\0\1\3"+
-    "\1\4\1\0\1\5\11\6\7\0\4\7\1\10\1\7"+
-    "\21\11\1\12\2\11\4\0\1\13\1\0\6\7\21\11"+
-    "\1\12\2\11\u0185\0";
+    "\12\0\1\1\2\0\1\2\23\0\1\3\1\4\2\0"+
+    "\1\5\1\6\1\7\2\5\1\10\1\11\1\5\1\12"+
+    "\1\13\1\14\1\15\11\16\1\0\1\5\1\3\1\17"+
+    "\1\3\2\0\4\20\1\21\1\20\21\22\1\23\2\22"+
+    "\1\5\1\24\2\5\1\25\1\0\1\20\1\26\1\20"+
+    "\1\26\1\27\1\20\7\22\1\30\3\22\1\30\1\22"+
+    "\1\30\3\22\1\23\2\22\1\0\1\31\u0183\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[512];
@@ -92,11 +99,14 @@ public class DecafScanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\2\2\2\3\1\4\1\5\2\1\1\4"+
-    "\1\1\1\3\1\4\1\0\1\5\34\4";
+    "\5\0\1\1\2\2\1\3\1\4\2\3\1\5\3\3"+
+    "\2\6\1\1\1\7\1\1\1\3\2\10\1\11\1\10"+
+    "\3\12\1\13\1\14\2\0\1\15\1\16\1\0\1\7"+
+    "\1\17\1\20\1\21\2\0\1\6\1\7\1\15\1\0"+
+    "\1\16\34\7";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[44];
+    int [] result = new int[75];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -121,15 +131,19 @@ public class DecafScanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\14\0\30\0\14\0\44\0\60\0\74\0\110"+
-    "\0\124\0\140\0\154\0\170\0\140\0\204\0\220\0\234"+
-    "\0\250\0\264\0\300\0\314\0\330\0\344\0\360\0\374"+
-    "\0\u0108\0\u0114\0\u0120\0\u012c\0\u0138\0\u0144\0\u0150\0\u015c"+
-    "\0\u0168\0\u0174\0\u0180\0\u018c\0\u0198\0\u01a4\0\u01b0\0\u01bc"+
-    "\0\u01c8\0\u01d4\0\u01e0\0\14";
+    "\0\0\0\32\0\64\0\116\0\150\0\202\0\202\0\234"+
+    "\0\266\0\202\0\202\0\320\0\352\0\u0104\0\u011e\0\u0138"+
+    "\0\u0152\0\u016c\0\266\0\u0186\0\u01a0\0\u01ba\0\202\0\234"+
+    "\0\202\0\u01d4\0\202\0\234\0\u01ee\0\u0208\0\u0208\0\352"+
+    "\0\u0222\0\u023c\0\u0256\0\u0270\0\u028a\0\202\0\202\0\202"+
+    "\0\u02a4\0\u02be\0\u0270\0\u02d8\0\202\0\u02f2\0\u02f2\0\u030c"+
+    "\0\u0326\0\u0340\0\u035a\0\u0374\0\u038e\0\u03a8\0\u03c2\0\u03dc"+
+    "\0\u03f6\0\u0410\0\u042a\0\u0444\0\u045e\0\u0478\0\u0492\0\u04ac"+
+    "\0\u04c6\0\u04e0\0\u04fa\0\u0514\0\u052e\0\u0548\0\u0562\0\u057c"+
+    "\0\u0596\0\u05b0\0\202";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[44];
+    int [] result = new int[75];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -152,22 +166,47 @@ public class DecafScanner {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\2\2\1\5\1\6\4\7\1\2"+
-    "\16\0\1\4\15\0\1\10\2\6\3\11\1\12\5\0"+
-    "\1\10\2\6\4\11\6\0\7\13\5\0\2\10\1\11"+
-    "\1\14\2\11\6\0\6\11\6\0\4\15\2\11\6\0"+
-    "\7\16\3\0\1\17\1\0\2\20\4\11\6\0\7\21"+
-    "\5\0\2\20\12\0\2\20\4\11\6\0\7\22\5\0"+
-    "\7\23\5\0\7\24\5\0\7\25\5\0\7\26\5\0"+
-    "\7\27\5\0\7\30\5\0\7\31\5\0\7\32\5\0"+
-    "\7\33\5\0\7\34\5\0\7\35\5\0\7\36\5\0"+
-    "\7\37\5\0\7\40\5\0\7\41\5\0\7\42\5\0"+
-    "\7\43\5\0\7\44\5\0\7\45\5\0\7\46\5\0"+
-    "\7\47\5\0\7\50\5\0\7\51\5\0\7\52\5\0"+
-    "\7\53\5\0\7\54";
+    "\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15"+
+    "\1\11\1\16\1\17\1\13\1\20\1\21\1\22\1\23"+
+    "\4\24\1\25\1\6\3\24\1\26\1\6\1\7\1\10"+
+    "\27\6\2\27\1\30\1\27\1\31\17\27\1\32\2\27"+
+    "\2\6\1\27\2\33\1\34\21\33\1\35\2\33\2\6"+
+    "\1\33\7\36\1\37\22\36\33\0\1\7\47\0\1\13"+
+    "\20\0\1\13\23\0\7\40\1\6\22\40\11\0\1\13"+
+    "\5\0\1\13\24\0\1\13\4\0\1\13\22\0\1\41"+
+    "\3\0\1\42\2\0\1\13\25\0\1\43\1\0\2\22"+
+    "\4\0\1\44\21\0\1\43\1\0\2\22\30\0\2\45"+
+    "\1\0\4\45\1\0\4\45\27\0\1\46\1\0\1\46"+
+    "\32\0\1\13\26\0\1\47\1\0\1\47\27\0\1\50"+
+    "\1\0\1\50\1\0\32\36\10\41\1\51\21\41\27\42"+
+    "\2\0\1\42\15\0\2\43\2\0\1\52\25\0\2\53"+
+    "\1\0\2\53\4\0\2\53\17\0\2\54\1\0\4\54"+
+    "\1\0\4\54\1\0\10\41\1\51\3\41\1\55\15\41"+
+    "\11\0\2\56\2\0\2\57\30\0\2\60\1\0\4\60"+
+    "\1\0\4\60\16\0\2\57\30\0\2\61\1\0\4\61"+
+    "\1\0\4\61\16\0\2\62\1\0\4\62\1\0\4\62"+
+    "\16\0\2\63\1\0\4\63\1\0\4\63\16\0\2\64"+
+    "\1\0\4\64\1\0\4\64\16\0\2\65\1\0\4\65"+
+    "\1\0\4\65\16\0\2\66\1\0\4\66\1\0\4\66"+
+    "\16\0\2\67\1\0\4\67\1\0\4\67\16\0\2\70"+
+    "\1\0\4\70\1\0\4\70\16\0\2\71\1\0\4\71"+
+    "\1\0\4\71\16\0\2\72\1\0\4\72\1\0\4\72"+
+    "\16\0\2\73\1\0\4\73\1\0\4\73\16\0\2\74"+
+    "\1\0\4\74\1\0\4\74\16\0\2\75\1\0\4\75"+
+    "\1\0\4\75\16\0\2\76\1\0\4\76\1\0\4\76"+
+    "\16\0\2\77\1\0\4\77\1\0\4\77\16\0\2\100"+
+    "\1\0\4\100\1\0\4\100\16\0\2\101\1\0\4\101"+
+    "\1\0\4\101\16\0\2\102\1\0\4\102\1\0\4\102"+
+    "\16\0\2\103\1\0\4\103\1\0\4\103\16\0\2\104"+
+    "\1\0\4\104\1\0\4\104\16\0\2\105\1\0\4\105"+
+    "\1\0\4\105\16\0\2\106\1\0\4\106\1\0\4\106"+
+    "\16\0\2\107\1\0\4\107\1\0\4\107\16\0\2\110"+
+    "\1\0\4\110\1\0\4\110\16\0\2\111\1\0\4\111"+
+    "\1\0\4\111\16\0\2\112\1\0\4\112\1\0\4\112"+
+    "\16\0\2\113\1\0\4\113\1\0\4\113\1\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[492];
+    int [] result = new int[1482];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -210,10 +249,12 @@ public class DecafScanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\1\1\1\11\12\1\1\0\34\1\1\11";
+    "\5\0\2\11\2\1\2\11\13\1\1\11\1\1\1\11"+
+    "\1\1\1\11\4\1\2\0\2\1\1\0\1\1\3\11"+
+    "\2\0\2\1\1\11\1\0\34\1\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[44];
+    int [] result = new int[75];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -291,6 +332,11 @@ public class DecafScanner {
   /** Whether the user-EOF-code has already been executed. */
   @SuppressWarnings("unused")
   private boolean zzEOFDone;
+
+  /* user code: */
+String myString = "";
+String mySpecial ="";
+String myCharacter = "";
 
 
   /**
@@ -634,27 +680,87 @@ public class DecafScanner {
             { yybegin(YYINITIAL);return new Token(yytext(),Type.undefind);
             }
             // fall through
-          case 6: break;
+          case 18: break;
           case 2:
             { yybegin(YYINITIAL);/*return new Token(yytext(),Type.undefind);*/
             }
             // fall through
-          case 7: break;
+          case 19: break;
           case 3:
+            { yybegin(YYINITIAL);return new Token(yytext(),Type.op_punc);
+            }
+            // fall through
+          case 20: break;
+          case 4:
+            { yybegin(STRING);myString="\"";
+            }
+            // fall through
+          case 21: break;
+          case 5:
+            { yybegin(CHARACTER);myCharacter="\'";
+            }
+            // fall through
+          case 22: break;
+          case 6:
             { yybegin(YYINITIAL);return new Token(yytext(),Type.integer);
             }
             // fall through
-          case 8: break;
-          case 4:
+          case 23: break;
+          case 7:
             { return new Token(yytext(),Type.id);
             }
             // fall through
-          case 9: break;
-          case 5:
+          case 24: break;
+          case 8:
+            { myString+=yytext();
+            }
+            // fall through
+          case 25: break;
+          case 9:
+            { yybegin(YYINITIAL); myString+="\""  ;return new Token(myString,Type.str_char);
+            }
+            // fall through
+          case 26: break;
+          case 10:
+            { myCharacter+=yytext();yybegin(ENDOFCHAR);
+            }
+            // fall through
+          case 27: break;
+          case 11:
+            { yybegin(YYINITIAL);myCharacter +=yytext();return new Token(myCharacter,Type.undefind);
+            }
+            // fall through
+          case 28: break;
+          case 12:
+            { yybegin(YYINITIAL);myCharacter +="\'";  return new Token(myCharacter,Type.str_char);
+            }
+            // fall through
+          case 29: break;
+          case 13:
+            { yybegin(YYINITIAL);return new Token(yytext(),Type.comment);
+            }
+            // fall through
+          case 30: break;
+          case 14:
             { yybegin(YYINITIAL);return new Token(yytext(),Type.real);
             }
             // fall through
-          case 10: break;
+          case 31: break;
+          case 15:
+            { yybegin(YYINITIAL);return new Token(yytext(),Type.spChar);
+            }
+            // fall through
+          case 32: break;
+          case 16:
+            { myString+=yytext();return new Token(yytext(),Type.spChar);
+            }
+            // fall through
+          case 33: break;
+          case 17:
+            { myCharacter+=yytext();yybegin(ENDOFCHAR);return new Token(yytext(),Type.spChar);
+            }
+            // fall through
+          case 34: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
