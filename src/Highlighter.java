@@ -14,16 +14,17 @@ public class Highlighter {
                 break;
             switch (token.getType()){
                 case keyword: color = "bold & blue"; break;
-                case id: color = "violet"; break;
+                case id: color = "violet";break;
                 case integer: color = "orange"; break;
                 case real: color = "italic & orange"; break;
-                case str_char: color = "green";System.out.println(token.getValue()); break;
+                case str_char: color = "green"; break;
                 case spChar: color = "italic & green";  break;
                 case comment: color = "yellow";break;
                 case op_punc: color = "black"; break;
-                case undefind: color = "red"; System.out.println(token.getValue()); break;
+                case undefind: color = "red" ;  break;
                 }
             System.out.println(color);
+            System.out.println(token.getValue());
         }
     }
 }

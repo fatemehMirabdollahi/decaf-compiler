@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb134d6f-6b03-4be2-98cc-9707eaa3efb3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Compiler/DecafScanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compiler/DecafScanner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/Highlighter$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compiler/Highlighter$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/Highlighter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compiler/Highlighter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/Token.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compiler/Token.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/Type.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compiler/Type.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Compiler/chum.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compiler/chum.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DecafScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DecafScanner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Highlighter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Highlighter.java" afterDir="false" />
@@ -31,8 +26,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Scanner.flex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="208">
+              <caret line="33" column="16" lean-forward="true" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -40,8 +35,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Token.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-51">
-              <caret column="29" lean-forward="true" selection-start-column="29" selection-end-column="29" />
+            <state relative-caret-position="187">
+              <caret line="16" column="28" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -49,8 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Highlighter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="25" column="35" lean-forward="true" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+            <state relative-caret-position="289">
+              <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -62,7 +57,7 @@
         <entry file="file://$PROJECT_DIR$/src/chum.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
-              <caret line="1" column="1" lean-forward="true" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+              <caret line="1" column="10" lean-forward="true" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -70,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DecafScanner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="723" column="18" lean-forward="true" selection-start-line="723" selection-start-column="18" selection-end-line="723" selection-end-column="18" />
+            <state relative-caret-position="141">
+              <caret line="732" column="52" selection-start-line="732" selection-start-column="52" selection-end-line="732" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -92,6 +87,7 @@
       <find>scanner</find>
       <find>Scanner</find>
       <find>keyword</find>
+      <find>mySpecial</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -105,8 +101,8 @@
         <option value="$PROJECT_DIR$/src/Token.java" />
         <option value="$PROJECT_DIR$/src/DecafScanner.java" />
         <option value="$PROJECT_DIR$/src/Highlighter.java" />
-        <option value="$PROJECT_DIR$/src/chum.txt" />
         <option value="$PROJECT_DIR$/src/Scanner.flex" />
+        <option value="$PROJECT_DIR$/src/chum.txt" />
       </list>
     </option>
   </component>
@@ -282,24 +278,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Token.java">
+    <entry file="file://$PROJECT_DIR$/src/DecafScanner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret column="29" lean-forward="true" selection-start-column="29" selection-end-column="29" />
+        <state relative-caret-position="141">
+          <caret line="732" column="52" selection-start-line="732" selection-start-column="52" selection-end-line="732" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DecafScanner.java">
+    <entry file="file://$PROJECT_DIR$/src/Token.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="723" column="18" lean-forward="true" selection-start-line="723" selection-start-column="18" selection-end-line="723" selection-end-column="18" />
+        <state relative-caret-position="187">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Highlighter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="25" column="35" lean-forward="true" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+        <state relative-caret-position="289">
+          <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -309,14 +305,14 @@
     <entry file="file://$PROJECT_DIR$/src/chum.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="1" lean-forward="true" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+          <caret line="1" column="10" lean-forward="true" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Scanner.flex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        <state relative-caret-position="208">
+          <caret line="33" column="16" lean-forward="true" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
         </state>
       </provider>
     </entry>
