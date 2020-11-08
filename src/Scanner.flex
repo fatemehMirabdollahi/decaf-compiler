@@ -33,25 +33,24 @@ char = [\'][spChar][\']
 %state STRING
 %state CHARACTER
 %state ENDOFCHAR
-%state SPACE
 %%
 
 <YYINITIAL>{
      \"                        {yybegin(STRING);myString="\"";}
      \'                        {yybegin(CHARACTER);myCharacter="\'";}
-    {starCom}                  {yybegin(SPACE);token = new Token(yytext(),Type.comment);}
+    {starCom}                  {yybegin(YYINITIAL);return new Token(yytext(),Type.comment);}
     {singleCom}                {yybegin(YYINITIAL); endl=true;return new Token(yytext(),Type.comment);}
-    {keyword}                  {yybegin(SPACE);token = new Token(yytext(),Type.keyword);}
-    {id}                       {yybegin(SPACE);token = new Token(yytext(),Type.id);}
-    {sci}                      {yybegin(SPACE);token = new Token(yytext(),Type.real);}
-    {hex}                      {yybegin(SPACE);token = new Token(yytext(),Type.integer);}
-    {real}                     {yybegin(SPACE);token = new Token(yytext(),Type.real);}
-    {int}                      {yybegin(SPACE);token = new Token(yytext(),Type.integer);}
-    {op}                       {yybegin(SPACE);token = new Token(yytext(),Type.op_punc);}
+    {keyword}                  {yybegin(YYINITIAL);return new Token(yytext(),Type.keyword);}
+    {id}                       {yybegin(YYINITIAL);return new Token(yytext(),Type.id);}
+    {sci}                      {yybegin(YYINITIAL);return new Token(yytext(),Type.real);}
+    {hex}                      {yybegin(YYINITIAL);return new Token(yytext(),Type.integer);}
+    {real}                     {yybegin(YYINITIAL);return new Token(yytext(),Type.real);}
+    {int}                      {yybegin(YYINITIAL);return new Token(yytext(),Type.integer);}
+    {op}                       {yybegin(YYINITIAL);return new Token(yytext(),Type.op_punc);}
     '~'                        {return new Token(yytext(),Type.undefind);}
 }
 <STRING>{
-    "\""                       {yybegin(SPACE); myString+="\""  ;token = new Token(myString,Type.str_char); }
+    "\""                       {yybegin(YYINITIAL); myString+="\""  ;return new Token(myString,Type.str_char); }
     {InputCharacter}           {myString+=yytext();}
     {spChar}                   {myString+="<i>"+yytext()+"</i>";}
 }
@@ -61,18 +60,12 @@ char = [\'][spChar][\']
     {InputCharacter}            {myCharacter+=yytext();yybegin(ENDOFCHAR);}
 }
 <ENDOFCHAR>{
-    \'                          {yybegin(SPACE);myCharacter +="\'";  token = new Token(myCharacter,Type.str_char);}
+    \'                          {yybegin(YYINITIAL);myCharacter +="\'";  return new Token(myCharacter,Type.str_char);}
 }
-<SPACE>{
-    \s                          {yybegin(YYINITIAL); return token;}
-    {enter}                     {yybegin(YYINITIAL); endl=true;return token;}
-    <<EOF>>                     {yybegin(YYINITIAL); return token;}
-    [^\s]+                      {yybegin(YYINITIAL);System.out.println("hii");return new Token(token.getValue()+yytext(),Type.undefind);}
-    ^{enter}+                   {yybegin(YYINITIAL);System.out.println("hii");return new Token(token.getValue()+yytext(),Type.undefind);}
 
-}
 {enter}                         {yybegin(YYINITIAL); endl=true;/*return new Token(yytext(),Type.undefind);*/}
-\s                              {yybegin(YYINITIAL);/*return new Token(yytext(),Type.undefind);*/}
+
+\s                              {yybegin(YYINITIAL); /*return new Token(yytext(),Type.undefind);*/}
 
 [^]                             {yybegin(YYINITIAL);return new Token(yytext(),Type.undefind);}
 <<EOF>>                         {return new Token("$");}

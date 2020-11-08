@@ -13,15 +13,16 @@ public class Highlighter {
 
     public static void WriteHtml(Token token) throws IOException {
         Element element = doc.select("body").first();
-        if(token.getType().toString()=="comment" && token.getValue().charAt(1)=='*')
-            element.append("<pre style= \"color:"+ token.getColor() + "\">"+token+" " + "</pre>");
-        else
-            element.append("<span style= \"color:"+ token.getColor() + "\">"+token+" " + "</span>");
-        if(scanner.endl)
+        if(scanner.endl && token.getType().toString()!="comment")
         {
             element.append("<br>");
             scanner.endl=false;
         }
+        if(token.getType().toString()=="comment")
+            element.append("<pre style= \"color:"+ token.getColor() + "\">"+token + "</pre>");
+        else
+            element.append("<span style= \"color:"+ token.getColor() + "\">"+token+" " + "</span>");
+
     }
 
     public static void main(String[] args) throws IOException {
