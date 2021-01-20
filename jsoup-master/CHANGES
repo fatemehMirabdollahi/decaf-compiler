@@ -183,7 +183,7 @@ jsoup changelog
     validation.
     <https://github.com/jhy/jsoup/issues/1159>
 
-  * Bugfix: some pseudo XML Declarations were incorrectly handled when using the XML Parser, leading to an IOOB
+  * Bugfix: some pseudo XML Declarations were incorrectly handled when using the XML parser.Parser, leading to an IOOB
     exception when parsing.
     <https://github.com/jhy/jsoup/issues/1139>
 
@@ -239,7 +239,7 @@ jsoup changelog
   * Bugfix: boolean attributes with empty string values were not collapsing in HTML output.
     <https://github.com/jhy/jsoup/issues/985>
 
-  * Bugfix: when using the XML Parser set to lowercase normalize tags, uppercase closing tags were not correctly
+  * Bugfix: when using the XML parser.Parser set to lowercase normalize tags, uppercase closing tags were not correctly
     handled.
     <https://github.com/jhy/jsoup/issues/998>
 
@@ -817,7 +817,7 @@ jsoup changelog
  * When parsing in XML mode, preserve XML declarations (<?xml ... ?>).
    <https://github.com/jhy/jsoup/issues/242>
 
- * Introduced Parser.parseXmlFragment(), to allow easy parsing of XML fragments.
+ * Introduced parser.Parser.parseXmlFragment(), to allow easy parsing of XML fragments.
    <https://github.com/jhy/jsoup/issues/279>
 
  * Allow Whitelist test methods to be extended
@@ -915,7 +915,7 @@ jsoup changelog
  * Fixed issue with :all pseudo-tag in HTML sanitizer when cleaning tags previously defined in whitelist
    <https://github.com/jhy/jsoup/issues/156>
 
- * Fixed NPE in Parser.parseFragment() when context parameter is null.
+ * Fixed NPE in parser.Parser.parseFragment() when context parameter is null.
    <https://github.com/jhy/jsoup/issues/195>
 
  * In HTML whitelists, when defining allowed attributes for a tag, automatically add the tag to the allowed list.

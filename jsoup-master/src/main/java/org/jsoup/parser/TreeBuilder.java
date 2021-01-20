@@ -46,7 +46,7 @@ abstract class TreeBuilder {
         initialiseParse(input, baseUri, parser);
         runParser();
 
-        // tidy up - as the Parser and Treebuilder are retained in document for settings / fragments
+        // tidy up - as the parser.Parser and Treebuilder are retained in document for settings / fragments
         reader.close();
         reader = null;
         tokeniser = null;

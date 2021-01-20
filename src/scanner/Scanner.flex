@@ -1,7 +1,4 @@
-
-
 %%
-
 %public
 %class DecafScanner
 %standalone
@@ -10,34 +7,32 @@
 %unicode
 %{
 String myString = "";
-String myCharacter = "";
 Token token ;
 boolean endl =false;
 %}
-keyword = (void | int | double | bool | string | record | for| while | if | else | return | break | new | NewArray | Print | ReadInteger | ReadLine | continue | false | true)
 
+keyword = (void | int | double | bool | string | record | for| while | if | else | return | break | new | NewArray | Print | ReadInteger | ReadLine | continue | false | true)
 id = [a-zA-Z][a-zA-Z0-9_]{0,30}
 int = [0-9]+
 real = [0-9]+[.][0-9]*
 hex = 0[xX][0-9a-fA-F]+
 sci = [0-9]+[.][0-9]*E[-\+]{0,1}[0-9]+
 enter = (\r\n|\n|\r)
-spChar = (\\n|\\r|\\t|\\d|\\b)
+spChar = (\\n|\\r|\\t|\\d|\\b|\\\'|\\\"|\\)
 starCom = "/*"~"*/"
 singleCom = "//" [^\r\n]*{enter}?
 InputCharacter = [^\r\n]
-op = ("+" | "*" | "<" | ">" | "&" | \" | "!" | "," | "[" | "\(" | "\-" | "/" | "%" | "\|" | "^" | "." | ";" | "]" | ")" |"+=" | "*=" | "++" | "!=" | "==" | "&&" | "-=" | "/=" | "--" | "<=" | ">=" | "==" | "\|\|")
-string = \"~ \"
-char = [\'][spChar][\']
-%state SPECIAL
-%state STRING
-%state CHARACTER
-%state ENDOFCHAR
-%%
+op = ("+"|"=" |"{"|"}" |"*" | "<" | ">" | "&" | \" | "!" | ":"| "," | "[" | "\(" | "\-" | "/" | "%" | "\|" | "^" | "." | ";" | "]" | ")" |"+=" | "*=" | "++" | "!=" | "==" | "&&" | "-=" | "/=" | "--" | "<=" | ">=" | "==" | "\|\|")
+char = [\']{1} [^\r\n]{1}[\']{1}
+charSp = [\']{1} {spChar}{1}[\']{1}
 
+%state STRING
+
+%%
 <YYINITIAL>{
-     \"                        {yybegin(STRING);myString="\"";}
-     \'                        {yybegin(CHARACTER);myCharacter="\'";}
+    {char}                     {yybegin(YYINITIAL);return new Token(yytext(),Type.str_char);}
+    {charSp}                   {yybegin(YYINITIAL);return new Token(yytext().charAt(0) + "<i>"+yytext().substring(1,3)+"</i>"+ yytext().charAt(3) ,Type.str_char);}
+    \"                         {yybegin(STRING);myString="\"";}
     {starCom}                  {yybegin(YYINITIAL);return new Token(yytext(),Type.comment);}
     {singleCom}                {yybegin(YYINITIAL); endl=true;return new Token(yytext(),Type.comment);}
     {keyword}                  {yybegin(YYINITIAL);return new Token(yytext(),Type.keyword);}
@@ -47,25 +42,17 @@ char = [\'][spChar][\']
     {real}                     {yybegin(YYINITIAL);return new Token(yytext(),Type.real);}
     {int}                      {yybegin(YYINITIAL);return new Token(yytext(),Type.integer);}
     {op}                       {yybegin(YYINITIAL);return new Token(yytext(),Type.op_punc);}
-    '~'                        {return new Token(yytext(),Type.undefind);}
+    '~'                        {return new Token(yytext(),Type.undefined);}
 }
 <STRING>{
     "\""                       {yybegin(YYINITIAL); myString+="\""  ;return new Token(myString,Type.str_char); }
-    {InputCharacter}           {myString+=yytext();}
     {spChar}                   {myString+="<i>"+yytext()+"</i>";}
+    {InputCharacter}           {myString+=yytext();}
 }
 
-<CHARACTER>{
-    {spChar}                    {myCharacter+="<i>"+yytext()+"</i>";yybegin(ENDOFCHAR);}
-    {InputCharacter}            {myCharacter+=yytext();yybegin(ENDOFCHAR);}
-}
-<ENDOFCHAR>{
-    \'                          {yybegin(YYINITIAL);myCharacter +="\'";  return new Token(myCharacter,Type.str_char);}
-}
+{enter}                         {yybegin(YYINITIAL); endl=true;}
 
-{enter}                         {yybegin(YYINITIAL); endl=true;/*return new Token(yytext(),Type.undefind);*/}
+\s                              {yybegin(YYINITIAL); }
 
-\s                              {yybegin(YYINITIAL); /*return new Token(yytext(),Type.undefind);*/}
-
-[^]                             {yybegin(YYINITIAL);return new Token(yytext(),Type.undefind);}
+[^]                             {yybegin(YYINITIAL);return new Token(yytext(),Type.undefined);}
 <<EOF>>                         {return new Token("$");}

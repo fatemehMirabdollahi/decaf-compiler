@@ -630,7 +630,7 @@ public interface Connection {
 
         /**
          * Get the current parser to use when parsing the document.
-         * @return current Parser
+         * @return current parser.Parser
          */
         Parser parser();
 

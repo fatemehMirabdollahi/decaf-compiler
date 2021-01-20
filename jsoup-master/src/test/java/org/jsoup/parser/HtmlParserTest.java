@@ -19,7 +19,7 @@ import static org.jsoup.parser.ParseSettings.preserveCase;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Tests for the Parser
+ * Tests for the parser.Parser
  *
  * @author Jonathan Hedley, jonathan@hedley.net
  */
