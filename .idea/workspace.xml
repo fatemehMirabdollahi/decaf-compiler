@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb134d6f-6b03-4be2-98cc-9707eaa3efb3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/codegen/discriptors/DscpType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Compiler.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/DecafScanner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/Highlighter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/Token$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/Token.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/Type.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/ans.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/jflex-full-1.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/jflex-full-1.8.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/jsoup-1.13.1.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/codegen/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/codegen/CodeGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codegen/SymboleTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/codegen/SymboleTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codegen/discriptors/Dscp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/codegen/discriptors/Dscp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codegen/discriptors/FuncDscp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/codegen/discriptors/FuncDscp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codegen/discriptors/VariableDscp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/codegen/discriptors/VariableDscp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -88,11 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/codegen/CodeGen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+            <state relative-caret-position="391">
+              <caret line="23" column="13" lean-forward="true" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#114#115#0" expanded="true" />
@@ -111,7 +94,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/codegen/discriptors/VariableDscp.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
@@ -212,7 +195,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-12" />
     <option name="y" value="-12" />
     <option name="width" value="984" />
@@ -273,7 +256,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1611264027972" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1611264775288" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -368,7 +351,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="735" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1854251" />
@@ -507,13 +490,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/codegen/discriptors/VariableDscp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/codegen/discriptors/FuncDscp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -528,13 +504,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/codegen/discriptors/ArrayDscp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -585,13 +554,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/codegen/CodeGen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+        <state relative-caret-position="391">
+          <caret line="23" column="13" lean-forward="true" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#114#115#0" expanded="true" />
             <element signature="e#143#144#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/codegen/discriptors/ArrayDscp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/codegen/discriptors/VariableDscp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="23" />
         </state>
       </provider>
     </entry>

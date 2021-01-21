@@ -5,7 +5,7 @@ public class VariableDscp extends Dscp {
     public String value;
 
     public VariableDscp(String type) {
-        super.type = type;
+        this.type = type;
         super.dscpType = DscpType.variable;
     }
 

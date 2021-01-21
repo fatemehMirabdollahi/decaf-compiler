@@ -22,7 +22,7 @@ public class CodeGen {
         symboleTables.get(symboleTables.size() - 1).add(dName, d); //pc ast
         mipsCode.add(new Code("add",dName, src1, src2));
         pc++;
-        semanticStack.push(dName);  
+        semanticStack.push(dName);
     }
 
 }
