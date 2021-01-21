@@ -1,13 +1,12 @@
 package scanner;
 
-enum Type{keyword, id, integer, real, str_char, spChar, comment, op_punc, undefined, end}
 public class Token {
 
     private  String value;
-    private  Type type;
+    private  TokenType type;
 
 
-    public Token(String value, Type type) {
+    public Token(String value, TokenType type) {
 
         this.value = value;
         this.type = type;
@@ -21,7 +20,7 @@ public class Token {
         return value;
     }
 
-    public Type getType() {
+    public TokenType getType() {
         return type;
     }
 

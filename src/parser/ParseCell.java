@@ -30,4 +30,5 @@ public class ParseCell {
     public Token getToken() {
         return token;
     }
+
 }

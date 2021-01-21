@@ -3,6 +3,8 @@ package scanner;// DO NOT EDIT
 // source: Scanner.flex
 
 
+import java.io.IOException;
+
 // See https://github.com/jflex-de/jflex/issues/222
 @SuppressWarnings("FallThrough")
 public class DecafScanner {
@@ -683,9 +685,9 @@ boolean endl =false;
    * or an I/O-Error occurs.
    *
    * @return the next token.
-   * @exception java.io.IOException if any I/O-Error occurs.
+   * @exception IOException if any I/O-Error occurs.
    */
-  public Token tokenReader() throws java.io.IOException {
+  public Token tokenReader() throws IOException {
     int zzInput;
     int zzAction;
 
@@ -771,7 +773,7 @@ boolean endl =false;
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { yybegin(YYINITIAL);return new Token(yytext(), Type.undefined);
+            { yybegin(YYINITIAL);return new Token(yytext(), TokenType.undefined);
             }
             // fall through
           case 18: break;
@@ -786,7 +788,7 @@ boolean endl =false;
             // fall through
           case 20: break;
           case 4:
-            { yybegin(YYINITIAL);return new Token(yytext(), Type.op_punc);
+            { yybegin(YYINITIAL);return new Token(yytext(), TokenType.op_punc);
             }
             // fall through
           case 21: break;
@@ -796,12 +798,12 @@ boolean endl =false;
             // fall through
           case 22: break;
           case 6:
-            { yybegin(YYINITIAL);return new Token(yytext(), Type.integer);
+            { yybegin(YYINITIAL);return new Token(yytext(), TokenType.integer);
             }
             // fall through
           case 23: break;
           case 7:
-            { yybegin(YYINITIAL);return new Token(yytext(), Type.id);
+            { yybegin(YYINITIAL);return new Token(yytext(), TokenType.id);
             }
             // fall through
           case 24: break;
@@ -811,7 +813,7 @@ boolean endl =false;
             // fall through
           case 25: break;
           case 9:
-            { yybegin(YYINITIAL); myString+="\""  ;return new Token(myString, Type.str_char);
+            { yybegin(YYINITIAL); myString+="\""  ;return new Token(myString, TokenType.str_char);
             }
             // fall through
           case 26: break;
@@ -821,37 +823,37 @@ boolean endl =false;
             // fall through
           case 27: break;
           case 11:
-            { return new Token(yytext(), Type.undefined);
+            { return new Token(yytext(), TokenType.undefined);
             }
             // fall through
           case 28: break;
           case 12:
-            { yybegin(YYINITIAL); endl=true;return new Token(yytext(), Type.comment);
+            { yybegin(YYINITIAL); endl=true;return new Token(yytext(), TokenType.comment);
             }
             // fall through
           case 29: break;
           case 13:
-            { yybegin(YYINITIAL);return new Token(yytext(), Type.real);
+            { yybegin(YYINITIAL);return new Token(yytext(), TokenType.real);
             }
             // fall through
           case 30: break;
           case 14:
-            { yybegin(YYINITIAL);return new Token(yytext(), Type.keyword);
+            { yybegin(YYINITIAL);return new Token(yytext(), TokenType.keyword);
             }
             // fall through
           case 31: break;
           case 15:
-            { yybegin(YYINITIAL);return new Token(yytext(), Type.str_char);
+            { yybegin(YYINITIAL);return new Token(yytext(), TokenType.str_char);
             }
             // fall through
           case 32: break;
           case 16:
-            { yybegin(YYINITIAL);return new Token(yytext().charAt(0) + "<i>"+yytext().substring(1,3)+"</i>"+ yytext().charAt(3) , Type.str_char);
+            { yybegin(YYINITIAL);return new Token(yytext().charAt(0) + "<i>"+yytext().substring(1,3)+"</i>"+ yytext().charAt(3) , TokenType.str_char);
             }
             // fall through
           case 33: break;
           case 17:
-            { yybegin(YYINITIAL);return new Token(yytext(), Type.comment);
+            { yybegin(YYINITIAL);return new Token(yytext(), TokenType.comment);
             }
             // fall through
           case 34: break;
