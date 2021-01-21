@@ -17,15 +17,16 @@ import scanner.TokenType;
 
 public class Parser {
 
-    static DecafScanner scanner;
-    static ArrayList<ArrayList<ParseCell>> parseTable;
-    static Stack<Integer> parseStack;
-    static ArrayList<String> parseTableHeader;
-    static ArrayList<SymboleTable> symboleTables;
-    static int pc = 0;
-    static ArrayList<Code> mipsCode;
+    public static DecafScanner scanner;
+    public static ArrayList<ArrayList<ParseCell>> parseTable;
+    public static ArrayList<String> parseTableHeader;
+    public static ArrayList<Code> mipsCode;
+    public static Stack<Integer> parseStack;
+    public static Stack<String> semanticStack; //change
+    public static Token token;
+    public static int pc = 0;
     public static void main(String[] args) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-
+        symboleTableInit();
         scanner = new DecafScanner(new FileReader("src/chum.txt"));
         parseStack = new Stack<>();
         mipsCode = new ArrayList<>();
@@ -33,7 +34,7 @@ public class Parser {
         createParseTable();
 
         while (true) {
-            Token token = scanner.tokenReader();
+            token = scanner.tokenReader();
             if(token.getType() == TokenType.undefined){
                 //scanner error
             }
@@ -51,6 +52,9 @@ public class Parser {
                 method.invoke(null, null);
             }
         }
+    }
+
+    private static void symboleTableInit() {
     }
 
     static ParseCell getCell(Token token, int state){

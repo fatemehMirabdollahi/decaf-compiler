@@ -9,7 +9,6 @@ public class FuncDscp extends Dscp{
     public int beginAddress;
     public int returnAddress;
     public SymboleTable symboleTable;
-
     public FuncDscp(int beginAddress) {
         this.beginAddress = beginAddress;
         this.symboleTable = new SymboleTable();
