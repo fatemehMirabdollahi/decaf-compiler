@@ -65,27 +65,41 @@ public class SymboleTable extends HashMap<String, Dscp> {
 
         switch (op) {
             case "Arith":
+            case "compare":
                 if (d1.dscpType != DscpType.variable || d2.dscpType != DscpType.variable) {
                     //error
                 } else {
                     String t1 = ((VariableDscp) d1).type;
                     String t2 = ((VariableDscp) d2).type;
-                    if (t1 == "int" && t1 == "int") {
-                        return "int";
-                    } else if (t1 == "double" && t2 == "double") {
-                        return "double";
-                    } else if (t1 == "int" && t2 =="double") {
+                    if ((t1 == t2) && (t1 == "int" || t1 == "double")) {
+
+                        return op == "Arith" ? t1 : "boolean";
+
+                    } else if (t1 == "int" && t2 == "double") {
+
                         cast(d1, "double");
-                        return "double";
-                    } else if (t1 == "double" && t2 =="int") {
+                        return op == "Arith" ? "double" : "boolean";
+
+                    } else if (t1 == "double" && t2 == "int") {
+
                         cast(d2, "double");
-                        return "double";
+                        return op == "Arith" ? "double" : "boolean";
+
+                    } else if (t1 == "boolean" && (t2 == "int" || t2 == "double")) {
+
+                        cast(d1, t2);
+                        return op == "Arith" ? t2 : "boolean";
+
+                    } else if (t2 == "boolean" && (t1 == "int" || t1 == "double")) {
+
+                        cast(d2, t1);
+                        return op == "Arith" ? t1 : "boolean";
 
                     } else {
                         //error
                     }
                 }
-
+                break;
 
         }
         return null;

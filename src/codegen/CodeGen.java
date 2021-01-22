@@ -75,7 +75,7 @@ public class CodeGen {
         String src2 = semanticStack.pop();
         Dscp dscp1 = SymboleTable.find(src1);
         Dscp dscp2 = SymboleTable.find(src2);
-        String type = getType(dscp1, dscp2, "Arith");
+        String type = getType(dscp1, dscp2, "compare");
         VariableDscp d = new VariableDscp(type);
         String dName = "$" + pc;
         symboleTables.get(symboleTables.size() - 1).add(dName, d); //pc ast
@@ -89,7 +89,7 @@ public class CodeGen {
         String src2 = semanticStack.pop();
         Dscp dscp1 = SymboleTable.find(src1);
         Dscp dscp2 = SymboleTable.find(src2);
-        String type = getType(dscp1, dscp2, "Arith");
+        String type = getType(dscp1, dscp2, "compare");
         VariableDscp d = new VariableDscp(type);
         String dName = "$" + pc;
         symboleTables.get(symboleTables.size() - 1).add(dName, d); //pc ast
@@ -103,7 +103,7 @@ public class CodeGen {
         String src2 = semanticStack.pop();
         Dscp dscp1 = SymboleTable.find(src1);
         Dscp dscp2 = SymboleTable.find(src2);
-        String type = getType(dscp1, dscp2, "Arith");
+        String type = getType(dscp1, dscp2, "compare");
         VariableDscp d = new VariableDscp(type);
         String dName = "$" + pc;
         symboleTables.get(symboleTables.size() - 1).add(dName, d); //pc ast
@@ -117,7 +117,7 @@ public class CodeGen {
         String src2 = semanticStack.pop();
         Dscp dscp1 = SymboleTable.find(src1);
         Dscp dscp2 = SymboleTable.find(src2);
-        String type = getType(dscp1, dscp2, "Arith");
+        String type = getType(dscp1, dscp2, "compare");
         VariableDscp d = new VariableDscp(type);
         String dName = "$" + pc;
         symboleTables.get(symboleTables.size() - 1).add(dName, d); //pc ast
@@ -125,4 +125,6 @@ public class CodeGen {
         pc++;
         semanticStack.push(dName);
     }
+
+
 }
