@@ -8,6 +8,8 @@ import scanner.Token;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static codegen.CodeGen.cast;
+
 public class SymboleTable extends HashMap<String, Dscp> {
 
     public static ArrayList<SymboleTable> symboleTables;
@@ -20,12 +22,12 @@ public class SymboleTable extends HashMap<String, Dscp> {
     }
 
     public static Dscp find(String s) {
-        if(checkInt(s)){
+        if (checkInt(s)) {
             VariableDscp d = new VariableDscp("int");
             d.value = s;
             return d;
         }
-        if(checkDouble(s)){
+        if (checkDouble(s)) {
             VariableDscp d = new VariableDscp("double");
             d.value = s;
             return d;
@@ -59,28 +61,30 @@ public class SymboleTable extends HashMap<String, Dscp> {
         return true;
     }
 
-    public static String getType(Dscp d1, Dscp d2, String op){
+    public static String getType(Dscp d1, Dscp d2, String op) {
 
-        switch (op){
+        switch (op) {
             case "Arith":
-                if(d1.dscpType!= DscpType.variable || d2.dscpType!= DscpType.variable){
+                if (d1.dscpType != DscpType.variable || d2.dscpType != DscpType.variable) {
                     //error
                 } else {
                     String t1 = ((VariableDscp) d1).type;
                     String t2 = ((VariableDscp) d2).type;
-                    if(t1 == "int" && t1 == "int"){
+                    if (t1 == "int" && t1 == "int") {
                         return "int";
-                    } else if(t1 == "int" && t2 =="double" ||
-                              t1 == "double" && t2 =="int" ||
-                              t1 == "double" && t2 =="double") {
+                    } else if (t1 == "double" && t2 == "double") {
                         return "double";
-                    } else{
+                    } else if (t1 == "int" && t2 =="double") {
+                        cast(d1, "double");
+                        return "double";
+                    } else if (t1 == "double" && t2 =="int") {
+                        cast(d2, "double");
+                        return "double";
+
+                    } else {
                         //error
                     }
                 }
-
-
-
 
 
         }
