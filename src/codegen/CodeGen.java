@@ -295,6 +295,30 @@ public class CodeGen {
         semanticStack.push(t);
     }
 
+    public static void READINTEGER(){
+        pc += 3;
+        VariableDscp d = new VariableDscp(new VarType(Type.Integer), temp, false, true);
+        Token t = new Token("$" + pc, TokenType.id);
+        temp += d.type.size;
+        mipsCode.add(new Code("li", "$v0", "5"));
+        mipsCode.add(new Code("la", "$a0", d.addr + "($t1)"));
+        mipsCode.add(new Code("syscall"));
+        symboleTables.get(symboleTables.size() - 1).add(t, d);
+        semanticStack.push(t);
+    }
+
+    public static void READLINE(){
+        pc += 4;
+        VariableDscp d = new VariableDscp(new VarType(Type.String), stringAddr, false, true);
+        Token t = new Token("$" + pc, TokenType.str_char);
+        stringAddr += d.type.size;
+        mipsCode.add(new Code("li", "$v0", "8"));
+        mipsCode.add(new Code("la", "$a0", d.addr + "($t1)"));
+        mipsCode.add(new Code("li", "$a1", "64"));
+        mipsCode.add(new Code("syscall"));
+        symboleTables.get(symboleTables.size() - 1).add(t, d);
+        semanticStack.push(t);
+    }
 
     public static void SAVE() {
         semanticStack.push(new Token(String.valueOf(pc), TokenType.pc));
@@ -303,75 +327,7 @@ public class CodeGen {
         pc++;
     }
 
-    public static void LT() {
-        String src1 = semanticStack.pop();
-        String src2 = semanticStack.pop();
-        Dscp dscp1 = SymboleTable.find(src1);
-        Dscp dscp2 = SymboleTable.find(src2);
-        String type = getType(dscp1, dscp2, "compare");
-        VariableDscp d = new VariableDscp(type);
-        String dName = "$" + pc;
-        symboleTables.get(symboleTables.size() - 1).add(dName, d); //pc ast
-        mipsCode.add(new Code("lessThan", dName, src1, src2));
-        pc++;
-        semanticStack.push(dName);
-    }
 
-    public static void LE() {
-        String src1 = semanticStack.pop();
-        String src2 = semanticStack.pop();
-        Dscp dscp1 = SymboleTable.find(src1);
-        Dscp dscp2 = SymboleTable.find(src2);
-        String type = getType(dscp1, dscp2, "compare");
-        VariableDscp d = new VariableDscp(type);
-        String dName = "$" + pc;
-        symboleTables.get(symboleTables.size() - 1).add(dName, d); //pc ast
-        mipsCode.add(new Code("lessEqual", dName, src1, src2));
-        pc++;
-        semanticStack.push(dName);
-    }
-
-    public static void GT() {
-        String src1 = semanticStack.pop();
-        String src2 = semanticStack.pop();
-        Dscp dscp1 = SymboleTable.find(src1);
-        Dscp dscp2 = SymboleTable.find(src2);
-        String type = getType(dscp1, dscp2, "compare");
-        VariableDscp d = new VariableDscp(type);
-        String dName = "$" + pc;
-        symboleTables.get(symboleTables.size() - 1).add(dName, d); //pc ast
-        mipsCode.add(new Code("graterThan", dName, src1, src2));
-        pc++;
-        semanticStack.push(dName);
-    }
-
-    public static void GE() {
-        String src1 = semanticStack.pop();
-        String src2 = semanticStack.pop();
-        Dscp dscp1 = SymboleTable.find(src1);
-        Dscp dscp2 = SymboleTable.find(src2);
-        String type = getType(dscp1, dscp2, "compare");
-        VariableDscp d = new VariableDscp(type);
-        String dName = "$" + pc;
-        symboleTables.get(symboleTables.size() - 1).add(dName, d); //pc ast
-        mipsCode.add(new Code("graterEqual", dName, src1, src2));
-        pc++;
-        semanticStack.push(dName);
-    }
-
-
-    public static void EQUAL() {
-        String src1 = semanticStack.pop();
-        String src2 = semanticStack.pop();
-        Dscp dscp1 = SymboleTable.find(src1);
-        Dscp dscp2 = SymboleTable.find(src2);
-        String type = getType(dscp1, dscp2, "equal");
-        VariableDscp d = new VariableDscp(type);
-        String dName = "$" + pc;
-        symboleTables.get(symboleTables.size() - 1).add(dName, d); //pc ast
-        mipsCode.add(new Code("equal", dName, src1, src2));
-
-    }
     public static void JZ() {
         Token token = semanticStack.pop();
         if (token.getType() == TokenType.keyword || token.getType() == TokenType.integer || token.getType() == TokenType.real || token.getType() == TokenType.str_char) {

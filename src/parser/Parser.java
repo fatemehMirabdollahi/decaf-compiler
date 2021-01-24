@@ -31,6 +31,11 @@ public class Parser {
     public static int doubleAddr = 0;
     public static int labelNum = 0;
     public static int maxTemp = 0;
+    public static int stringAddr = 0;
+    // t0 -> base of address
+    // t1 -> base of temp
+    // t2 -> base of double + 8
+    // t9 -> base of strings + 64
 
     public static void main(String[] args) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         symboleTableInit();
