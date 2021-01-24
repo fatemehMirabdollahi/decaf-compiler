@@ -11,6 +11,7 @@ import java.util.Stack;
 import codegen.Code;
 import codegen.CodeGen;
 import codegen.SymboleTable;
+import com.sun.corba.se.impl.oa.toa.TOA;
 import scanner.DecafScanner;
 import scanner.Token;
 import scanner.TokenType;
@@ -22,7 +23,7 @@ public class Parser {
     public static ArrayList<String> parseTableHeader;
     public static ArrayList<Code> mipsCode;
     public static Stack<Integer> parseStack;
-    public static Stack<String> semanticStack; //change
+    public static Stack<Token> semanticStack; //change
     public static Token token;
     public static int pc = 0;
     public static void main(String[] args) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {

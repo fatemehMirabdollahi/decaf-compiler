@@ -2,6 +2,7 @@ package codegen;
 
 import codegen.discriptors.Dscp;
 import codegen.discriptors.VariableDscp;
+import scanner.Token;
 
 import static codegen.SymboleTable.getType;
 import static codegen.SymboleTable.symboleTables;
@@ -9,14 +10,14 @@ import static parser.Parser.*;
 
 public class CodeGen {
     public static void PUSH(){
-        semanticStack.push(token.getValue());
+        semanticStack.push(token);
     }
 
     public static void cast(Dscp dscp, String type){}
 
     public static void ADD(){
-        String src1 = semanticStack.pop();
-        String src2 = semanticStack.pop();
+        Token src1 = semanticStack.pop();
+        Token src2 = semanticStack.pop();
         Dscp dscp1 = SymboleTable.find(src1);
         Dscp dscp2 = SymboleTable.find(src2);
         String type = getType(dscp1, dscp2, "Arith");
@@ -125,6 +126,14 @@ public class CodeGen {
         pc++;
         semanticStack.push(dName);
     }
+    public static void SAVE(){
+        semanticStack.push(String.valueOf(pc));
+    }
+    public static void JZ(){
+        String src = semanticStack.pop();
+
+    }
+
 
 
 }
