@@ -295,7 +295,6 @@ public class CodeGen {
         semanticStack.push(t);
     }
 
-
     public static void SAVE() {
         semanticStack.push(new Token(String.valueOf(pc), TokenType.pc));
         mipsCode.add(new Code("label", "L" + labelNum + ":"));
@@ -352,23 +351,22 @@ public class CodeGen {
 
     public static void CWHILE() {
         Token jzPC = semanticStack.pop();
-        if (jzPC.getValue() == "break") {
+        while (jzPC.getValue() == "break") {
             Token breakPC = semanticStack.pop();
             mipsCode.get(Integer.parseInt(breakPC.getValue())).dest = "L" + labelNum + ":";
             jzPC = semanticStack.pop();
         }
-            if (mipsCode.get(Integer.parseInt(jzPC.getValue())).dest == null) {
-                mipsCode.get(Integer.parseInt(jzPC.getValue())).dest = "L" + labelNum + ":";
-            } else {
-                mipsCode.get(Integer.parseInt(jzPC.getValue())).src1 = "L" + labelNum + ":";
-            }
-            labelNum++;
-            Token whilePC = semanticStack.pop();
-            mipsCode.add(new Code("b", mipsCode.get(Integer.parseInt(whilePC.getValue())).dest));
-            pc++;
-            mipsCode.add(new Code("label", "L" + labelNum + ":"));
-            labelNum++;
-            pc++;
+        if (mipsCode.get(Integer.parseInt(jzPC.getValue())).dest == null) {
+            mipsCode.get(Integer.parseInt(jzPC.getValue())).dest = "L" + labelNum + ":";
+        } else {
+            mipsCode.get(Integer.parseInt(jzPC.getValue())).src1 = "L" + labelNum + ":";
+        }
+        Token whilePC = semanticStack.pop();
+        mipsCode.add(new Code("b", mipsCode.get(Integer.parseInt(whilePC.getValue())).dest));
+        pc++;
+        mipsCode.add(new Code("label", "L" + labelNum + ":"));
+        labelNum++;
+        pc++;
 
     }
 
@@ -379,7 +377,6 @@ public class CodeGen {
         } else {
             mipsCode.get(Integer.parseInt(jzPC.getValue())).src1 = "L" + labelNum + ":";
         }
-        labelNum++;
         mipsCode.add(new Code("label", "L" + labelNum + ":"));
         labelNum++;
         pc++;
@@ -411,5 +408,130 @@ public class CodeGen {
         semanticStack.push(new Token(String.valueOf(pc), TokenType.pc));
         pc++;
         semanticStack.push(new Token("break"));
+    }
+
+    public static void DJC() {
+        Token token = semanticStack.pop();
+        if (token.getType() == TokenType.keyword || token.getType() == TokenType.integer || token.getType() == TokenType.real || token.getType() == TokenType.str_char) {
+            int be = castBe(token);
+            mipsCode.add(new Code("li", "$t3", String.valueOf(be)));
+            pc++;
+            mipsCode.add(new Code("beqz", "$t3"));
+        } else if (token.getType() == TokenType.id) {
+            VariableDscp varBe = (VariableDscp) SymboleTable.find(token);
+            String src;
+            int addr;
+            if (varBe.isTemp) {
+                src = "($t1)";
+                addr = temp;
+                maxTemp = temp > maxTemp ? temp : maxTemp;
+                temp = 0;
+            } else {
+                src = "($t0)";
+                addr = address;
+            }
+            if (varBe.type.type == Type.Integer || varBe.type.type == Type.Boolean) {
+
+                mipsCode.add(new Code("LW", "$t3", addr + src));
+                pc++;
+                mipsCode.add(new Code("beqz", "$t3"));
+
+            } else if (varBe.type.type == Type.Double) {
+
+                mipsCode.add(new Code("Ld", "$f2", addr + src));
+                pc++;
+                SymboleTable.find(new Token("0", TokenType.real));
+                mipsCode.add(new Code("Ld", "$f0", doubleAddr + "($t3)"));
+                pc++;
+                mipsCode.add(new Code("c.eq.d", "$f0", "$f2"));
+                pc++;
+                mipsCode.add(new Code("bc1t"));
+            } else {
+                //error? :/
+            }
+        }
+        semanticStack.push(new Token(String.valueOf(pc), TokenType.pc));
+        pc++;
+        if (token.getType() == TokenType.keyword || token.getType() == TokenType.integer || token.getType() == TokenType.real || token.getType() == TokenType.str_char) {
+            int be = castBe(token);
+            mipsCode.add(new Code("li", "$t3", String.valueOf(be)));
+            pc++;
+            mipsCode.add(new Code("bgtz", "$t3"));
+        } else if (token.getType() == TokenType.id) {
+            VariableDscp varBe = (VariableDscp) SymboleTable.find(token);
+            String src;
+            int addr;
+            if (varBe.isTemp) {
+                src = "($t1)";
+                addr = temp;
+                maxTemp = temp > maxTemp ? temp : maxTemp;
+                temp = 0;
+            } else {
+                src = "($t0)";
+                addr = address;
+            }
+            if (varBe.type.type == Type.Integer || varBe.type.type == Type.Boolean) {
+
+                mipsCode.add(new Code("LW", "$t3", addr + src));
+                pc++;
+                mipsCode.add(new Code("bgtz", "$t3"));
+
+            } else if (varBe.type.type == Type.Double) {
+
+                mipsCode.add(new Code("Ld", "$f2", addr + src));
+                pc++;
+                SymboleTable.find(new Token("0", TokenType.real));
+                mipsCode.add(new Code("Ld", "$f0", doubleAddr + "($t3)"));
+                pc++;
+                mipsCode.add(new Code("c.eq.d", "$f0", "$f2"));
+                pc++;
+                mipsCode.add(new Code("bc1f"));
+            } else {
+
+                //error? :/
+            }
+
+        }
+        semanticStack.push(new Token(String.valueOf(pc), TokenType.pc));
+        pc++;
+
+    }
+
+    public static void CJNZ() {
+        Token sstep = semanticStack.pop();
+        Token jnz = semanticStack.pop();
+        Token jz = semanticStack.pop();
+        Token sbe = semanticStack.pop();
+        mipsCode.add(new Code("b", mipsCode.get(Integer.parseInt(sbe.getValue())).dest));
+        pc++;
+        if (mipsCode.get(Integer.parseInt(jnz.getValue())).dest == null) {
+            mipsCode.get(Integer.parseInt(jnz.getValue())).dest = "L" + labelNum + ":";
+        } else {
+            mipsCode.get(Integer.parseInt(jnz.getValue())).src1 = "L" + labelNum + ":";
+        }
+        mipsCode.add(new Code("label", "L" + labelNum + ":"));
+        labelNum++;
+        pc++;
+        semanticStack.push(jz);
+        semanticStack.push(sstep);
+    }
+    public static void CJZFOR(){
+        Token sstep = semanticStack.pop();
+        while (sstep.getValue() == "break") {
+            Token breakPC = semanticStack.pop();
+            mipsCode.get(Integer.parseInt(breakPC.getValue())).dest = "L" + labelNum + ":";
+            sstep = semanticStack.pop();
+        }
+        mipsCode.add(new Code("b", mipsCode.get(Integer.parseInt(sstep.getValue())).dest));
+        pc++;
+        Token jz = semanticStack.pop();
+        if (mipsCode.get(Integer.parseInt(jz.getValue())).dest == null) {
+            mipsCode.get(Integer.parseInt(jz.getValue())).dest = "L" + labelNum + ":";
+        } else {
+            mipsCode.get(Integer.parseInt(jz.getValue())).src1 = "L" + labelNum + ":";
+        }
+        mipsCode.add(new Code("label", "L" + labelNum + ":"));
+        labelNum++;
+        pc++;
     }
 }
