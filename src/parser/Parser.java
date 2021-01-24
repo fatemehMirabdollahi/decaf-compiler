@@ -2,16 +2,12 @@ package parser;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Stack;
-
 import codegen.Code;
 import codegen.CodeGen;
-import codegen.SymboleTable;
-import com.sun.corba.se.impl.oa.toa.TOA;
 import scanner.DecafScanner;
 import scanner.Token;
 import scanner.TokenType;
