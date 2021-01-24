@@ -29,15 +29,14 @@ public class SymboleTable extends HashMap<Token, Dscp> {
         }
         if (t.getType() == TokenType.real) {
 
-            for (int i = symboleTables.size() - 1; i >= 0; i--) {
-                Dscp d = symboleTables.get(i).get(t.getValue());
-                if (d != null)
-                    return d;
-            }
+            Dscp d1 = symboleTables.get(0).get(t.getValue());
+            if (d1 != null)
+                return d1;
+
             VariableDscp d = new VariableDscp(new VarType(Type.Double), doubleAddr, true, false);
             doubleAddr += d.type.size;
             d.value = t.getValue();
-            symboleTables.get(symboleTables.size() - 1).add(t, d);
+            symboleTables.get(0).add(t, d);
             return d;
         }
 
@@ -107,7 +106,7 @@ public class SymboleTable extends HashMap<Token, Dscp> {
                 if (Integer.parseInt(token.getValue()) > 0) return 1;
                 else return 0;
             case str_char:
-                if(token.getValue().length()>2)
+                if (token.getValue().length() > 2)
                     return 1;
                 else return 0;
         }
