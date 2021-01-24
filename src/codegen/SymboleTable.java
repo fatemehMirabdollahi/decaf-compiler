@@ -94,4 +94,24 @@ public class SymboleTable extends HashMap<Token, Dscp> {
         return null;
     }
 
+    public static int castBe(Token token) {
+        switch (token.getType()) {
+            case keyword:
+                if (token.getValue() == "true") return 1;
+                else return 0;
+            case real:
+
+                if (Double.parseDouble(token.getValue()) > 0) return 1;
+                else return 0;
+            case integer:
+                if (Integer.parseInt(token.getValue()) > 0) return 1;
+                else return 0;
+            case str_char:
+                if(token.getValue().length()>2)
+                    return 1;
+                else return 0;
+        }
+        return -1;
+    }
+
 }

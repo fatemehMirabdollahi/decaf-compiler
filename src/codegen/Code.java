@@ -1,10 +1,10 @@
 package codegen;
 
 public class Code {
-    public String opcode; //enum
-    public String dest;
-    public String src1;
-    public String src2;
+    public String opcode ; //enum
+    public String dest = null;
+    public String src1 = null;
+    public String src2 = null;
 
     public Code(String opcode, String dest, String src1, String src2) {
         this.opcode = opcode;
