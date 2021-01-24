@@ -12,6 +12,10 @@ public class Token {
         this.type = type;
     }
 
+    public void setType(TokenType type) {
+        this.type = type;
+    }
+
     public Token(String value) {
         this.value = value;
     }

@@ -26,6 +26,9 @@ public class Parser {
     public static Stack<Token> semanticStack; //change
     public static Token token;
     public static int pc = 0;
+    public static int address = 0;
+    public static int temp = 0;
+    public static int doubleAddr = 0;
     public static void main(String[] args) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         symboleTableInit();
         scanner = new DecafScanner(new FileReader("src/chum.txt"));

@@ -6,13 +6,11 @@ import java.util.ArrayList;
 
 public class FuncDscp extends Dscp{
     public ArrayList<String> inputTypes;
-    public int beginAddress;
     public int returnAddress;
     public SymboleTable symboleTable;
-    public FuncDscp(int beginAddress) {
-        this.beginAddress = beginAddress;
+    public FuncDscp(int addr) {
+        super(DscpType.funcion, addr);
         this.symboleTable = new SymboleTable();
-        super.dscpType = DscpType.funcion;
     }
 
 
