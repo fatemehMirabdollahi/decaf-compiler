@@ -84,7 +84,7 @@ public class CodeGen {
                 symboleTables.get(symboleTables.size() - 1).add(t, d);
             }
         }
-        
+
         semanticStack.push(t);
     }
 
@@ -106,11 +106,11 @@ public class CodeGen {
             } else {
                 if (d1.isImm) {
                     mipsCode.add(new Code("lw", "$t3", d2.addr + "($t0)"));
-                    mipsCode.add(new Code("addi", "$t3", "$t3",Integer.toString(-1* Integer.parseInt(d1.value))));
+                    mipsCode.add(new Code("addi", "$t3", "$t3", Integer.toString(-1 * Integer.parseInt(d1.value))));
                     pc += 2;
                 } else if (d2.isImm) { //2 - a
                     mipsCode.add(new Code("lw", "$t3", d1.addr + "($t0)"));
-                    mipsCode.add(new Code("addi", "$t3", "$t3", Integer.toString(-1* Integer.parseInt(d2.value)))); // a - 2
+                    mipsCode.add(new Code("addi", "$t3", "$t3", Integer.toString(-1 * Integer.parseInt(d2.value)))); // a - 2
                     mipsCode.add(new Code("neg", "$t3", "$t3"));
                     pc += 3;
                 } else {
@@ -303,75 +303,6 @@ public class CodeGen {
         pc++;
     }
 
-    public static void LT() {
-        String src1 = semanticStack.pop();
-        String src2 = semanticStack.pop();
-        Dscp dscp1 = SymboleTable.find(src1);
-        Dscp dscp2 = SymboleTable.find(src2);
-        String type = getType(dscp1, dscp2, "compare");
-        VariableDscp d = new VariableDscp(type);
-        String dName = "$" + pc;
-        symboleTables.get(symboleTables.size() - 1).add(dName, d); //pc ast
-        mipsCode.add(new Code("lessThan", dName, src1, src2));
-        pc++;
-        semanticStack.push(dName);
-    }
-
-    public static void LE() {
-        String src1 = semanticStack.pop();
-        String src2 = semanticStack.pop();
-        Dscp dscp1 = SymboleTable.find(src1);
-        Dscp dscp2 = SymboleTable.find(src2);
-        String type = getType(dscp1, dscp2, "compare");
-        VariableDscp d = new VariableDscp(type);
-        String dName = "$" + pc;
-        symboleTables.get(symboleTables.size() - 1).add(dName, d); //pc ast
-        mipsCode.add(new Code("lessEqual", dName, src1, src2));
-        pc++;
-        semanticStack.push(dName);
-    }
-
-    public static void GT() {
-        String src1 = semanticStack.pop();
-        String src2 = semanticStack.pop();
-        Dscp dscp1 = SymboleTable.find(src1);
-        Dscp dscp2 = SymboleTable.find(src2);
-        String type = getType(dscp1, dscp2, "compare");
-        VariableDscp d = new VariableDscp(type);
-        String dName = "$" + pc;
-        symboleTables.get(symboleTables.size() - 1).add(dName, d); //pc ast
-        mipsCode.add(new Code("graterThan", dName, src1, src2));
-        pc++;
-        semanticStack.push(dName);
-    }
-
-    public static void GE() {
-        String src1 = semanticStack.pop();
-        String src2 = semanticStack.pop();
-        Dscp dscp1 = SymboleTable.find(src1);
-        Dscp dscp2 = SymboleTable.find(src2);
-        String type = getType(dscp1, dscp2, "compare");
-        VariableDscp d = new VariableDscp(type);
-        String dName = "$" + pc;
-        symboleTables.get(symboleTables.size() - 1).add(dName, d); //pc ast
-        mipsCode.add(new Code("graterEqual", dName, src1, src2));
-        pc++;
-        semanticStack.push(dName);
-    }
-
-
-    public static void EQUAL() {
-        String src1 = semanticStack.pop();
-        String src2 = semanticStack.pop();
-        Dscp dscp1 = SymboleTable.find(src1);
-        Dscp dscp2 = SymboleTable.find(src2);
-        String type = getType(dscp1, dscp2, "equal");
-        VariableDscp d = new VariableDscp(type);
-        String dName = "$" + pc;
-        symboleTables.get(symboleTables.size() - 1).add(dName, d); //pc ast
-        mipsCode.add(new Code("equal", dName, src1, src2));
-
-    }
     public static void JZ() {
         Token token = semanticStack.pop();
         if (token.getType() == TokenType.keyword || token.getType() == TokenType.integer || token.getType() == TokenType.real || token.getType() == TokenType.str_char) {
@@ -421,20 +352,27 @@ public class CodeGen {
 
     public static void CWHILE() {
         Token jzPC = semanticStack.pop();
-        if (mipsCode.get(Integer.parseInt(jzPC.getValue())).dest == null) {
-            mipsCode.get(Integer.parseInt(jzPC.getValue())).dest = "L" + labelNum + ":";
-        } else {
-            mipsCode.get(Integer.parseInt(jzPC.getValue())).src1 = "L" + labelNum + ":";
+        if (jzPC.getValue() == "break") {
+            Token breakPC = semanticStack.pop();
+            mipsCode.get(Integer.parseInt(breakPC.getValue())).dest = "L" + labelNum + ":";
+            jzPC = semanticStack.pop();
         }
-        labelNum++;
-        Token whilePC = semanticStack.pop();
-        mipsCode.add(new Code("b", mipsCode.get(Integer.parseInt(whilePC.getValue())).dest));
-        pc++;
-        mipsCode.add(new Code("label", "L" + labelNum + ":"));
-        labelNum++;
-        pc++;
+            if (mipsCode.get(Integer.parseInt(jzPC.getValue())).dest == null) {
+                mipsCode.get(Integer.parseInt(jzPC.getValue())).dest = "L" + labelNum + ":";
+            } else {
+                mipsCode.get(Integer.parseInt(jzPC.getValue())).src1 = "L" + labelNum + ":";
+            }
+            labelNum++;
+            Token whilePC = semanticStack.pop();
+            mipsCode.add(new Code("b", mipsCode.get(Integer.parseInt(whilePC.getValue())).dest));
+            pc++;
+            mipsCode.add(new Code("label", "L" + labelNum + ":"));
+            labelNum++;
+            pc++;
+
     }
-    public static void CJZ(){
+
+    public static void CJZ() {
         Token jzPC = semanticStack.pop();
         if (mipsCode.get(Integer.parseInt(jzPC.getValue())).dest == null) {
             mipsCode.get(Integer.parseInt(jzPC.getValue())).dest = "L" + labelNum + ":";
@@ -446,8 +384,9 @@ public class CodeGen {
         labelNum++;
         pc++;
     }
-    public static void JP(){
-        mipsCode.remove(mipsCode.size()-1);
+
+    public static void JP() {
+        mipsCode.remove(mipsCode.size() - 1);
         pc--;
         mipsCode.add(new Code("b"));
         semanticStack.push(new Token(String.valueOf(pc), TokenType.pc));
@@ -458,11 +397,19 @@ public class CodeGen {
         labelNum++;
         pc++;
     }
-    public static void CJP(){
+
+    public static void CJP() {
         Token jpPC = semanticStack.pop();
         mipsCode.get(Integer.parseInt(jpPC.getValue())).dest = "L" + labelNum + ":";
         mipsCode.add(new Code("label", "L" + labelNum + ":"));
         labelNum++;
         pc++;
+    }
+
+    public static void BREAK() {
+        mipsCode.add(new Code("b"));
+        semanticStack.push(new Token(String.valueOf(pc), TokenType.pc));
+        pc++;
+        semanticStack.push(new Token("break"));
     }
 }
