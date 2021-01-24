@@ -1,12 +1,18 @@
 package codegen.discriptors;
 
-public class VariableDscp extends Dscp {
-    public String type;
-    public String value;
+import static codegen.discriptors.DscpType.variable;
 
-    public VariableDscp(String type) {
+public class VariableDscp extends Dscp {
+    public VarType type;
+    public String value;
+    public boolean isImm;
+    public boolean isTemp;
+
+    public VariableDscp(VarType type, int addr , boolean isImm, boolean isTemp) {
+//        super(variable, addr);
         this.type = type;
-        super.dscpType = DscpType.variable;
+        this.isImm = isImm;
+        this.isTemp = isTemp;
     }
 
 

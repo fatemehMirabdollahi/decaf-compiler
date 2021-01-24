@@ -26,6 +26,12 @@ public class Parser {
     public static Stack<Token> semanticStack; //change
     public static Token token;
     public static int pc = 0;
+    public static int address = 0;
+    public static int temp = 0;
+    public static int doubleAddr = 0;
+    public static int labelNum = 0;
+    public static int maxTemp = 0;
+
     public static void main(String[] args) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         symboleTableInit();
         scanner = new DecafScanner(new FileReader("src/chum.txt"));
@@ -36,11 +42,11 @@ public class Parser {
 
         while (true) {
             token = scanner.tokenReader();
-            if(token.getType() == TokenType.undefined){
+            if (token.getType() == TokenType.undefined) {
                 //scanner error
             }
             ParseCell curCell = getCell(token, curState);
-            if (curCell == null){
+            if (curCell == null) {
                 //parser error
             } else {
 
@@ -48,7 +54,7 @@ public class Parser {
                 doAction(curCell);
 
                 //invoke code gen
-                Method method = CodeGen.class.getMethod(curCell.getSemantic(),null);
+                Method method = CodeGen.class.getMethod(curCell.getSemantic(), null);
                 method.setAccessible(true);
                 method.invoke(null, null);
             }
@@ -58,13 +64,15 @@ public class Parser {
     private static void symboleTableInit() {
     }
 
-    static ParseCell getCell(Token token, int state){
+    static ParseCell getCell(Token token, int state) {
         return null;
     }
-    static void createParseTable(){
+
+    static void createParseTable() {
 //todo
     }
-    static void doAction(ParseCell p){
+
+    static void doAction(ParseCell p) {
 
     }
 }

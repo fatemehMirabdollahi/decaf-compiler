@@ -4,6 +4,7 @@ import codegen.discriptors.Dscp;
 import codegen.discriptors.DscpType;
 import codegen.discriptors.VariableDscp;
 import scanner.Token;
+import scanner.TokenType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,15 +22,15 @@ public class SymboleTable extends HashMap<String, Dscp> {
         this.put(name, dscp);
     }
 
-    public static Dscp find(String s) {
-        if (checkInt(s)) {
-            VariableDscp d = new VariableDscp("int");
-            d.value = s;
+    public static Dscp find(Token s) {
+        if (s.getType().toString() == "integer") {
+            VariableDscp d = new VariableDscp("int",false);
+            d.value = s.getValue();
             return d;
         }
-        if (checkDouble(s)) {
-            VariableDscp d = new VariableDscp("double");
-            d.value = s;
+        if (s.getType().toString() == "real") {
+            VariableDscp d = new VariableDscp("double",false);
+            d.value = s.getValue();
             return d;
         }
 
@@ -103,6 +104,26 @@ public class SymboleTable extends HashMap<String, Dscp> {
 
         }
         return null;
+    }
+
+    public static int castBe(Token token) {
+        switch (token.getType()) {
+            case keyword:
+                if (token.getValue() == "true") return 1;
+                else return 0;
+            case real:
+
+                if (Double.parseDouble(token.getValue()) > 0) return 1;
+                else return 0;
+            case integer:
+                if (Integer.parseInt(token.getValue()) > 0) return 1;
+                else return 0;
+            case str_char:
+                if(token.getValue().length()>2)
+                    return 1;
+                else return 0;
+        }
+        return -1;
     }
 
 }
