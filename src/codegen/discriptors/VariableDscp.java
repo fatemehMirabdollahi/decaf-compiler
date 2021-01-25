@@ -15,5 +15,4 @@ public class VariableDscp extends Dscp {
         this.isTemp = isTemp;
     }
 
-
 }

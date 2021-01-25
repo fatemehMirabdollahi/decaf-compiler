@@ -67,12 +67,15 @@ public class CodeGen {
                     src2.setType(TokenType.real);
                     d2 = (VariableDscp) SymboleTable.find(src2);
                 }
-                mipsCode.add(new Code("l.d", "$f0", d1.addr + "($t2)"));
+                String s1 = d1.isImm ? "($t2)" : (d1.isTemp ? "($t1)" : "($t0)");
+                String s2 = d2.isImm ? "($t2)" : (d2.isTemp ? "($t1)" : "($t0)");
+
+                mipsCode.add(new Code("l.d", "$f0", d1.addr + s1));
                 if (d1.type.type == Type.Integer) {
                     mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
                     pc++;
                 }
-                mipsCode.add(new Code("l.d", "$f2", d2.addr + "($t2)"));
+                mipsCode.add(new Code("l.d", "$f2", d2.addr + s2));
                 if (d2.type.type == Type.Integer) {
                     mipsCode.add(new Code("cvt.d.w", "$f2", "$f2"));
                     pc++;
@@ -138,12 +141,15 @@ public class CodeGen {
                     src2.setType(TokenType.real);
                     d2 = (VariableDscp) SymboleTable.find(src2);
                 }
-                mipsCode.add(new Code("l.d", "$f0", d1.addr + "($t2)"));
+                String s1 = d1.isImm ? "($t2)" : (d1.isTemp ? "($t1)" : "($t0)");
+                String s2 = d2.isImm ? "($t2)" : (d2.isTemp ? "($t1)" : "($t0)");
+
+                mipsCode.add(new Code("l.d", "$f0", d1.addr + s1));
                 if (d1.type.type == Type.Integer) {
                     mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
                     pc++;
                 }
-                mipsCode.add(new Code("l.d", "$f2", d2.addr + "($t2)"));
+                mipsCode.add(new Code("l.d", "$f2", d2.addr + s2));
                 if (d2.type.type == Type.Integer) {
                     mipsCode.add(new Code("cvt.d.w", "$f2", "$f2"));
                     pc++;
@@ -206,12 +212,14 @@ public class CodeGen {
                     src2.setType(TokenType.real);
                     d2 = (VariableDscp) SymboleTable.find(src2);
                 }
-                mipsCode.add(new Code("l.d", "$f0", d1.addr + "($t2)"));
+                String s1 = d1.isImm ? "($t2)" : (d1.isTemp ? "($t1)" : "($t0)");
+                String s2 = d2.isImm ? "($t2)" : (d2.isTemp ? "($t1)" : "($t0)");
+                mipsCode.add(new Code("l.d", "$f0", d1.addr + s1));
                 if (d1.type.type == Type.Integer) {
                     mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
                     pc++;
                 }
-                mipsCode.add(new Code("l.d", "$f2", d2.addr + "($t2)"));
+                mipsCode.add(new Code("l.d", "$f2", d2.addr + s2));
                 if (d2.type.type == Type.Integer) {
                     mipsCode.add(new Code("cvt.d.w", "$f2", "$f2"));
                     pc++;
@@ -274,12 +282,15 @@ public class CodeGen {
                     src2.setType(TokenType.real);
                     d2 = (VariableDscp) SymboleTable.find(src2);
                 }
-                mipsCode.add(new Code("l.d", "$f0", d1.addr + "($t2)"));
+                String s1 = d1.isImm ? "($t2)" : (d1.isTemp ? "($t1)" : "($t0)");
+                String s2 = d2.isImm ? "($t2)" : (d2.isTemp ? "($t1)" : "($t0)");
+
+                mipsCode.add(new Code("l.d", "$f0", d1.addr + s1));
                 if (d1.type.type == Type.Integer) {
                     mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
                     pc++;
                 }
-                mipsCode.add(new Code("l.d", "$f2", d2.addr + "($t2)"));
+                mipsCode.add(new Code("l.d", "$f2", d2.addr + s2));
                 if (d2.type.type == Type.Integer) {
                     mipsCode.add(new Code("cvt.d.w", "$f2", "$f2"));
                     pc++;
@@ -295,7 +306,7 @@ public class CodeGen {
         semanticStack.push(t);
     }
 
-    public static void READINTEGER(){
+    public static void READINTEGER() {
         pc += 3;
         VariableDscp d = new VariableDscp(new VarType(Type.Integer), temp, false, true);
         Token t = new Token("$" + pc, TokenType.id);
@@ -307,7 +318,7 @@ public class CodeGen {
         semanticStack.push(t);
     }
 
-    public static void READLINE(){
+    public static void READLINE() {
         pc += 4;
         VariableDscp d = new VariableDscp(new VarType(Type.String), stringAddr, false, true);
         Token t = new Token("$" + pc, TokenType.str_char);
@@ -318,6 +329,36 @@ public class CodeGen {
         mipsCode.add(new Code("syscall"));
         symboleTables.get(symboleTables.size() - 1).add(t, d);
         semanticStack.push(t);
+    }
+
+    public static void PRINT() {
+        Token src = semanticStack.pop();
+        VariableDscp d = (VariableDscp) SymboleTable.find(src);
+        String funcNum = "";
+        String base = "";
+
+        switch (d.type.type) {
+            case Integer:
+                funcNum = "1";
+                if (d.isImm) {
+                    mipsCode.add(new Code("li", "$a0", d.value));
+                } else {
+                    mipsCode.add(new Code("lw", "$a0", d.addr + (d.isTemp ? "($t1)" : "($t0)")));
+                }
+                break;
+            case Double:
+                funcNum = "3";
+                mipsCode.add(new Code("l.d", "$f12", ));
+
+        }
+
+
+        mipsCode.add(new Code("li", "$v0", funcNum));
+        mipsCode.add(new Code("syscall"));
+
+        pc += 4;
+
+
     }
 
     public static void SAVE() {
@@ -540,7 +581,8 @@ public class CodeGen {
         semanticStack.push(jz);
         semanticStack.push(sstep);
     }
-    public static void CJZFOR(){
+
+    public static void CJZFOR() {
         Token sstep = semanticStack.pop();
         while (sstep.getValue() == "break") {
             Token breakPC = semanticStack.pop();
