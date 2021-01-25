@@ -20,6 +20,9 @@ public class VarType {
             case String:
                 size = 64;
                 break;
+            case Record:
+                size = 0; //dasti set she
+                break;
         }
     }
 }

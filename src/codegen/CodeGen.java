@@ -1,9 +1,6 @@
 package codegen;
 
-import codegen.discriptors.Dscp;
-import codegen.discriptors.Type;
-import codegen.discriptors.VarType;
-import codegen.discriptors.VariableDscp;
+import codegen.discriptors.*;
 import scanner.Token;
 import scanner.TokenType;
 
@@ -15,6 +12,23 @@ public class CodeGen {
         semanticStack.push(token);
     }
 
+    public static void MDSCP() {
+        Token varName = semanticStack.pop();
+        Token chum = semanticStack.pop();
+        Dscp dscp;
+        if (chum.getValue() == "]") {
+            Token type = semanticStack.pop();
+            dscp = (ArrayDscp) new ArrayDscp(type);
+        } else {
+            dscp = (VariableDscp) new VariableDscp(Dscp.typeSetter(chum), -1, false, false);
+        }
+        symboleTables.get(symboleTables.size() - 1).add(varName, dscp);
+    }
+
+    public static void CADSCP() {
+        semanticStack.push(new Token("newArray"));  
+    }
+
     public static void cast(Dscp dscp, String type) {
     }
 
@@ -24,6 +38,9 @@ public class CodeGen {
         Token src2 = semanticStack.pop();
         VariableDscp d1 = (VariableDscp) SymboleTable.find(src1);
         VariableDscp d2 = (VariableDscp) SymboleTable.find(src2);
+        if (d1.addr == -1 || d2.addr == -1) {
+            //error
+        }
         VarType type = getType(d1, d2, "Arith");
         VariableDscp d = new VariableDscp(type, temp, false, true);
         temp += type.size;
@@ -97,6 +114,9 @@ public class CodeGen {
         Token src2 = semanticStack.pop();
         VariableDscp d1 = (VariableDscp) SymboleTable.find(src1);
         VariableDscp d2 = (VariableDscp) SymboleTable.find(src2);
+        if (d1.addr == -1 || d2.addr == -1) {
+            //error
+        }
         VarType type = getType(d1, d2, "Arith");
         VariableDscp d = new VariableDscp(type, temp, false, true);
         temp += type.size;
@@ -171,6 +191,9 @@ public class CodeGen {
         Token src2 = semanticStack.pop();
         VariableDscp d1 = (VariableDscp) SymboleTable.find(src1);
         VariableDscp d2 = (VariableDscp) SymboleTable.find(src2);
+        if (d1.addr == -1 || d2.addr == -1) {
+            //error
+        }
         VarType type = getType(d1, d2, "Arith");
         VariableDscp d = new VariableDscp(type, temp, false, true);
         temp += type.size;
@@ -241,6 +264,9 @@ public class CodeGen {
         Token src2 = semanticStack.pop();
         VariableDscp d1 = (VariableDscp) SymboleTable.find(src1);
         VariableDscp d2 = (VariableDscp) SymboleTable.find(src2);
+        if (d1.addr == -1 || d2.addr == -1) {
+            //error
+        }
         VarType type = getType(d1, d2, "Arith");
         VariableDscp d = new VariableDscp(type, temp, false, true);
         temp += type.size;
@@ -336,7 +362,9 @@ public class CodeGen {
         VariableDscp d = (VariableDscp) SymboleTable.find(src);
         String funcNum = "";
         String base;
-
+        if (d.addr == -1) {
+            //error
+        }
         switch (d.type.type) {
             case Integer:
             case Boolean:
@@ -362,7 +390,7 @@ public class CodeGen {
         mipsCode.add(new Code("syscall"));
 
         pc += 3;
-        
+
     }
 
     public static void SAVE() {

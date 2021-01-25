@@ -1,15 +1,18 @@
 package codegen.discriptors;
 
+import scanner.Token;
+
 import java.util.ArrayList;
 
 public class ArrayDscp extends Dscp{
-    public String type;
+    public VarType type;
     public String size;
-    public ArrayList<String> elemnts;
 
-    public ArrayDscp(String type) {
-        this.type = type;
-        elemnts = new ArrayList<>();
-        super.dscpType = DscpType.array;
+
+    public ArrayDscp(Token type) {
+        super(DscpType.array, -1);
+
+        this.type = typeSetter(type);
+
     }
 }
