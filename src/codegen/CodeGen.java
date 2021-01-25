@@ -335,10 +335,11 @@ public class CodeGen {
         Token src = semanticStack.pop();
         VariableDscp d = (VariableDscp) SymboleTable.find(src);
         String funcNum = "";
-        String base = "";
+        String base;
 
         switch (d.type.type) {
             case Integer:
+            case Boolean:
                 funcNum = "1";
                 if (d.isImm) {
                     mipsCode.add(new Code("li", "$a0", d.value));
@@ -348,17 +349,20 @@ public class CodeGen {
                 break;
             case Double:
                 funcNum = "3";
-                mipsCode.add(new Code("l.d", "$f12", ));
+                base = d.isImm ? "($t2)" : (d.isTemp ? "($t1)" : "($t0)");
+                mipsCode.add(new Code("l.d", "$f12", base));
+
+            case String:
+                funcNum = "4";
+                mipsCode.add(new Code("lw", "$a0", d.addr + (d.isTemp ? "($t9)" : "($t0)")));
 
         }
-
 
         mipsCode.add(new Code("li", "$v0", funcNum));
         mipsCode.add(new Code("syscall"));
 
-        pc += 4;
-
-
+        pc += 3;
+        
     }
 
     public static void SAVE() {
