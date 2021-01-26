@@ -5,6 +5,7 @@ public class VariableDscp extends Dscp {
     public String value;
     public boolean isImm;
     public boolean isTemp;
+    public String refType;
 
     public VariableDscp(VarType type, int addr , boolean isImm, boolean isTemp) {
         super(DscpType.variable, addr);

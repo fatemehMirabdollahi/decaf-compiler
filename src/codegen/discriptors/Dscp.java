@@ -1,6 +1,7 @@
 package codegen.discriptors;
 
 import scanner.Token;
+import scanner.TokenType;
 
 import static codegen.SymboleTable.symboleTables;
 
@@ -13,9 +14,9 @@ public abstract class Dscp {
         this.addr = addr;
     }
 
-    public static VarType typeSetter(Token type) { //todo
+    public static VarType typeSetter(String type) { //todo
         VarType v;
-        switch (type.getValue()) {
+        switch (type) {
             case "int":
                 v = new VarType(Type.Integer);
                 break;
@@ -33,11 +34,14 @@ public abstract class Dscp {
 
             default:
                 v = new VarType(Type.Record);
-                Dscp d = symboleTables.get(0).get(type);
+                Token t = new Token(type, TokenType.id);
+                Dscp d = symboleTables.get(0).get(t);
                 if(d == null) {
                     //error
                 }
         }
         return v;
     }
+
+
 }
