@@ -7,6 +7,7 @@ import scanner.TokenType;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static codegen.discriptors.Dscp.typeSetter;
 import static parser.Parser.*;
 
 public class SymboleTable extends HashMap<Token, Dscp> {
@@ -50,8 +51,8 @@ public class SymboleTable extends HashMap<Token, Dscp> {
                 if (d1.dscpType != DscpType.variable || d2.dscpType != DscpType.variable) {
                     //error
                 } else {
-                    VarType t1 = ((VariableDscp) d1).type;
-                    VarType t2 = ((VariableDscp) d2).type;
+                    VarType t1 = ((VariableDscp) d1).type.type == Type.Array ? typeSetter(((VariableDscp) d1).refType):((VariableDscp) d1).type;
+                    VarType t2 = ((VariableDscp) d2).type.type == Type.Array ? typeSetter(((VariableDscp) d2).refType):((VariableDscp) d2).type;
                     if ((t1.type == Type.Integer && t2.type == Type.Integer) ||
                             (t1.type == Type.Integer && t2.type == Type.Boolean) ||
                             (t1.type == Type.Boolean && t2.type == Type.Integer)

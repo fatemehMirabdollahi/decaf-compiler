@@ -33,6 +33,21 @@ public class CodeGen {
 
         Token type = semanticStack.pop();
         Token size = semanticStack.pop();
+        Dscp dSize = SymboleTable.find(size);
+
+
+        if (dSize.dscpType != DscpType.variable || ((VariableDscp) dSize).type.type != Type.Integer) {
+            //error
+        }
+
+        ArrayDscp arrayDscp = new ArrayDscp(type.getValue());
+        arrayDscp.addr = address;
+        if(((VariableDscp) dSize).isImm)
+            arrayDscp.size = ((VariableDscp)dSize).value;
+        address += arrayDscp.type.size * Integer.parseInt(arrayDscp.size);
+        Token t = new Token("$" + mipsCode.size(), TokenType.id);
+        symboleTables.get(symboleTables.size() - 1).add(t, arrayDscp);
+        semanticStack.push(t);
 
     }
 
@@ -60,20 +75,20 @@ public class CodeGen {
                 if (d1.isImm) {
                     mipsCode.add(new Code("lw", "$t3", d2.addr + s2));
                     if (d2.type.type == Type.Array || d2.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t3", "($t3)"));
+                        mipsCode.add(new Code("lw", "$t3", "0($t3)"));
                     mipsCode.add(new Code("addi", "$t3", "$t3", d1.value));
                 } else if (d2.isImm) {
                     mipsCode.add(new Code("lw", "$t3", d1.addr + s1));
                     if (d1.type.type == Type.Array || d1.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t3", "($t3)"));
+                        mipsCode.add(new Code("lw", "$t3", "0($t3)"));
                     mipsCode.add(new Code("addi", "$t3", "$t3", d2.value));
                 } else {
                     mipsCode.add(new Code("lw", "$t3", d1.addr + s1));
                     if (d1.type.type == Type.Array || d1.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t3", "($t3)"));
+                        mipsCode.add(new Code("lw", "$t3", "0($t3)"));
                     mipsCode.add(new Code("lw", "$t4", d2.addr + s2));
                     if (d2.type.type == Type.Array || d2.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t4", "($t4)"));
+                        mipsCode.add(new Code("lw", "$t4", "0($t4)"));
                     mipsCode.add(new Code("add", "$t3", "$t3", "$t4"));
                 }
                 mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
@@ -89,18 +104,16 @@ public class CodeGen {
                 if (d1.type.type == Type.Integer) {
 
                     if (d1.isImm) {
-                        mipsCode.add(new Code("li", "$f0", d1.value));
+                        mipsCode.add(new Code("li.d", "$f0", d1.value + ".0"));
                     } else {
                         mipsCode.add(new Code("l.d", "$f0", d1.addr + s1));
-
-                        if (d1.type.type == Type.Integer)
-                            mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
+                        mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
                     }
 
-                } else if (d1.type.type == Type.Array || d1.type.type == Type.Record) {
+                } else if (d1.type.type == Type.Array) {
 
                     mipsCode.add(new Code("lw", "$t3", d1.addr + s1));
-                    mipsCode.add(new Code("l.d", "$f0", "($t3)"));
+                    mipsCode.add(new Code("l.d", "$f0", "0($t3)"));
                     if (typeSetter(d1.refType).type == Type.Integer)
                         mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
 
@@ -117,15 +130,13 @@ public class CodeGen {
                         mipsCode.add(new Code("li", "$f2", d2.value));
                     } else {
                         mipsCode.add(new Code("l.d", "$f2", d2.addr + s2));
-
-                        if (d1.type.type == Type.Integer)
-                            mipsCode.add(new Code("cvt.d.w", "$f2", "$f2"));
+                        mipsCode.add(new Code("cvt.d.w", "$f2", "$f2"));
                     }
 
-                } else if (d2.type.type == Type.Array || d2.type.type == Type.Record) {
+                } else if (d2.type.type == Type.Array) {
 
                     mipsCode.add(new Code("lw", "$t3", d2.addr + s2));
-                    mipsCode.add(new Code("l.d", "$f2", "($t3)"));
+                    mipsCode.add(new Code("l.d", "$f2", "0($t3)"));
                     if (typeSetter(d2.refType).type == Type.Integer)
                         mipsCode.add(new Code("cvt.d.w", "$f2", "$f2"));
 
@@ -169,21 +180,21 @@ public class CodeGen {
                 if (d1.isImm) {
                     mipsCode.add(new Code("lw", "$t3", d2.addr + s2));
                     if (d2.type.type == Type.Array || d2.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t3", "($t3)"));
+                        mipsCode.add(new Code("lw", "$t3", "0($t3)"));
                     mipsCode.add(new Code("addi", "$t3", "$t3", Integer.toString(-1 * Integer.parseInt(d1.value))));
                 } else if (d2.isImm) {
                     mipsCode.add(new Code("lw", "$t3", d1.addr + s1));
                     if (d1.type.type == Type.Array || d1.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t3", "($t3)"));
+                        mipsCode.add(new Code("lw", "$t3", "0($t3)"));
                     mipsCode.add(new Code("addi", "$t3", "$t3", Integer.toString(-1 * Integer.parseInt(d1.value))));
                     mipsCode.add(new Code("neg", "$t3", "$t3"));
                 } else {
                     mipsCode.add(new Code("lw", "$t4", d1.addr + s1));
                     if (d1.type.type == Type.Array || d1.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t4", "($t4)"));
+                        mipsCode.add(new Code("lw", "$t4", "0($t4)"));
                     mipsCode.add(new Code("lw", "$t3", d2.addr + s2));
                     if (d2.type.type == Type.Array || d2.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t3", "($t3)"));
+                        mipsCode.add(new Code("lw", "$t3", "0($t3)"));
                     mipsCode.add(new Code("sub", "$t3", "$t3", "$t4"));
                 }
                 mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
@@ -202,15 +213,13 @@ public class CodeGen {
                         mipsCode.add(new Code("li", "$f0", d1.value));
                     } else {
                         mipsCode.add(new Code("l.d", "$f0", d1.addr + s1));
-
-                        if (d1.type.type == Type.Integer)
-                            mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
+                        mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
                     }
 
-                } else if (d1.type.type == Type.Array || d1.type.type == Type.Record) {
+                } else if (d1.type.type == Type.Array) {
 
                     mipsCode.add(new Code("lw", "$t3", d1.addr + s1));
-                    mipsCode.add(new Code("l.d", "$f0", "($t3)"));
+                    mipsCode.add(new Code("l.d", "$f0", "0($t3)"));
                     if (typeSetter(d1.refType).type == Type.Integer)
                         mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
 
@@ -227,15 +236,13 @@ public class CodeGen {
                         mipsCode.add(new Code("li", "$f2", d2.value));
                     } else {
                         mipsCode.add(new Code("l.d", "$f2", d2.addr + s2));
-
-                        if (d1.type.type == Type.Integer)
-                            mipsCode.add(new Code("cvt.d.w", "$f2", "$f2"));
+                        mipsCode.add(new Code("cvt.d.w", "$f2", "$f2"));
                     }
 
                 } else if (d2.type.type == Type.Array || d2.type.type == Type.Record) {
 
                     mipsCode.add(new Code("lw", "$t3", d2.addr + s2));
-                    mipsCode.add(new Code("l.d", "$f2", "($t3)"));
+                    mipsCode.add(new Code("l.d", "$f2", "0($t3)"));
                     if (typeSetter(d2.refType).type == Type.Integer)
                         mipsCode.add(new Code("cvt.d.w", "$f2", "$f2"));
 
@@ -280,19 +287,19 @@ public class CodeGen {
                     mipsCode.add(new Code("li", "$t3", d1.value));
                     mipsCode.add(new Code("lw", "$t4", d2.addr + s2));
                     if (d2.type.type == Type.Array || d2.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t4", "($t4)"));
+                        mipsCode.add(new Code("lw", "$t4", "0($t4)"));
                 } else if (d2.isImm) {
                     mipsCode.add(new Code("li", "$t4", d2.value));
                     mipsCode.add(new Code("lw", "$t3", d1.addr + s1));
                     if (d1.type.type == Type.Array || d1.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t3", "($t3)"));
+                        mipsCode.add(new Code("lw", "$t3", "0($t3)"));
                 } else {
                     mipsCode.add(new Code("lw", "$t3", d1.addr + s1));
                     if (d1.type.type == Type.Array || d1.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t3", "($t3)"));
+                        mipsCode.add(new Code("lw", "$t3", "0($t3)"));
                     mipsCode.add(new Code("lw", "$t4", d2.addr + s2));
                     if (d2.type.type == Type.Array || d2.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t4", "($t4)"));
+                        mipsCode.add(new Code("lw", "$t4", "0($t4)"));
                 }
                 mipsCode.add(new Code("mult", "$t4", "$t3"));
                 mipsCode.add(new Code("mflo", "$t3"));
@@ -312,15 +319,13 @@ public class CodeGen {
                         mipsCode.add(new Code("li", "$f0", d1.value));
                     } else {
                         mipsCode.add(new Code("l.d", "$f0", d1.addr + s1));
-
-                        if (d1.type.type == Type.Integer)
-                            mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
+                        mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
                     }
 
-                } else if (d1.type.type == Type.Array || d1.type.type == Type.Record) {
+                } else if (d1.type.type == Type.Array) {
 
                     mipsCode.add(new Code("lw", "$t3", d1.addr + s1));
-                    mipsCode.add(new Code("l.d", "$f0", "($t3)"));
+                    mipsCode.add(new Code("l.d", "$f0", "0($t3)"));
                     if (typeSetter(d1.refType).type == Type.Integer)
                         mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
 
@@ -337,15 +342,13 @@ public class CodeGen {
                         mipsCode.add(new Code("li", "$f2", d2.value));
                     } else {
                         mipsCode.add(new Code("l.d", "$f2", d2.addr + s2));
-
-                        if (d1.type.type == Type.Integer)
-                            mipsCode.add(new Code("cvt.d.w", "$f2", "$f2"));
+                        mipsCode.add(new Code("cvt.d.w", "$f2", "$f2"));
                     }
 
-                } else if (d2.type.type == Type.Array || d2.type.type == Type.Record) {
+                } else if (d2.type.type == Type.Array) {
 
                     mipsCode.add(new Code("lw", "$t3", d2.addr + s2));
-                    mipsCode.add(new Code("l.d", "$f2", "($t3)"));
+                    mipsCode.add(new Code("l.d", "$f2", "0($t3)"));
                     if (typeSetter(d2.refType).type == Type.Integer)
                         mipsCode.add(new Code("cvt.d.w", "$f2", "$f2"));
 
@@ -390,19 +393,19 @@ public class CodeGen {
                     mipsCode.add(new Code("li", "$t3", d1.value));
                     mipsCode.add(new Code("lw", "$t4", d2.addr + s2));
                     if (d2.type.type == Type.Array || d2.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t4", "($t4)"));
+                        mipsCode.add(new Code("lw", "$t4", "0($t4)"));
                 } else if (d2.isImm) {
                     mipsCode.add(new Code("li", "$t4", d2.value));
                     mipsCode.add(new Code("lw", "$t3", d1.addr + s1));
                     if (d1.type.type == Type.Array || d1.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t3", "($t3)"));
+                        mipsCode.add(new Code("lw", "$t3", "0($t3)"));
                 } else {
                     mipsCode.add(new Code("lw", "$t3", d1.addr + s1));
                     if (d1.type.type == Type.Array || d1.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t3", "($t3)"));
+                        mipsCode.add(new Code("lw", "$t3", "0($t3)"));
                     mipsCode.add(new Code("lw", "$t4", d2.addr + s2));
                     if (d2.type.type == Type.Array || d2.type.type == Type.Record)
-                        mipsCode.add(new Code("lw", "$t4", "($t4)"));
+                        mipsCode.add(new Code("lw", "$t4", "0($t4)"));
                 }
                 mipsCode.add(new Code("div", "$t4", "$t3"));
                 mipsCode.add(new Code("mflo", "$t3"));
@@ -422,15 +425,13 @@ public class CodeGen {
                         mipsCode.add(new Code("li", "$f0", d1.value));
                     } else {
                         mipsCode.add(new Code("l.d", "$f0", d1.addr + s1));
-
-                        if (d1.type.type == Type.Integer)
-                            mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
+                        mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
                     }
 
-                } else if (d1.type.type == Type.Array || d1.type.type == Type.Record) {
+                } else if (d1.type.type == Type.Array) {
 
                     mipsCode.add(new Code("lw", "$t3", d1.addr + s1));
-                    mipsCode.add(new Code("l.d", "$f0", "($t3)"));
+                    mipsCode.add(new Code("l.d", "$f0", "0($t3)"));
                     if (typeSetter(d1.refType).type == Type.Integer)
                         mipsCode.add(new Code("cvt.d.w", "$f0", "$f0"));
 
@@ -569,15 +570,16 @@ public class CodeGen {
                             mipsCode.add(new Code("lw", "$t3", dR.addr + base));
                         }
                         mipsCode.add(new Code("sw", "$t3", dL.addr + "($t0)"));
-                        pc += 2;
                         break;
 
                     case Double:
-                        base = dR.isImm ? "($t2)" : (dR.isTemp ? "($t1)" : "($t0)");
-                        mipsCode.add(new Code("l.d", "$f0", dR.addr + base));
+                        base = dR.isTemp ? "($t1)" : "($t0)";
+                        if (dR.isImm)
+                            mipsCode.add(new Code("li.d", "$f0", dR.value));
+                        else
+                            mipsCode.add(new Code("l.d", "$f0", dR.addr + base));
                         mipsCode.add(new Code("cvt.w.d", "$f0", "$f0"));
                         mipsCode.add(new Code("sw", "$f0", dL.addr + "($t0)")); //does it work?
-                        pc += 3;
                         break;
 
 
@@ -611,7 +613,7 @@ public class CodeGen {
         //array = array check type ِ                                                   DONE
         //int = int //int = double //int = boolean
         //double = double //double = int
-        //boolean = boolean //boolean = int //boolean = string //boolean = double
+        //boolean = boolean //boolean = int //boolean = double
         //record = record
         //string = string
         temp = 0;
