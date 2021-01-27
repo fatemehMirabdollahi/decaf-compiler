@@ -12,7 +12,7 @@ public class ArrayDscp extends Dscp{
     public ArrayDscp(Token type) {
         super(DscpType.array, -1);
 
-        this.type = typeSetter(type);
+        this.type = typeSetter(type.getValue());
 
     }
 }

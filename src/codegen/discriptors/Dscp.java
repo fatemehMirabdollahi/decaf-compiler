@@ -4,6 +4,7 @@ import scanner.Token;
 
 import static codegen.SymboleTable.symboleTables;
 
+
 public abstract class Dscp {
     public DscpType dscpType;
     public int addr;
@@ -12,10 +13,9 @@ public abstract class Dscp {
         this.dscpType = dscpType;
         this.addr = addr;
     }
-
-    public static VarType typeSetter(Token type) { //todo
+    public static VarType typeSetter(String type) { //todo
         VarType v;
-        switch (type.getValue()) {
+        switch (type) {
             case "int":
                 v = new VarType(Type.Integer);
                 break;
@@ -34,10 +34,11 @@ public abstract class Dscp {
             default:
                 v = new VarType(Type.Record);
                 Dscp d = symboleTables.get(0).get(type);
-                if(d == null) {
+                if (d == null) {
                     //error
                 }
         }
         return v;
+
     }
 }

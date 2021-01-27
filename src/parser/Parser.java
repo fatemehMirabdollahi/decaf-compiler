@@ -32,12 +32,13 @@ public class Parser {
     // t1 -> base of temp
     // t2 -> base of double + 8
     // t9 -> base of strings + 64
-
+    public static ArrayList<String> notDefinedRecords ;
     public static void main(String[] args) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         symboleTableInit();
         scanner = new DecafScanner(new FileReader("src/chum.txt"));
         parseStack = new Stack<>();
         mipsCode = new ArrayList<>();
+        notDefinedRecords = new ArrayList<>();
         int curState = 0;
         createParseTable();
 

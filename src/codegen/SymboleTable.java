@@ -13,6 +13,7 @@ import static parser.Parser.*;
 public class SymboleTable extends HashMap<Token, Dscp> {
 
     public static ArrayList<SymboleTable> symboleTables;
+    public Token name;
 
     public void add(Token name, Dscp dscp) {
         if (this.containsKey(name)) {
@@ -21,25 +22,19 @@ public class SymboleTable extends HashMap<Token, Dscp> {
         this.put(name, dscp);
     }
 
+
     public static Dscp find(Token t) {
+
         if (t.getType() == TokenType.integer) {
             VariableDscp d = new VariableDscp(new VarType(Type.Integer), -1, true, false);
             d.value = t.getValue();
             return d;
         }
         if (t.getType() == TokenType.real) {
-
-            Dscp d1 = symboleTables.get(0).get(t.getValue());
-            if (d1 != null)
-                return d1;
-
-            VariableDscp d = new VariableDscp(new VarType(Type.Double), doubleAddr, true, false);
-            doubleAddr += d.type.size;
+            VariableDscp d = new VariableDscp(new VarType(Type.Double), -1, true, false);
             d.value = t.getValue();
-            symboleTables.get(0).add(t, d);
             return d;
         }
-
         for (int i = symboleTables.size() - 1; i >= 0; i--) {
             Dscp d = symboleTables.get(i).get(t.getValue());
             if (d != null)
@@ -93,24 +88,71 @@ public class SymboleTable extends HashMap<Token, Dscp> {
         return null;
     }
 
-    public static int castBe(Token token) {
+    public static void castImmtoBool(Token token, String src) {
+        int be = 0;
         switch (token.getType()) {
             case keyword:
-                if (token.getValue() == "true") return 1;
-                else return 0;
+                //error
+                break;
             case real:
+                if (Double.parseDouble(token.getValue()) > 0) be = 1;
+                else be = 0;
+                mipsCode.add(new Code("li.d", src, be + ".0"));
 
-                if (Double.parseDouble(token.getValue()) > 0) return 1;
-                else return 0;
+                break;
+
             case integer:
-                if (Integer.parseInt(token.getValue()) > 0) return 1;
-                else return 0;
+                if (Integer.parseInt(token.getValue()) > 0) be = 1;
+                else be = 0;
+                mipsCode.add(new Code("li", src, String.valueOf(be)));
+                break;
+
             case str_char:
                 if (token.getValue().length() > 2)
-                    return 1;
-                else return 0;
+                    be = 1;
+                else be = 0;
+                mipsCode.add(new Code("li", src, String.valueOf(be)));
+
         }
-        return -1;
+    }
+
+    public static void castIntToDouble(VariableDscp d, String base, String dest) {
+        if (d.isImm) {
+            mipsCode.add(new Code("li", dest, d.value));
+        } else {
+            mipsCode.add(new Code("l.d", dest, d.addr + base));
+        }
+        mipsCode.add(new Code("cvt.d.w", dest, dest));
+    }
+
+    public static void castDoubleToInt(VariableDscp d, String base, String dest) {
+        if (d.isImm) {
+            mipsCode.add(new Code("li.d", dest, d.value + ".0"));
+        } else {
+            mipsCode.add(new Code("l.d", dest, d.addr + base));
+            mipsCode.add(new Code("cvt.w.d", dest, dest));
+        }
+
+    }
+
+    public static void castVariableToBool(VariableDscp d, String base, String dest, String src) {
+        if (d.type.type == Type.Integer) {
+
+            mipsCode.add(new Code("lw", src, d.addr + base));
+            mipsCode.add(new Code("li", dest, "0"));
+            mipsCode.add(new Code("beqz", src, "false:"));
+            mipsCode.add(new Code("li", dest, "1"));
+            mipsCode.add(new Code("label", "false:"));
+
+        } else if (d.type.type == Type.Double) {
+            mipsCode.add(new Code("ld", src, d.addr + base));
+            mipsCode.add(new Code("li", dest, "0"));
+            mipsCode.add(new Code("li", "$f10", "0"));
+            mipsCode.add(new Code("c.eq.d", "$f10", src));
+            mipsCode.add(new Code("bc1t", "false:"));
+            mipsCode.add(new Code("li", dest, "1"));
+            mipsCode.add(new Code("label", "false:"));
+        }
     }
 
 }

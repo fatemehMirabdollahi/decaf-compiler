@@ -78,7 +78,7 @@
         "start": 0,
         "end": 5,
         "token": "main",
-        "func": "PUSH",
+        "func": "FUNCTION",
         "anchorX": 404.00000000000057,
         "anchorY": 291.6666666666666,
         "isGraph": false,
