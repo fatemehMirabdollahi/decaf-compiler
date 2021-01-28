@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Tests for the Selector Query parser.Parser.
+ * Tests for the Selector Query Compiler.Compiler.
  *
  * @author Jonathan Hedley
  */

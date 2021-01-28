@@ -2,6 +2,10 @@ package scanner;
 
 public class Token {
 
+    public void setValue(String value) {
+        this.value = value;
+    }
+
     private  String value;
     private  TokenType type;
 

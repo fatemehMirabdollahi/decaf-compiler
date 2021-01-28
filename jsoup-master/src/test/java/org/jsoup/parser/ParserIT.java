@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Longer running parser.Parser tests.
+ * Longer running Compiler.Compiler tests.
  */
 
 public class ParserIT {

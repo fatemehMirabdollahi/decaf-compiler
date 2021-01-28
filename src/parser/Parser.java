@@ -1,4 +1,12 @@
+package parser;
+
+import codegen.CodeGen;
+import scanner.DecafScanner;
+import scanner.Token;
+
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -11,9 +19,9 @@ enum Action {
 class LLCell {
     private Action action;
     private int target;
-    private List<String> functions;
+    private String functions;
 
-    public LLCell(Action action, int target, List<String> functions) {
+    public LLCell(Action action, int target, String functions) {
         this.action = action;
         this.target = target;
         this.functions = functions;
@@ -27,7 +35,7 @@ class LLCell {
         return target;
     }
 
-    public List<String> getFunction() {
+    public String getFunction() {
         return functions;
     }
 }
@@ -37,7 +45,6 @@ public class Parser {
     public static Token token;
     public static String TABLE_DELIMITER = ",";
     private DecafScanner lexical;
-    private CodeGenerator codeGenerator;
     private boolean debugMode;
 
     private String[] symbols;
@@ -47,14 +54,13 @@ public class Parser {
 
     private List<String> recoveryState;
 
-    public Parser(Lexical lexical, CodeGenerator codeGenerator, String nptPath, boolean debugMode) {
-        this(lexical, codeGenerator, nptPath);
+    public Parser(DecafScanner lexical, String nptPath, boolean debugMode) {
+        this(lexical, nptPath);
         this.debugMode = debugMode;
     }
 
-    public Parser(Lexical lexical, CodeGenerator codeGenerator, String nptPath) {
+    public Parser(DecafScanner lexical, String nptPath) {
         this.lexical = lexical;
-        this.codeGenerator = codeGenerator;
         this.recoveryState = new ArrayList<>();
 
         if (!Files.exists(Paths.get(nptPath))) {
@@ -84,14 +90,13 @@ public class Parser {
                     }
                     Action action = Action.values()[Integer.parseInt(cellParts[0])];
                     int target = Integer.parseInt(cellParts[1]);
-                    List<String> allFunctions;
+                    String function;
                     if (cellParts[2].equals("NoSem")) {
-                        allFunctions = new ArrayList<>();
+                        function = "";
                     } else {
-                        allFunctions = Arrays.stream(cellParts[2].split("[;]"))
-                                .filter(s -> !s.isEmpty()).collect(Collectors.toList());
+                        function = cellParts[2];
                     }
-                    parseTable[i][j] = new LLCell(action, target, allFunctions);
+                    parseTable[i][j] = new LLCell(action, target, function);
                 }
             }
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
@@ -101,7 +106,7 @@ public class Parser {
         }
     }
 
-    public void parse() {
+    public void parse() throws IOException {
         int tokenID = nextTokenID();
         int currentNode = startNode;
         boolean accepted = false;
@@ -174,7 +179,7 @@ public class Parser {
         recoveryState.add("At node " + currentNode + ": current token is " + token + " but except: " + availableTokens);
     }
 
-    private int nextTokenID() {
+    private int nextTokenID() throws IOException {
         token = lexical.tokenReader();
         String tokenStr = token.getValue();
         for (int i = 0; i < symbols.length; i++) {
@@ -185,12 +190,18 @@ public class Parser {
         throw new RuntimeException("Undefined token: " + tokenStr);
     }
 
-    private void doSemantics(List<String> functions) {
+    private void doSemantics(String function) {
         if (debugMode) {
-            System.out.println("Execute semantic codes: " + functions);
+            System.out.println("Execute semantic codes: " + function);
         }
-        for (String function : functions) {
-            codeGenerator.doSemantic(function);
+        try {
+            if (!function.equals("")) {
+                Method method = CodeGen.class.getMethod(function, null);
+                method.setAccessible(true);
+                method.invoke(null, null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

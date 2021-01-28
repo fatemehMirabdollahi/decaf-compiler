@@ -1,14 +1,15 @@
 package codegen;
 
 import codegen.discriptors.*;
+import scanner.DecafScanner;
 import scanner.Token;
 import scanner.TokenType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static codegen.discriptors.Dscp.typeSetter;
-import static parser.Parser.*;
+import static Compiler.Compiler.*;
+
 
 public class SymboleTable extends HashMap<Token, Dscp> {
 
@@ -37,6 +38,17 @@ public class SymboleTable extends HashMap<Token, Dscp> {
             VariableDscp d = new VariableDscp(new VarType(Type.Double), -2, true, false);
             d.value = t.getValue();
             return d;
+        }
+        if (t.getType() == TokenType.str_char){
+            VariableDscp d = new VariableDscp(new VarType(Type.String), temp, true, false);
+            mipsCode.add(new Code("la","$t3","str"+stringAddr));
+            mipsCode.add(new Code("sw","$t3",temp+"($t1)"));
+            strings.add(t.getValue());
+            stringAddr+=1;
+            temp+=4;
+            d.value = t.getValue();
+            return d;
+
         }
         for (int i = symboleTables.size() - 1; i >= 0; i--) {
             Dscp d = symboleTables.get(i).get(t.getValue());
@@ -95,7 +107,7 @@ public class SymboleTable extends HashMap<Token, Dscp> {
         return null;
     }
 
-    public static void castImmtoBool(Token token, String src) {
+    public static void castImmToBool(Token token, String src) {
         int be = 0;
         switch (token.getType()) {
             case keyword:
@@ -142,7 +154,7 @@ public class SymboleTable extends HashMap<Token, Dscp> {
 
     }
 
-    public static void castVariableToBool(VariableDscp d, String base, String dest, String src) {
+    public static void castVariabelToBool(VariableDscp d, String base, String dest, String src) {
         if (d.type.type == Type.Integer) {
 
             mipsCode.add(new Code("lw", src, d.addr + base));

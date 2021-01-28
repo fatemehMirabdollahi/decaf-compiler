@@ -18,7 +18,7 @@ public class Parser {
     private ParseSettings settings;
 
     /**
-     * Create a new parser.Parser, using the specified TreeBuilder
+     * Create a new Compiler.Compiler, using the specified TreeBuilder
      * @param treeBuilder TreeBuilder to use to parse input into Documents.
      */
     public Parser(TreeBuilder treeBuilder) {

@@ -32,7 +32,7 @@ public class Jsoup {
     }
 
     /**
-     Parse HTML into a Document, using the provided parser.Parser. You can provide an alternate parser, such as a simple XML
+     Parse HTML into a Document, using the provided Compiler.Compiler. You can provide an alternate parser, such as a simple XML
      (non-HTML) parser.
 
      @param html    HTML to parse

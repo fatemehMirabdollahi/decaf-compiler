@@ -1,21 +1,21 @@
+package Compiler;
+
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Stack;
+
 import codegen.Code;
-import codegen.CodeGen;
-import parser.ParseCell;
+import parser.Parser;
 import scanner.DecafScanner;
 import scanner.Token;
-import scanner.TokenType;
 
-public class Main {
+public class Compiler {
 
     public static DecafScanner scanner;
-    public static ArrayList<ArrayList<ParseCell>> parseTable;
-    public static ArrayList<String> parseTableHeader;
     public static ArrayList<Code> mipsCode;
     public static Stack<Integer> parseStack;
     public static Stack<Token> semanticStack; //change
@@ -26,54 +26,38 @@ public class Main {
     public static int labelNum = 0;
     public static int maxTemp = 0;
     public static int stringAddr = 0;
+    public static ArrayList<String> strings;
+
     // t0 -> base of address
     // t1 -> base of temp
     // t2 -> base of double + 8
     // t9 -> base of strings + 64
-    public static void main(String[] args) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        symboleTableInit();
+    public static void main(String[] args) throws IOException {
+
         scanner = new DecafScanner(new FileReader("src/chum.txt"));
         parseStack = new Stack<>();
         mipsCode = new ArrayList<>();
-        int curState = 0;
-        createParseTable();
+        semanticStack = new Stack<>();
+        Parser parser = new Parser(scanner, "table.ntp", true);
+        parser.parse();
+        mipsWriter();
+    }
 
-        while (true) {
-            token = scanner.tokenReader();
-            if (token.getType() == TokenType.undefined) {
-                //scanner error
-            }
-            ParseCell curCell = getCell(token, curState);
-            if (curCell == null) {
-                //parser error
-            } else {
-
-                //do action
-                doAction(curCell);
-
-                //invoke code gen
-                Method method = CodeGen.class.getMethod(curCell.getSemantic(), null);
-                method.setAccessible(true);
-                method.invoke(null, null);
-            }
+    public static void mipsWriter() throws IOException {
+        File input = new File("./src/ans.s");
+        FileWriter fileWriter = new FileWriter(input);
+        fileWriter.write(".text\n");
+        fileWriter.write(".globl main\n");
+        for (int i = 0; i < mipsCode.size(); i++) {
+            fileWriter.write(mipsCode.get(i).toString());
         }
+        fileWriter.write(".data\n");
+        fileWriter.write("    address: .space" + address);
+        fileWriter.write("    temp: .space" + temp);
+        for (int i = 0; i < strings.size(); i++) {
+            fileWriter.write("str" + i + ": .asciiz " + strings.get(i)+"\n");
+        }
+        fileWriter.flush();
     }
 
-    private static void symboleTableInit() {
-    }
-
-    static ParseCell getCell(Token token, int state) {
-        return null;
-    }
-
-    static void createParseTable() {
-
-
-
-
-    }
-
-    static void doAction(ParseCell p) {
-
-    }
 }

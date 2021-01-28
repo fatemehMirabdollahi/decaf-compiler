@@ -1,7 +1,7 @@
 package codegen;
 
 public class Code {
-    public String opcode ; //enum
+    public String opcode; //enum
     public String dest = null;
     public String src1 = null;
     public String src2 = null;
@@ -26,5 +26,27 @@ public class Code {
 
     public Code(String opcode) {
         this.opcode = opcode;
+    }
+
+    @Override
+    public String toString() {
+        String code = "";
+        if (opcode != "Label") {
+            code = "    ";
+        }
+        code += opcode;
+        if (dest != null) {
+            code += ", ";
+            code += dest;
+        }
+        if (dest != null) {
+            code += ", ";
+            code += src1;
+        }
+        if (dest != null) {
+            code += ", ";
+            code += src2;
+        }
+        return code+"\n";
     }
 }

@@ -82,7 +82,7 @@ public final class DataUtil {
     }
 
     /**
-     * Parses a Document from an input steam, using the provided parser.Parser.
+     * Parses a Document from an input steam, using the provided Compiler.Compiler.
      * @param in input stream to parse. You will need to close it.
      * @param charsetName character set of input
      * @param baseUri base URI of document, to resolve relative links against

@@ -1,3 +1,4 @@
+package scanner;
 %%
 %public
 %class DecafScanner
@@ -6,9 +7,10 @@
 %type Token
 %unicode
 %{
-String myString = "";
-Token token ;
-boolean endl =false;
+public String myString = "";
+public Token token ;
+public boolean endl =false;
+public static String value;
 %}
 
 keyword = (void | int | double | bool | string | record | for| while | if | else | return | break | new | NewArray | Print | ReadInteger | ReadLine | continue | false | true)
@@ -30,23 +32,21 @@ charSp = [\']{1} {spChar}{1}[\']{1}
 
 %%
 <YYINITIAL>{
-    {char}                     {yybegin(YYINITIAL);return new Token(yytext(),TokenType.str_char);}
-    {charSp}                   {yybegin(YYINITIAL);return new Token(yytext().charAt(0) + "<i>"+yytext().substring(1,3)+"</i>"+ yytext().charAt(3) ,Type.str_char);}
+    {char}                     {yybegin(YYINITIAL);value = yytext(); return new Token("str",TokenType.str_char);}
+    {charSp}                   {yybegin(YYINITIAL);return new Token(yytext() ,TokenType.str_char);}
     \"                         {yybegin(STRING);myString="\"";}
     {starCom}                  {yybegin(YYINITIAL);return new Token(yytext(),TokenType.comment);}
     {singleCom}                {yybegin(YYINITIAL); endl=true;return new Token(yytext(),TokenType.comment);}
-    {keyword}                  {yybegin(YYINITIAL);return new Token(yytext(),TokenType.keyword);}
-    {id}                       {yybegin(YYINITIAL);return new Token(yytext(),TokenType.id);}
-    {sci}                      {yybegin(YYINITIAL);return new Token(yytext(),TokenType.real);}
-    {hex}                      {yybegin(YYINITIAL);return new Token(yytext(),TokenType.integer);}
-    {real}                     {yybegin(YYINITIAL);return new Token(yytext(),TokenType.real);}
-    {int}                      {yybegin(YYINITIAL);return new Token(yytext(),TokenType.integer);}
+    {keyword}                  {yybegin(YYINITIAL); return new Token(yytext(),TokenType.keyword);}
+    {id}                       {yybegin(YYINITIAL);value = yytext(); return new Token("ident",TokenType.id);}
+    {real}                     {yybegin(YYINITIAL);value = yytext();return new Token("rcv",TokenType.real);}
+    {int}                      {yybegin(YYINITIAL);value = yytext();return new Token("icv",TokenType.integer);}
     {op}                       {yybegin(YYINITIAL);return new Token(yytext(),TokenType.op_punc);}
     '~'                        {return new Token(yytext(),TokenType.undefined);}
 }
 <STRING>{
-    "\""                       {yybegin(YYINITIAL); myString+="\""  ;return new Token(myString,TokenType.str_char); }
-    {spChar}                   {myString+="<i>"+yytext()+"</i>";}
+    "\""                       {yybegin(YYINITIAL); myString+="\""  ;value = myString; return new Token("str",TokenType.str_char); }
+    {spChar}                   {myString+=yytext();}
     {InputCharacter}           {myString+=yytext();}
 }
 
