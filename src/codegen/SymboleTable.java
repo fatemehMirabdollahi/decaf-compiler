@@ -7,7 +7,7 @@ import scanner.TokenType;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static codegen.CodeGen.cast;
+import static codegen.discriptors.Dscp.typeSetter;
 import static parser.Parser.*;
 
 public class SymboleTable extends HashMap<Token, Dscp> {
@@ -25,13 +25,16 @@ public class SymboleTable extends HashMap<Token, Dscp> {
 
     public static Dscp find(Token t) {
 
+        if (t.getType() == TokenType.undefined) {
+            //error
+        }
         if (t.getType() == TokenType.integer) {
-            VariableDscp d = new VariableDscp(new VarType(Type.Integer), -1, true, false);
+            VariableDscp d = new VariableDscp(new VarType(Type.Integer), -2, true, false);
             d.value = t.getValue();
             return d;
         }
         if (t.getType() == TokenType.real) {
-            VariableDscp d = new VariableDscp(new VarType(Type.Double), -1, true, false);
+            VariableDscp d = new VariableDscp(new VarType(Type.Double), -2, true, false);
             d.value = t.getValue();
             return d;
         }
@@ -75,6 +78,10 @@ public class SymboleTable extends HashMap<Token, Dscp> {
                         //error
                     }
                 }
+                break;
+
+            case "Compare":
+
                 break;
             case "equal":
                 if (d1.dscpType != DscpType.variable || d2.dscpType != DscpType.variable) {

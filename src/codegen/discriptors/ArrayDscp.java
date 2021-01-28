@@ -6,13 +6,14 @@ import java.util.ArrayList;
 
 public class ArrayDscp extends Dscp{
     public VarType type;
-    public String size;
+    public String size = "20";
 
-
-    public ArrayDscp(Token type) {
+    public ArrayDscp(String type) {
         super(DscpType.array, -1);
 
         this.type = typeSetter(type.getValue());
 
     }
+
+
 }
