@@ -11,7 +11,7 @@ public class ArrayDscp extends Dscp{
     public ArrayDscp(String type) {
         super(DscpType.array, -1);
 
-        this.type = typeSetter(type.getValue());
+        this.type = typeSetter(type);
 
     }
 

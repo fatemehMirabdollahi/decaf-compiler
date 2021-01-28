@@ -694,6 +694,9 @@ public class CodeGen {
             castImmtoBool(token, "$t3");
         } else if (token.getType() == TokenType.id) {
             VariableDscp varBe = (VariableDscp) SymboleTable.find(token);
+            if (varBe.addr==-2){
+                //error
+            }
             String src;
 
             if (varBe.isTemp) {
@@ -791,6 +794,10 @@ public class CodeGen {
             castImmtoBool(token, "$t3");
         } else if (token.getType() == TokenType.id) {
             VariableDscp varBe = (VariableDscp) SymboleTable.find(token);
+            if (varBe.addr==-1)
+            {
+                //error
+            }
             String src;
             int addr;
             if (varBe.isTemp) {
@@ -821,6 +828,10 @@ public class CodeGen {
             ;
         } else if (token.getType() == TokenType.id) {
             VariableDscp varBe = (VariableDscp) SymboleTable.find(token);
+            if (varBe.addr==-1)
+            {
+                //error
+            }
             String src;
             int addr;
             if (varBe.isTemp) {
@@ -834,14 +845,13 @@ public class CodeGen {
             }
             if (varBe.type.type == Type.Integer || varBe.type.type == Type.Boolean) {
 
-                mipsCode.add(new Code("LW", "$t3", addr + src));
+                mipsCode.add(new Code("lw", "$t3", addr + src));
                 mipsCode.add(new Code("bnez", "$t3"));
 
             } else if (varBe.type.type == Type.Double) {
 
-                mipsCode.add(new Code("Ld", "$f2", addr + src));
-                SymboleTable.find(new Token("0", TokenType.real));
-                mipsCode.add(new Code("Ld", "$f0", doubleAddr + "($t3)"));
+                mipsCode.add(new Code("ld", "$f2", addr + src));
+                mipsCode.add(new Code("ld.i", "$f0", "0.0"));
                 mipsCode.add(new Code("c.eq.d", "$f0", "$f2"));
                 mipsCode.add(new Code("bc1f"));
             } else {
@@ -958,7 +968,7 @@ public class CodeGen {
         } else {
             if (type.getValue().equals("]")) {
                 type = semanticStack.pop();
-                ArrayDscp arrayDscp = new ArrayDscp(type);
+                ArrayDscp arrayDscp = new ArrayDscp(type.getValue());
                 arrayDscp.addr = address;
                 symboleTables.get(symboleTables.size() - 1).add(inputName, arrayDscp);
                 address += 4;
@@ -1182,6 +1192,10 @@ public class CodeGen {
         for (int i = tokens.size()-1; i >=0; i--) {
             Dscp funIn = SymboleTable.find(funcDscp.inputNames.get( tokens.size()-i-1));
             Dscp in = SymboleTable.find(tokens.get(i));
+            if(in.addr==-1)
+            {
+                //error
+            }
             if (funIn.dscpType != in.dscpType) {
                 //error
             }
