@@ -15,6 +15,8 @@ public abstract class Dscp {
     }
 
     public static VarType typeSetter(String type) { //todo
+        if(type == null)
+            return null;
         VarType v;
         switch (type) {
             case "int":

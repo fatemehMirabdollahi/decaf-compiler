@@ -23,13 +23,16 @@ public class SymboleTable extends HashMap<Token, Dscp> {
 
     public static Dscp find(Token t) {
 
+        if (t.getType() == TokenType.undefined) {
+            //error
+        }
         if (t.getType() == TokenType.integer) {
-            VariableDscp d = new VariableDscp(new VarType(Type.Integer), -1, true, false);
+            VariableDscp d = new VariableDscp(new VarType(Type.Integer), -2, true, false);
             d.value = t.getValue();
             return d;
         }
         if (t.getType() == TokenType.real) {
-            VariableDscp d = new VariableDscp(new VarType(Type.Double), -1, true, false);
+            VariableDscp d = new VariableDscp(new VarType(Type.Double), -2, true, false);
             d.value = t.getValue();
             return d;
         }
@@ -51,8 +54,8 @@ public class SymboleTable extends HashMap<Token, Dscp> {
                 if (d1.dscpType != DscpType.variable || d2.dscpType != DscpType.variable) {
                     //error
                 } else {
-                    VarType t1 = ((VariableDscp) d1).type.type == Type.Array ? typeSetter(((VariableDscp) d1).refType):((VariableDscp) d1).type;
-                    VarType t2 = ((VariableDscp) d2).type.type == Type.Array ? typeSetter(((VariableDscp) d2).refType):((VariableDscp) d2).type;
+                    VarType t1 = ((VariableDscp) d1).type;
+                    VarType t2 = ((VariableDscp) d2).type;
                     if ((t1.type == Type.Integer && t2.type == Type.Integer) ||
                             (t1.type == Type.Integer && t2.type == Type.Boolean) ||
                             (t1.type == Type.Boolean && t2.type == Type.Integer)
@@ -73,6 +76,10 @@ public class SymboleTable extends HashMap<Token, Dscp> {
                         //error
                     }
                 }
+                break;
+
+            case "Compare":
+
                 break;
             case "equal":
                 if (d1.dscpType != DscpType.variable || d2.dscpType != DscpType.variable) {
