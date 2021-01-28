@@ -16,18 +16,20 @@ public class SymboleTable extends HashMap<Token, Dscp> {
     public static ArrayList<SymboleTable> symboleTables;
     public Token name;
 
-    public void add(Token name, Dscp dscp) {
+    public void add(Token name, Dscp dscp) throws Exception {
         if (this.containsKey(name)) {
             //error
+            throw new Exception();
         }
         this.put(name, dscp);
     }
 
 
-    public static Dscp find(Token t) {
+    public static Dscp find(Token t) throws Exception {
 
         if (t.getType() == TokenType.undefined) {
             //error
+            throw new Exception();
         }
         if (t.getType() == TokenType.integer) {
             VariableDscp d = new VariableDscp(new VarType(Type.Integer), -2, true, false);
@@ -57,16 +59,18 @@ public class SymboleTable extends HashMap<Token, Dscp> {
         }
 
         //error
-        return null;
+        throw new Exception();
+
     }
 
-    public static VarType getType(Dscp d1, Dscp d2, String op) {
+    public static VarType getType(Dscp d1, Dscp d2, String op) throws Exception {
 
         switch (op) {
             case "Arith":
 
                 if (d1.dscpType != DscpType.variable || d2.dscpType != DscpType.variable) {
                     //error
+                    throw new Exception();
                 } else {
                     VarType t1 = ((VariableDscp) d1).type;
                     VarType t2 = ((VariableDscp) d2).type;
@@ -88,9 +92,9 @@ public class SymboleTable extends HashMap<Token, Dscp> {
 
                     } else {
                         //error
+                        throw new Exception();
                     }
                 }
-                break;
 
             case "Compare":
 
@@ -98,6 +102,7 @@ public class SymboleTable extends HashMap<Token, Dscp> {
             case "equal":
                 if (d1.dscpType != DscpType.variable || d2.dscpType != DscpType.variable) {
                     //error
+                    throw new Exception();
                 } else {
 //                    String t1 = ((VariableDscp) d1).type;
 //                    String t2 = ((VariableDscp) d2).type;
@@ -107,12 +112,12 @@ public class SymboleTable extends HashMap<Token, Dscp> {
         return null;
     }
 
-    public static void castImmToBool(Token token, String src) {
+    public static void castImmToBool(Token token, String src) throws Exception {
         int be = 0;
         switch (token.getType()) {
             case keyword:
                 //error
-                break;
+                throw new Exception();
             case real:
                 if (Double.parseDouble(token.getValue()) > 0) be = 1;
                 else be = 0;

@@ -15,7 +15,7 @@ public abstract class Dscp {
         this.addr = addr;
     }
 
-    public static VarType typeSetter(String type) { //todo
+    public static VarType typeSetter(String type) throws Exception { //todo
         if(type == null)
             return null;
         VarType v;
@@ -41,6 +41,7 @@ public abstract class Dscp {
                 Dscp d = symboleTables.get(0).get(t);
                 if(d == null) {
                     //error
+                    throw new Exception();
                 }
         }
         return v;
