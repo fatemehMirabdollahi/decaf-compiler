@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc0cd7b3-6ab6-49d1-a26f-8497a07d1e23" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compiler/Compiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compiler/Compiler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/codegen/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/codegen/CodeGen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Compiler/Compiler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="52" column="42" lean-forward="true" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="42" />
+            <state relative-caret-position="498">
+              <caret line="63" column="43" lean-forward="true" selection-start-line="63" selection-start-column="43" selection-end-line="63" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -58,8 +58,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/codegen/CodeGen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="704" column="22" lean-forward="true" selection-start-line="704" selection-start-column="22" selection-end-line="704" selection-end-column="22" />
+            <state relative-caret-position="839">
+              <caret line="799" lean-forward="true" selection-start-line="799" selection-end-line="799" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#PUSH#0;class#CodeGen#0" />
@@ -72,10 +72,10 @@
                 <element signature="method#DIV#0;class#CodeGen#0" />
                 <element signature="method#LT#0;class#CodeGen#0" />
                 <element signature="method#GT#0;class#CodeGen#0" />
-                <element signature="method#GT#1;class#CodeGen#0" />
+                <element signature="method#LE#0;class#CodeGen#0" />
+                <element signature="method#GE#0;class#CodeGen#0" />
                 <element signature="method#READINTEGER#0;class#CodeGen#0" />
                 <element signature="method#READLINE#0;class#CodeGen#0" />
-                <element signature="method#PRINT#0;class#CodeGen#0" />
                 <element signature="method#ASSIGN#0;class#CodeGen#0" />
                 <element signature="method#SAVE#0;class#CodeGen#0" />
                 <element signature="method#JZ#0;class#CodeGen#0" />
@@ -96,7 +96,7 @@
                 <element signature="method#STARTFUNC#0;class#CodeGen#0" />
                 <element signature="method#CALLFUNCNP#0;class#CodeGen#0" />
                 <element signature="method#CALLFUNCP#0;class#CodeGen#0" />
-                <element signature="e#66647#66648#0" expanded="true" />
+                <element signature="e#66791#66792#0" expanded="true" />
                 <element signature="method#ENDBLOCK#0;class#CodeGen#0" />
               </folding>
             </state>
@@ -167,13 +167,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/scanner/Scanner.flex" />
+        <option value="$PROJECT_DIR$/src/Compiler/Compiler.java" />
         <option value="$PROJECT_DIR$/src/codegen/CodeGen.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-11" />
-    <option name="width" value="1050" />
+    <option name="y" value="-11" />
+    <option name="width" value="983" />
     <option name="height" value="1103" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -282,10 +284,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
+    <frame x="-7" y="-7" width="655" height="735" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.024291499" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.05042017" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -358,16 +360,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/table.npt" />
-    <entry file="file://$PROJECT_DIR$/src/codegen/SymboleTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -403,13 +395,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/codegen/discriptors/VariableDscp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/codegen/discriptors/Dscp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -426,15 +411,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/Compiler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="52" column="42" lean-forward="true" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="42" />
+        <state relative-caret-position="498">
+          <caret line="63" column="43" lean-forward="true" selection-start-line="63" selection-start-column="43" selection-end-line="63" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/codegen/discriptors/VariableDscp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/codegen/SymboleTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/codegen/CodeGen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="704" column="22" lean-forward="true" selection-start-line="704" selection-start-column="22" selection-end-line="704" selection-end-column="22" />
+        <state relative-caret-position="839">
+          <caret line="799" lean-forward="true" selection-start-line="799" selection-end-line="799" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#PUSH#0;class#CodeGen#0" />
@@ -447,10 +449,10 @@
             <element signature="method#DIV#0;class#CodeGen#0" />
             <element signature="method#LT#0;class#CodeGen#0" />
             <element signature="method#GT#0;class#CodeGen#0" />
-            <element signature="method#GT#1;class#CodeGen#0" />
+            <element signature="method#LE#0;class#CodeGen#0" />
+            <element signature="method#GE#0;class#CodeGen#0" />
             <element signature="method#READINTEGER#0;class#CodeGen#0" />
             <element signature="method#READLINE#0;class#CodeGen#0" />
-            <element signature="method#PRINT#0;class#CodeGen#0" />
             <element signature="method#ASSIGN#0;class#CodeGen#0" />
             <element signature="method#SAVE#0;class#CodeGen#0" />
             <element signature="method#JZ#0;class#CodeGen#0" />
@@ -471,7 +473,7 @@
             <element signature="method#STARTFUNC#0;class#CodeGen#0" />
             <element signature="method#CALLFUNCNP#0;class#CodeGen#0" />
             <element signature="method#CALLFUNCP#0;class#CodeGen#0" />
-            <element signature="e#66647#66648#0" expanded="true" />
+            <element signature="e#66791#66792#0" expanded="true" />
             <element signature="method#ENDBLOCK#0;class#CodeGen#0" />
           </folding>
         </state>

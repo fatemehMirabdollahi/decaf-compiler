@@ -722,8 +722,6 @@ public class CodeGen {
         LE();
     }
 
-
-
     public static void READINTEGER() throws Exception {
         VariableDscp d = new VariableDscp(new VarType(Type.Integer), temp, false, true);
         Token t = new Token("$" + mipsCode.size(), TokenType.id);
@@ -796,6 +794,9 @@ public class CodeGen {
         mipsCode.add(new Code("li", "$v0", funcNum));
         mipsCode.add(new Code("syscall"));
 
+        mipsCode.add(new Code("li", "$v0", "4"));
+        mipsCode.add(new Code("la", "$a0", "nl"));
+        mipsCode.add(new Code("syscall"));
 
     }
 

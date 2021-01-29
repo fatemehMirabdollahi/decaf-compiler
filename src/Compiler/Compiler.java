@@ -61,6 +61,8 @@ public class Compiler {
         for (int i = 0; i < strings.size(); i++) {
             fileWriter.write("str" + i + ": .asciiz " + strings.get(i)+"\n");
         }
+        fileWriter.write("nl: .asciiz \\n");
+
         fileWriter.flush();
     }
 
