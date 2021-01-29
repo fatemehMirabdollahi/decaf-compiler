@@ -12,6 +12,8 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static codegen.SymboleTable.symboleTables;
+
 enum Action {
     ERROR, SHIFT, GOTO, PUSH_GOTO, REDUCE, ACCEPT
 }
@@ -106,7 +108,7 @@ public class Parser {
         }
     }
 
-    public void parse() throws IOException {
+    public void parse() throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         int tokenID = nextTokenID();
         int currentNode = startNode;
         boolean accepted = false;
@@ -179,29 +181,28 @@ public class Parser {
         recoveryState.add("At node " + currentNode + ": current token is " + token + " but except: " + availableTokens);
     }
 
-    private int nextTokenID() throws IOException {
+    private int nextTokenID() throws RuntimeException, IOException {
         token = lexical.tokenReader();
+
         String tokenStr = token.getValue();
         for (int i = 0; i < symbols.length; i++) {
             if (symbols[i].equals(tokenStr)) {
+                System.out.println(symbols[i]);
                 return i;
             }
         }
         throw new RuntimeException("Undefined token: " + tokenStr);
     }
 
-    private void doSemantics(String function) {
+    private void doSemantics(String function) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         if (debugMode) {
             System.out.println("Execute semantic codes: " + function);
         }
-        try {
             if (!function.equals("")) {
                 Method method = CodeGen.class.getMethod(function, null);
                 method.setAccessible(true);
                 method.invoke(null, null);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 }

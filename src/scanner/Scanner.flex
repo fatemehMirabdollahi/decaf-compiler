@@ -13,7 +13,7 @@ public boolean endl =false;
 public static String value;
 %}
 
-keyword = (void | int | double | bool | string | record | for| while | if | else | return | break | new | NewArray | Print | ReadInteger | ReadLine | continue | false | true)
+keyword = (void | int | double | bool | string | record | for| while | if | else | return | break | new | NewArray | Print | ReadInteger | ReadLine | continue | function | main)
 id = [a-zA-Z][a-zA-Z0-9_]{0,30}
 int = [0-9]+
 real = [0-9]+[.][0-9]*
@@ -24,7 +24,7 @@ spChar = (\\n|\\r|\\t|\\d|\\b|\\\'|\\\"|\\)
 starCom = "/*"~"*/"
 singleCom = "//" [^\r\n]*{enter}?
 InputCharacter = [^\r\n]
-op = ("+"|"=" |"{"|"}" |"*" | "<" | ">" | "&" | \" | "!" | ":"| "," | "[" | "\(" | "\-" | "/" | "%" | "\|" | "^" | "." | ";" | "]" | ")" |"+=" | "*=" | "++" | "!=" | "==" | "&&" | "-=" | "/=" | "--" | "<=" | ">=" | "==" | "\|\|")
+op = ("+"|"=" |"{"|"}" |"*" | "<" | ">" | "&" | \" | "!" | ":"| "[" | "\(" | "\-" | "/" | "%" | "\|" | "^" | "." | ";" | "]" | ")" |"+=" | "*=" | "++" | "!=" | "==" | "&&" | "-=" | "/=" | "--" | "<=" | ">=" | "==" | "\|\|")
 char = [\']{1} [^\r\n]{1}[\']{1}
 charSp = [\']{1} {spChar}{1}[\']{1}
 
@@ -32,6 +32,8 @@ charSp = [\']{1} {spChar}{1}[\']{1}
 
 %%
 <YYINITIAL>{
+    "true"                     {yybegin(YYINITIAL);value = 1;return new Token("icv",TokenType.integer);}
+    "false"                    {yybegin(YYINITIAL);value = 0;return new Token("icv",TokenType.integer);}
     {char}                     {yybegin(YYINITIAL);value = yytext(); return new Token("str",TokenType.str_char);}
     {charSp}                   {yybegin(YYINITIAL);return new Token(yytext() ,TokenType.str_char);}
     \"                         {yybegin(STRING);myString="\"";}
@@ -42,6 +44,7 @@ charSp = [\']{1} {spChar}{1}[\']{1}
     {real}                     {yybegin(YYINITIAL);value = yytext();return new Token("rcv",TokenType.real);}
     {int}                      {yybegin(YYINITIAL);value = yytext();return new Token("icv",TokenType.integer);}
     {op}                       {yybegin(YYINITIAL);return new Token(yytext(),TokenType.op_punc);}
+    ,                          {yybegin(YYINITIAL);return new Token("colon",TokenType.op_punc);}
     '~'                        {return new Token(yytext(),TokenType.undefined);}
 }
 <STRING>{

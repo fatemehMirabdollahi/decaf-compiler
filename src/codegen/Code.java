@@ -31,22 +31,21 @@ public class Code {
     @Override
     public String toString() {
         String code = "";
-        if (opcode != "Label") {
+        if (opcode != "label") {
             code = "    ";
+            code += opcode + " ";
         }
-        code += opcode;
         if (dest != null) {
-            code += ", ";
             code += dest;
         }
-        if (dest != null) {
+        if (src1 != null) {
             code += ", ";
             code += src1;
         }
-        if (dest != null) {
+        if (src2 != null) {
             code += ", ";
             code += src2;
         }
-        return code+"\n";
+        return code + "\n";
     }
 }

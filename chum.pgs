@@ -99,7 +99,7 @@
         "end": 4,
         "token": "function",
         "func": "",
-        "anchorX": 175.33333333333064,
+        "anchorX": 148.33333333333064,
         "anchorY": 218.33333333332666,
         "isGraph": false,
         "isGlobal": false
@@ -138,9 +138,9 @@
         "start": 4,
         "end": 0,
         "token": "TYPE",
-        "func": "PUSH",
-        "anchorX": 325.66666666666686,
-        "anchorY": 254.6666666666674,
+        "func": "",
+        "anchorX": 294.66666666666686,
+        "anchorY": 268.6666666666674,
         "isGraph": true,
         "isGlobal": false
       },
@@ -438,7 +438,7 @@
         "start": 18,
         "end": 21,
         "token": "colon",
-        "func": "CFUNCTION",
+        "func": "ADDPARAM",
         "anchorX": 464.6666666666667,
         "anchorY": 304.0,
         "isGraph": false,
@@ -2639,6 +2639,16 @@
         "isGlobal": false
       },
       {
+        "start": 131,
+        "end": 141,
+        "token": "int",
+        "func": "PUSH",
+        "anchorX": 156.5,
+        "anchorY": 51.5,
+        "isGraph": false,
+        "isGlobal": false
+      },
+      {
         "start": 132,
         "end": 133,
         "token": ".",
@@ -2786,16 +2796,6 @@
         "anchorX": 7.500000000000142,
         "anchorY": 92.0,
         "isGraph": true,
-        "isGlobal": false
-      },
-      {
-        "start": 141,
-        "end": 131,
-        "token": "int",
-        "func": "PUSH",
-        "anchorX": 147.5,
-        "anchorY": 54.5,
-        "isGraph": false,
         "isGlobal": false
       },
       {

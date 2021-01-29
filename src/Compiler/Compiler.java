@@ -9,9 +9,12 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 import codegen.Code;
+import codegen.SymboleTable;
 import parser.Parser;
 import scanner.DecafScanner;
 import scanner.Token;
+
+import static codegen.SymboleTable.symboleTables;
 
 public class Compiler {
 
@@ -19,8 +22,6 @@ public class Compiler {
     public static ArrayList<Code> mipsCode;
     public static Stack<Integer> parseStack;
     public static Stack<Token> semanticStack; //change
-    public static Token token;
-    public static int pc = 0;
     public static int address = 0;
     public static int temp = 0;
     public static int labelNum = 0;
@@ -32,13 +33,15 @@ public class Compiler {
     // t1 -> base of temp
     // t2 -> base of double + 8
     // t9 -> base of strings + 64
-    public static void main(String[] args) throws IOException {
-
+    public static void main(String[] args) throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        symboleTables = new ArrayList<>();
+        symboleTables.add(new SymboleTable());
         scanner = new DecafScanner(new FileReader("src/chum.txt"));
         parseStack = new Stack<>();
         mipsCode = new ArrayList<>();
         semanticStack = new Stack<>();
-        Parser parser = new Parser(scanner, "table.ntp", true);
+        strings = new ArrayList<>();
+        Parser parser = new Parser(scanner, "src/table.npt", true);
         parser.parse();
         mipsWriter();
     }
@@ -52,8 +55,8 @@ public class Compiler {
             fileWriter.write(mipsCode.get(i).toString());
         }
         fileWriter.write(".data\n");
-        fileWriter.write("    address: .space" + address);
-        fileWriter.write("    temp: .space" + temp);
+        fileWriter.write("    address: .space " + address+"\n");
+        fileWriter.write("    temp: .space " + maxTemp+"\n");
         for (int i = 0; i < strings.size(); i++) {
             fileWriter.write("str" + i + ": .asciiz " + strings.get(i)+"\n");
         }

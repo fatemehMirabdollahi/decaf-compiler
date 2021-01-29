@@ -15,7 +15,7 @@ public abstract class Dscp {
         this.addr = addr;
     }
 
-    public static VarType typeSetter(String type) throws Exception { //todo
+    public static VarType typeSetter(String type) throws Exception {
         if(type == null)
             return null;
         VarType v;

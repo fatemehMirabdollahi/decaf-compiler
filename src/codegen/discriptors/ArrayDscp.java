@@ -8,7 +8,7 @@ public class ArrayDscp extends Dscp{
     public VarType type;
     public String size = "20";
 
-    public ArrayDscp(String type) {
+    public ArrayDscp(String type) throws Exception {
         super(DscpType.array, -1);
 
         this.type = typeSetter(type);

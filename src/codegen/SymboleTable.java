@@ -13,7 +13,7 @@ import static Compiler.Compiler.*;
 
 public class SymboleTable extends HashMap<Token, Dscp> {
 
-    public static ArrayList<SymboleTable> symboleTables;
+    public static ArrayList<SymboleTable> symboleTables ;
     public Token name;
 
     public void add(Token name, Dscp dscp) throws Exception {
@@ -41,6 +41,12 @@ public class SymboleTable extends HashMap<Token, Dscp> {
             d.value = t.getValue();
             return d;
         }
+
+        for (int i = symboleTables.size() - 1; i >= 0; i--) {
+            Dscp d = symboleTables.get(i).get(t);
+            if (d != null)
+                return d;
+        }
         if (t.getType() == TokenType.str_char){
             VariableDscp d = new VariableDscp(new VarType(Type.String), temp, true, false);
             mipsCode.add(new Code("la","$t3","str"+stringAddr));
@@ -52,12 +58,6 @@ public class SymboleTable extends HashMap<Token, Dscp> {
             return d;
 
         }
-        for (int i = symboleTables.size() - 1; i >= 0; i--) {
-            Dscp d = symboleTables.get(i).get(t.getValue());
-            if (d != null)
-                return d;
-        }
-
         //error
         throw new Exception();
 
@@ -142,19 +142,21 @@ public class SymboleTable extends HashMap<Token, Dscp> {
 
     public static void castIntToDouble(VariableDscp d, String base, String dest) {
         if (d.isImm) {
-            mipsCode.add(new Code("li", dest, d.value));
+            mipsCode.add(new Code("li.d", dest, d.value+".0"));
         } else {
             mipsCode.add(new Code("l.d", dest, d.addr + base));
+            mipsCode.add(new Code("cvt.d.w", dest, dest));
         }
-        mipsCode.add(new Code("cvt.d.w", dest, dest));
+
     }
 
     public static void castDoubleToInt(VariableDscp d, String base, String dest) {
         if (d.isImm) {
-            mipsCode.add(new Code("li.d", dest, d.value + ".0"));
+            mipsCode.add(new Code("li", dest, String.valueOf((int)Double.parseDouble(d.value))));
         } else {
-            mipsCode.add(new Code("l.d", dest, d.addr + base));
-            mipsCode.add(new Code("cvt.w.d", dest, dest));
+            mipsCode.add(new Code("l.d", "$f10", d.addr + base));
+            mipsCode.add(new Code("cvt.w.d", "$f10", "$f10"));
+            mipsCode.add(new Code("mfc1.d", dest, "$f10"));
         }
 
     }
