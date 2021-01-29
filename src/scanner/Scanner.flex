@@ -13,7 +13,7 @@ public boolean endl =false;
 public static String value;
 %}
 
-keyword = (void | int | double | bool | string | record | for| while | if | else | return | break | new | NewArray | Print | ReadInteger | ReadLine | continue | function | main)
+keyword = (void | int | double | bool | string | record | for| while | if | else | return | break | new | NewArray | Print | ReadInteger | ReadLine | continue | function | main| true | false)
 id = [a-zA-Z][a-zA-Z0-9_]{0,30}
 int = [0-9]+
 real = [0-9]+[.][0-9]*
@@ -32,8 +32,6 @@ charSp = [\']{1} {spChar}{1}[\']{1}
 
 %%
 <YYINITIAL>{
-    "true"                     {yybegin(YYINITIAL);value = 1;return new Token("icv",TokenType.integer);}
-    "false"                    {yybegin(YYINITIAL);value = 0;return new Token("icv",TokenType.integer);}
     {char}                     {yybegin(YYINITIAL);value = yytext(); return new Token("str",TokenType.str_char);}
     {charSp}                   {yybegin(YYINITIAL);return new Token(yytext() ,TokenType.str_char);}
     \"                         {yybegin(STRING);myString="\"";}

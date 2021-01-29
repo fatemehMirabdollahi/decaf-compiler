@@ -52,11 +52,11 @@ public class SymboleTable extends HashMap<Token, Dscp> {
             mipsCode.add(new Code("la","$t3","str"+stringAddr));
             mipsCode.add(new Code("sw","$t3",temp+"($t1)"));
             strings.add(t.getValue());
+            d.stringAddress= stringAddr;
             stringAddr+=1;
             temp+=4;
             d.value = t.getValue();
             return d;
-
         }
         //error
         throw new Exception();
@@ -166,7 +166,7 @@ public class SymboleTable extends HashMap<Token, Dscp> {
 
             mipsCode.add(new Code("lw", src, d.addr + base));
             mipsCode.add(new Code("li", dest, "0"));
-            mipsCode.add(new Code("beqz", src, "false:"));
+            mipsCode.add(new Code("beqz", src, "false"));
             mipsCode.add(new Code("li", dest, "1"));
             mipsCode.add(new Code("label", "false:"));
 
@@ -175,7 +175,7 @@ public class SymboleTable extends HashMap<Token, Dscp> {
             mipsCode.add(new Code("li", dest, "0"));
             mipsCode.add(new Code("li", "$f10", "0"));
             mipsCode.add(new Code("c.eq.d", "$f10", src));
-            mipsCode.add(new Code("bc1t", "false:"));
+            mipsCode.add(new Code("bc1t", "false"));
             mipsCode.add(new Code("li", dest, "1"));
             mipsCode.add(new Code("label", "false:"));
         }

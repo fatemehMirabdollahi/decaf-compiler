@@ -57,6 +57,7 @@ public class Compiler {
         fileWriter.write(".data\n");
         fileWriter.write("    address: .space " + address+"\n");
         fileWriter.write("    temp: .space " + maxTemp+"\n");
+        fileWriter.write("    buffer: .space " + 64+"\n");
         for (int i = 0; i < strings.size(); i++) {
             fileWriter.write("str" + i + ": .asciiz " + strings.get(i)+"\n");
         }

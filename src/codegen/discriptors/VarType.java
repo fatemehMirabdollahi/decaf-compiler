@@ -25,4 +25,14 @@ public class VarType {
                 break;
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        VarType varType = (VarType) o;
+        return type == varType.type;
+    }
+
 }

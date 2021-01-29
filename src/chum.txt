@@ -1,8 +1,11 @@
+function void func(string a){
+    Print(a);
+}
+
+
 function int main(){
-    string a ;
-     a = ReadLine();
-     Print(a);
-
-
+    string a;
+    a = "dasd";
+    func(a);
 
 }
