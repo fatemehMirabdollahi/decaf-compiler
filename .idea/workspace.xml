@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bc0cd7b3-6ab6-49d1-a26f-8497a07d1e23" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/chum.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compiler/chum.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/codegen/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/codegen/CodeGen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +27,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/parser/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
+            <state relative-caret-position="136">
               <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
               <folding>
                 <element signature="e#722#723#0" expanded="true" />
@@ -50,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Compiler/Compiler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+            <state relative-caret-position="311">
+              <caret line="52" column="42" lean-forward="true" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -59,13 +58,46 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/codegen/CodeGen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="107" column="5" selection-start-line="107" selection-start-column="5" selection-end-line="107" selection-end-column="5" />
+            <state relative-caret-position="491">
+              <caret line="704" column="22" lean-forward="true" selection-start-line="704" selection-start-column="22" selection-end-line="704" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#PUSH#0;class#CodeGen#0" />
+                <element signature="method#MDSCP#0;class#CodeGen#0" />
                 <element signature="method#CADSCP#0;class#CodeGen#0" />
                 <element signature="method#ARRAY#0;class#CodeGen#0" />
                 <element signature="method#ADD#0;class#CodeGen#0" />
+                <element signature="method#SUB#0;class#CodeGen#0" />
+                <element signature="method#MUL#0;class#CodeGen#0" />
+                <element signature="method#DIV#0;class#CodeGen#0" />
+                <element signature="method#LT#0;class#CodeGen#0" />
+                <element signature="method#GT#0;class#CodeGen#0" />
+                <element signature="method#GT#1;class#CodeGen#0" />
+                <element signature="method#READINTEGER#0;class#CodeGen#0" />
+                <element signature="method#READLINE#0;class#CodeGen#0" />
+                <element signature="method#PRINT#0;class#CodeGen#0" />
+                <element signature="method#ASSIGN#0;class#CodeGen#0" />
+                <element signature="method#SAVE#0;class#CodeGen#0" />
+                <element signature="method#JZ#0;class#CodeGen#0" />
+                <element signature="method#CWHILE#0;class#CodeGen#0" />
+                <element signature="method#CJZ#0;class#CodeGen#0" />
+                <element signature="method#JP#0;class#CodeGen#0" />
+                <element signature="method#CJP#0;class#CodeGen#0" />
+                <element signature="method#BREAK#0;class#CodeGen#0" />
+                <element signature="method#DJC#0;class#CodeGen#0" />
+                <element signature="method#CJNZ#0;class#CodeGen#0" />
+                <element signature="method#CJZFOR#0;class#CodeGen#0" />
+                <element signature="method#FUNCTION#0;class#CodeGen#0" />
+                <element signature="method#ADDPARAM#0;class#CodeGen#0" />
+                <element signature="method#CFUNCTION#0;class#CodeGen#0" />
+                <element signature="method#ENDFUNCTION#0;class#CodeGen#0" />
+                <element signature="method#RETURNP#0;class#CodeGen#0" />
+                <element signature="method#RETURNNP#0;class#CodeGen#0" />
+                <element signature="method#STARTFUNC#0;class#CodeGen#0" />
+                <element signature="method#CALLFUNCNP#0;class#CodeGen#0" />
+                <element signature="method#CALLFUNCP#0;class#CodeGen#0" />
+                <element signature="e#66647#66648#0" expanded="true" />
+                <element signature="method#ENDBLOCK#0;class#CodeGen#0" />
               </folding>
             </state>
           </provider>
@@ -86,10 +118,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/codegen/discriptors/Dscp.java">
+        <entry file="file://$PROJECT_DIR$/src/codegen/discriptors/Type.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+            <state relative-caret-position="34">
+              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -125,6 +157,7 @@
     <findStrings>
       <find>lexical</find>
       <find>type</find>
+      <find>cwhile</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -140,8 +173,7 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="983" />
+    <option name="width" value="1050" />
     <option name="height" value="1103" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -196,8 +228,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -253,7 +285,7 @@
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22348177" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.024291499" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -358,7 +390,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/parser/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
+        <state relative-caret-position="136">
           <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
           <folding>
             <element signature="e#722#723#0" expanded="true" />
@@ -371,22 +403,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/codegen/discriptors/VariableDscp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/codegen/discriptors/Dscp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/codegen/discriptors/Type.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compiler/Compiler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+        <state relative-caret-position="311">
+          <caret line="52" column="42" lean-forward="true" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/codegen/CodeGen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="107" column="5" selection-start-line="107" selection-start-column="5" selection-end-line="107" selection-end-column="5" />
+        <state relative-caret-position="491">
+          <caret line="704" column="22" lean-forward="true" selection-start-line="704" selection-start-column="22" selection-end-line="704" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#PUSH#0;class#CodeGen#0" />
+            <element signature="method#MDSCP#0;class#CodeGen#0" />
             <element signature="method#CADSCP#0;class#CodeGen#0" />
             <element signature="method#ARRAY#0;class#CodeGen#0" />
             <element signature="method#ADD#0;class#CodeGen#0" />
+            <element signature="method#SUB#0;class#CodeGen#0" />
+            <element signature="method#MUL#0;class#CodeGen#0" />
+            <element signature="method#DIV#0;class#CodeGen#0" />
+            <element signature="method#LT#0;class#CodeGen#0" />
+            <element signature="method#GT#0;class#CodeGen#0" />
+            <element signature="method#GT#1;class#CodeGen#0" />
+            <element signature="method#READINTEGER#0;class#CodeGen#0" />
+            <element signature="method#READLINE#0;class#CodeGen#0" />
+            <element signature="method#PRINT#0;class#CodeGen#0" />
+            <element signature="method#ASSIGN#0;class#CodeGen#0" />
+            <element signature="method#SAVE#0;class#CodeGen#0" />
+            <element signature="method#JZ#0;class#CodeGen#0" />
+            <element signature="method#CWHILE#0;class#CodeGen#0" />
+            <element signature="method#CJZ#0;class#CodeGen#0" />
+            <element signature="method#JP#0;class#CodeGen#0" />
+            <element signature="method#CJP#0;class#CodeGen#0" />
+            <element signature="method#BREAK#0;class#CodeGen#0" />
+            <element signature="method#DJC#0;class#CodeGen#0" />
+            <element signature="method#CJNZ#0;class#CodeGen#0" />
+            <element signature="method#CJZFOR#0;class#CodeGen#0" />
+            <element signature="method#FUNCTION#0;class#CodeGen#0" />
+            <element signature="method#ADDPARAM#0;class#CodeGen#0" />
+            <element signature="method#CFUNCTION#0;class#CodeGen#0" />
+            <element signature="method#ENDFUNCTION#0;class#CodeGen#0" />
+            <element signature="method#RETURNP#0;class#CodeGen#0" />
+            <element signature="method#RETURNNP#0;class#CodeGen#0" />
+            <element signature="method#STARTFUNC#0;class#CodeGen#0" />
+            <element signature="method#CALLFUNCNP#0;class#CodeGen#0" />
+            <element signature="method#CALLFUNCP#0;class#CodeGen#0" />
+            <element signature="e#66647#66648#0" expanded="true" />
+            <element signature="method#ENDBLOCK#0;class#CodeGen#0" />
           </folding>
         </state>
       </provider>
