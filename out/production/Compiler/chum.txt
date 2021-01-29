@@ -1,4 +1,8 @@
 function int main(){
-    int a;
-    a=10;
+    string a ;
+     a = ReadLine();
+     Print(a);
+
+
+
 }

@@ -67,6 +67,46 @@ public class CodeGen {
 
     }
 
+    public static void ARRAY() throws Exception {
+        Token index = semanticStack.pop();
+        Token arrayName = semanticStack.pop();
+        Dscp indexD = SymboleTable.find(index);
+        Dscp arrD = SymboleTable.find(arrayName);
+        if (arrD.addr == -1 || indexD.addr == -1) {
+            //error
+            throw new Exception();
+        }
+        if (arrD.dscpType != DscpType.array || indexD.dscpType != DscpType.variable) {
+            //error
+            throw new Exception();
+        }
+        ArrayDscp arrDscp = (ArrayDscp) arrD;
+        VariableDscp indexDscp = (VariableDscp) indexD;
+        if (indexDscp.type.type != Type.Integer) {
+            //error
+            throw new Exception();
+        }
+        VariableDscp cell = new VariableDscp(arrDscp.type, temp, false, true);
+        temp += arrDscp.type.size;
+        String base = indexDscp.isTemp ? "($t1)" : "($t0)";
+        mipsCode.add(new Code("lw", "$t3", indexDscp.addr + base));
+        mipsCode.add(new Code("li", "$t4", String.valueOf(arrDscp.type.size)));
+        mipsCode.add(new Code("mult", "$t4", "$t3"));
+        mipsCode.add(new Code("mflo", "$t3")); // index * size
+        mipsCode.add(new Code("lw", "$t4", arrDscp.addr + "($t0)"));
+        mipsCode.add(new Code("add", "$t3", "$t3", "$t4")); // baseArr + index * size
+        if(arrDscp.type.type == Type.Double) {
+            mipsCode.add(new Code("l.d", "$f0", "0($t3)"));
+            mipsCode.add(new Code("s.d", "$f0", temp + "($t1)"));
+        } else {
+            mipsCode.add(new Code("lw", "$t4", "0($t3)"));
+            mipsCode.add(new Code("sw", "$t4", temp + "($t1)"));
+        }
+        Token t = new Token("$" + mipsCode.size(), TokenType.integer);
+        symboleTables.get(symboleTables.size() - 1).add(t, cell);
+        semanticStack.push(t);
+    }
+
     public static void ADD() throws Exception {
 
         Token src1 = semanticStack.pop();
