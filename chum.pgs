@@ -661,14 +661,14 @@
         "isFinal": true
       },
       {
-        "x": 561.0,
-        "y": 376.0,
+        "x": 860.3333333333333,
+        "y": 348.0,
         "id": 33,
         "isFinal": false
       },
       {
-        "x": 456.99999999999994,
-        "y": 297.33333333333326,
+        "x": 897.0000000000001,
+        "y": 253.99999999999994,
         "id": 34,
         "isFinal": true
       },
@@ -685,8 +685,8 @@
         "isFinal": false
       },
       {
-        "x": 479.0,
-        "y": 156.33333333333337,
+        "x": 463.0,
+        "y": 194.33333333333334,
         "id": 37,
         "isFinal": true
       },
@@ -803,6 +803,18 @@
         "y": 742.0,
         "id": 56,
         "isFinal": true
+      },
+      {
+        "x": 895.0,
+        "y": 145.66666666666666,
+        "id": 57,
+        "isFinal": false
+      },
+      {
+        "x": 975.6666666666666,
+        "y": 66.33333333333334,
+        "id": 58,
+        "isFinal": false
       }
     ],
     "edges": [
@@ -911,8 +923,8 @@
         "end": 33,
         "token": ".",
         "func": "",
-        "anchorX": 642.1666666666633,
-        "anchorY": 411.49999999999636,
+        "anchorX": 817.4999999999937,
+        "anchorY": 394.8333333333291,
         "isGraph": false,
         "isGlobal": false
       },
@@ -941,8 +953,18 @@
         "end": 34,
         "token": "ident",
         "func": "RECORDVAR",
-        "anchorX": 506.3333333333328,
-        "anchorY": 336.3333333333228,
+        "anchorX": 878.9999999999958,
+        "anchorY": 301.66666666665367,
+        "isGraph": false,
+        "isGlobal": false
+      },
+      {
+        "start": 34,
+        "end": 57,
+        "token": "(",
+        "func": "",
+        "anchorX": 896.0,
+        "anchorY": 199.83333333333334,
         "isGraph": false,
         "isGlobal": false
       },
@@ -961,8 +983,8 @@
         "end": 37,
         "token": "]",
         "func": "ARRAY",
-        "anchorX": 509.66666666665947,
-        "anchorY": 211.49999999996976,
+        "anchorX": 504.3333333333262,
+        "anchorY": 226.83333333330285,
         "isGraph": false,
         "isGlobal": false
       },
@@ -1135,6 +1157,16 @@
         "anchorY": 683.5,
         "isGraph": false,
         "isGlobal": false
+      },
+      {
+        "start": 57,
+        "end": 58,
+        "token": ")",
+        "func": "ARRLENGTH",
+        "anchorX": 935.3333333333334,
+        "anchorY": 106.0,
+        "isGraph": false,
+        "isGlobal": false
       }
     ],
     "start": 31
@@ -1145,26 +1177,26 @@
       {
         "x": 320.0,
         "y": 353.0,
-        "id": 57,
+        "id": 59,
         "isFinal": false
       },
       {
         "x": 529.3333333333335,
         "y": 354.3333333333334,
-        "id": 58,
+        "id": 60,
         "isFinal": true
       },
       {
         "x": 704.6666666666664,
         "y": 241.0,
-        "id": 59,
+        "id": 61,
         "isFinal": false
       }
     ],
     "edges": [
       {
-        "start": 57,
-        "end": 58,
+        "start": 59,
+        "end": 60,
         "token": "EXP1",
         "func": "",
         "anchorX": 418.33333333333337,
@@ -1173,8 +1205,8 @@
         "isGlobal": false
       },
       {
-        "start": 58,
-        "end": 59,
+        "start": 60,
+        "end": 61,
         "token": "||",
         "func": "",
         "anchorX": 607.6666666666613,
@@ -1183,8 +1215,8 @@
         "isGlobal": false
       },
       {
-        "start": 59,
-        "end": 58,
+        "start": 61,
+        "end": 60,
         "token": "EXP1",
         "func": "OR",
         "anchorX": 589.3333333333333,
@@ -1193,7 +1225,7 @@
         "isGlobal": false
       }
     ],
-    "start": 57
+    "start": 59
   },
   {
     "name": "EXP1",
@@ -1201,26 +1233,26 @@
       {
         "x": 549.6666666666665,
         "y": 352.33333333333337,
-        "id": 60,
+        "id": 62,
         "isFinal": true
       },
       {
         "x": 711.0,
         "y": 351.66666666666663,
-        "id": 61,
+        "id": 63,
         "isFinal": false
       },
       {
         "x": 365.0,
         "y": 353.0,
-        "id": 62,
+        "id": 64,
         "isFinal": false
       }
     ],
     "edges": [
       {
-        "start": 60,
-        "end": 61,
+        "start": 62,
+        "end": 63,
         "token": "\u0026\u0026",
         "func": "",
         "anchorX": 635.6666666666665,
@@ -1229,8 +1261,8 @@
         "isGlobal": false
       },
       {
-        "start": 61,
-        "end": 60,
+        "start": 63,
+        "end": 62,
         "token": "EXP2",
         "func": "AND",
         "anchorX": 633.6666666666663,
@@ -1239,8 +1271,8 @@
         "isGlobal": false
       },
       {
-        "start": 62,
-        "end": 60,
+        "start": 64,
+        "end": 62,
         "token": "EXP2",
         "func": "",
         "anchorX": 456.9999999999999,
@@ -1249,7 +1281,7 @@
         "isGlobal": false
       }
     ],
-    "start": 62
+    "start": 64
   },
   {
     "name": "EXP2",
@@ -1257,32 +1289,32 @@
       {
         "x": 360.33333333333337,
         "y": 351.0,
-        "id": 63,
+        "id": 65,
         "isFinal": false
       },
       {
         "x": 517.6666666666667,
         "y": 351.6666666666667,
-        "id": 64,
+        "id": 66,
         "isFinal": true
       },
       {
         "x": 663.3333333333333,
         "y": 341.0,
-        "id": 65,
+        "id": 67,
         "isFinal": false
       },
       {
         "x": 517.6666666666666,
         "y": 544.6666666666667,
-        "id": 66,
+        "id": 68,
         "isFinal": false
       }
     ],
     "edges": [
       {
-        "start": 63,
-        "end": 64,
+        "start": 65,
+        "end": 66,
         "token": "EXP3",
         "func": "",
         "anchorX": 442.0000000000001,
@@ -1291,8 +1323,8 @@
         "isGlobal": false
       },
       {
-        "start": 64,
-        "end": 65,
+        "start": 66,
+        "end": 67,
         "token": "\u003d\u003d",
         "func": "",
         "anchorX": 598.3333333333333,
@@ -1301,8 +1333,8 @@
         "isGlobal": false
       },
       {
-        "start": 64,
-        "end": 66,
+        "start": 66,
+        "end": 68,
         "token": "!\u003d",
         "func": "",
         "anchorX": 598.0,
@@ -1311,8 +1343,8 @@
         "isGlobal": false
       },
       {
-        "start": 65,
-        "end": 64,
+        "start": 67,
+        "end": 66,
         "token": "EXP3",
         "func": "EQUAL",
         "anchorX": 590.0,
@@ -1321,8 +1353,8 @@
         "isGlobal": false
       },
       {
-        "start": 66,
-        "end": 64,
+        "start": 68,
+        "end": 66,
         "token": "EXP3",
         "func": "NOTEQUAL",
         "anchorX": 431.6666666666664,
@@ -1331,7 +1363,7 @@
         "isGlobal": false
       }
     ],
-    "start": 63
+    "start": 65
   },
   {
     "name": "EXP3",
@@ -1339,44 +1371,44 @@
       {
         "x": 375.0,
         "y": 364.3333333333333,
-        "id": 67,
+        "id": 69,
         "isFinal": false
       },
       {
         "x": 512.3333333333333,
         "y": 365.00000000000006,
-        "id": 68,
+        "id": 70,
         "isFinal": true
       },
       {
         "x": 636.3333333333333,
         "y": 271.0,
-        "id": 69,
+        "id": 71,
         "isFinal": false
       },
       {
         "x": 498.3333333333332,
         "y": 513.6666666666667,
-        "id": 70,
+        "id": 72,
         "isFinal": false
       },
       {
         "x": 632.3333333333333,
         "y": 427.66666666666663,
-        "id": 71,
+        "id": 73,
         "isFinal": false
       },
       {
         "x": 487.6666666666667,
         "y": 210.66666666666666,
-        "id": 72,
+        "id": 74,
         "isFinal": false
       }
     ],
     "edges": [
       {
-        "start": 67,
-        "end": 68,
+        "start": 69,
+        "end": 70,
         "token": "EXP4",
         "func": "",
         "anchorX": 443.66666666666663,
@@ -1385,8 +1417,8 @@
         "isGlobal": false
       },
       {
-        "start": 68,
-        "end": 69,
+        "start": 70,
+        "end": 71,
         "token": "\u003e\u003d",
         "func": "",
         "anchorX": 568.9999999999968,
@@ -1395,8 +1427,8 @@
         "isGlobal": false
       },
       {
-        "start": 68,
-        "end": 71,
+        "start": 70,
+        "end": 73,
         "token": "\u003c",
         "func": "",
         "anchorX": 572.3333333333333,
@@ -1405,8 +1437,8 @@
         "isGlobal": false
       },
       {
-        "start": 68,
-        "end": 70,
+        "start": 70,
+        "end": 72,
         "token": "\u003c\u003d",
         "func": "",
         "anchorX": 505.33333333333326,
@@ -1415,8 +1447,8 @@
         "isGlobal": false
       },
       {
-        "start": 68,
-        "end": 72,
+        "start": 70,
+        "end": 74,
         "token": "\u003e",
         "func": "",
         "anchorX": 504.999999999998,
@@ -1425,8 +1457,8 @@
         "isGlobal": false
       },
       {
-        "start": 69,
-        "end": 68,
+        "start": 71,
+        "end": 70,
         "token": "EXP4",
         "func": "GE",
         "anchorX": 544.6666666666608,
@@ -1435,8 +1467,8 @@
         "isGlobal": false
       },
       {
-        "start": 70,
-        "end": 68,
+        "start": 72,
+        "end": 70,
         "token": "EXP4",
         "func": "LE",
         "anchorX": 544.0,
@@ -1445,8 +1477,8 @@
         "isGlobal": false
       },
       {
-        "start": 71,
-        "end": 68,
+        "start": 73,
+        "end": 70,
         "token": "EXP4",
         "func": "LT",
         "anchorX": 586.3333333333331,
@@ -1455,8 +1487,8 @@
         "isGlobal": false
       },
       {
-        "start": 72,
-        "end": 68,
+        "start": 74,
+        "end": 70,
         "token": "EXP4",
         "func": "GT",
         "anchorX": 460.0,
@@ -1465,7 +1497,7 @@
         "isGlobal": false
       }
     ],
-    "start": 67
+    "start": 69
   },
   {
     "name": "EXP4",
@@ -1473,26 +1505,26 @@
       {
         "x": 375.0,
         "y": 363.6666666666667,
-        "id": 73,
+        "id": 75,
         "isFinal": false
       },
       {
         "x": 567.6666666666666,
         "y": 365.0,
-        "id": 74,
+        "id": 76,
         "isFinal": true
       },
       {
         "x": 472.3333333333333,
         "y": 482.33333333333337,
-        "id": 75,
+        "id": 77,
         "isFinal": false
       }
     ],
     "edges": [
       {
-        "start": 73,
-        "end": 75,
+        "start": 75,
+        "end": 77,
         "token": "!",
         "func": "",
         "anchorX": 423.6666666666667,
@@ -1501,8 +1533,8 @@
         "isGlobal": false
       },
       {
-        "start": 73,
-        "end": 74,
+        "start": 75,
+        "end": 76,
         "token": "EXP5",
         "func": "",
         "anchorX": 451.3333333333333,
@@ -1511,8 +1543,8 @@
         "isGlobal": false
       },
       {
-        "start": 75,
-        "end": 74,
+        "start": 77,
+        "end": 76,
         "token": "EXP5",
         "func": "NOT",
         "anchorX": 514.0,
@@ -1521,7 +1553,7 @@
         "isGlobal": false
       }
     ],
-    "start": 73
+    "start": 75
   },
   {
     "name": "EXP5",
@@ -1529,32 +1561,32 @@
       {
         "x": 360.33333333333337,
         "y": 351.0,
-        "id": 76,
+        "id": 78,
         "isFinal": false
       },
       {
         "x": 517.6666666666667,
         "y": 351.6666666666667,
-        "id": 77,
+        "id": 79,
         "isFinal": true
       },
       {
         "x": 666.3333333333333,
         "y": 351.0,
-        "id": 78,
+        "id": 80,
         "isFinal": false
       },
       {
         "x": 517.6666666666666,
         "y": 477.6666666666667,
-        "id": 79,
+        "id": 81,
         "isFinal": false
       }
     ],
     "edges": [
       {
-        "start": 76,
-        "end": 77,
+        "start": 78,
+        "end": 79,
         "token": "EXP6",
         "func": "",
         "anchorX": 439.0000000000001,
@@ -1563,8 +1595,8 @@
         "isGlobal": false
       },
       {
-        "start": 77,
-        "end": 78,
+        "start": 79,
+        "end": 80,
         "token": "+",
         "func": "",
         "anchorX": 591.3333333333335,
@@ -1573,8 +1605,8 @@
         "isGlobal": false
       },
       {
-        "start": 77,
-        "end": 79,
+        "start": 79,
+        "end": 81,
         "token": "-",
         "func": "",
         "anchorX": 550.0,
@@ -1583,8 +1615,8 @@
         "isGlobal": false
       },
       {
-        "start": 78,
-        "end": 77,
+        "start": 80,
+        "end": 79,
         "token": "EXP6",
         "func": "ADD",
         "anchorX": 588.0,
@@ -1593,8 +1625,8 @@
         "isGlobal": false
       },
       {
-        "start": 79,
-        "end": 77,
+        "start": 81,
+        "end": 79,
         "token": "EXP6",
         "func": "SUB",
         "anchorX": 486.66666666666663,
@@ -1603,7 +1635,7 @@
         "isGlobal": false
       }
     ],
-    "start": 76
+    "start": 78
   },
   {
     "name": "EXP6",
@@ -1611,32 +1643,32 @@
       {
         "x": 360.33333333333337,
         "y": 351.0,
-        "id": 80,
+        "id": 82,
         "isFinal": false
       },
       {
         "x": 517.6666666666667,
         "y": 351.6666666666667,
-        "id": 81,
+        "id": 83,
         "isFinal": true
       },
       {
         "x": 666.3333333333333,
         "y": 351.0,
-        "id": 82,
+        "id": 84,
         "isFinal": false
       },
       {
         "x": 517.6666666666666,
         "y": 477.6666666666667,
-        "id": 83,
+        "id": 85,
         "isFinal": false
       }
     ],
     "edges": [
       {
-        "start": 80,
-        "end": 81,
+        "start": 82,
+        "end": 83,
         "token": "EXP7",
         "func": "",
         "anchorX": 439.0000000000001,
@@ -1645,8 +1677,8 @@
         "isGlobal": false
       },
       {
-        "start": 81,
-        "end": 82,
+        "start": 83,
+        "end": 84,
         "token": "*",
         "func": "",
         "anchorX": 591.3333333333335,
@@ -1655,8 +1687,8 @@
         "isGlobal": false
       },
       {
-        "start": 81,
-        "end": 83,
+        "start": 83,
+        "end": 85,
         "token": "/",
         "func": "",
         "anchorX": 551.0,
@@ -1665,8 +1697,8 @@
         "isGlobal": false
       },
       {
-        "start": 82,
-        "end": 81,
+        "start": 84,
+        "end": 83,
         "token": "EXP7",
         "func": "MUL",
         "anchorX": 588.0,
@@ -1675,8 +1707,8 @@
         "isGlobal": false
       },
       {
-        "start": 83,
-        "end": 81,
+        "start": 85,
+        "end": 83,
         "token": "EXP7",
         "func": "DIV",
         "anchorX": 486.66666666666663,
@@ -1685,7 +1717,7 @@
         "isGlobal": false
       }
     ],
-    "start": 80
+    "start": 82
   },
   {
     "name": "EXP7",
@@ -1693,32 +1725,32 @@
       {
         "x": 522.0,
         "y": 323.0,
-        "id": 84,
+        "id": 86,
         "isFinal": false
       },
       {
         "x": 520.0,
         "y": 192.0,
-        "id": 85,
+        "id": 87,
         "isFinal": false
       },
       {
         "x": 784.0,
         "y": 194.0,
-        "id": 86,
+        "id": 88,
         "isFinal": false
       },
       {
         "x": 784.0,
         "y": 323.0,
-        "id": 87,
+        "id": 89,
         "isFinal": true
       }
     ],
     "edges": [
       {
-        "start": 84,
-        "end": 85,
+        "start": 86,
+        "end": 87,
         "token": "(",
         "func": "",
         "anchorX": 522.0,
@@ -1727,8 +1759,8 @@
         "isGlobal": false
       },
       {
-        "start": 84,
-        "end": 87,
+        "start": 86,
+        "end": 89,
         "token": "EXPPARAM",
         "func": "",
         "anchorX": 641.5,
@@ -1737,8 +1769,8 @@
         "isGlobal": false
       },
       {
-        "start": 85,
-        "end": 86,
+        "start": 87,
+        "end": 88,
         "token": "EXP",
         "func": "",
         "anchorX": 641.0,
@@ -1747,8 +1779,8 @@
         "isGlobal": false
       },
       {
-        "start": 86,
-        "end": 87,
+        "start": 88,
+        "end": 89,
         "token": ")",
         "func": "",
         "anchorX": 784.5,
@@ -1757,7 +1789,7 @@
         "isGlobal": false
       }
     ],
-    "start": 84
+    "start": 86
   },
   {
     "name": "STATEMENT",
@@ -1765,278 +1797,278 @@
       {
         "x": 28.0,
         "y": 293.0,
-        "id": 88,
+        "id": 90,
         "isFinal": false
       },
       {
         "x": 165.0,
         "y": 84.0,
-        "id": 89,
+        "id": 91,
         "isFinal": false
       },
       {
         "x": 219.0,
         "y": 144.0,
-        "id": 90,
+        "id": 92,
         "isFinal": false
       },
       {
         "x": 406.0,
         "y": 126.0,
-        "id": 91,
+        "id": 93,
         "isFinal": false
       },
       {
         "x": 596.0,
         "y": 131.0,
-        "id": 92,
+        "id": 94,
         "isFinal": false
       },
       {
         "x": 751.0,
         "y": 148.0,
-        "id": 93,
+        "id": 95,
         "isFinal": false
       },
       {
         "x": 249.0,
         "y": 195.0,
-        "id": 94,
+        "id": 96,
         "isFinal": false
       },
       {
         "x": 914.0,
         "y": 224.0,
-        "id": 95,
+        "id": 97,
         "isFinal": true
       },
       {
         "x": 413.0,
         "y": 194.0,
-        "id": 96,
+        "id": 98,
         "isFinal": true
       },
       {
         "x": 271.0,
         "y": 258.0,
-        "id": 97,
+        "id": 99,
         "isFinal": false
       },
       {
         "x": 361.0,
         "y": 332.0,
-        "id": 98,
+        "id": 100,
         "isFinal": false
       },
       {
         "x": 501.0,
         "y": 269.0,
-        "id": 99,
+        "id": 101,
         "isFinal": true
       },
       {
         "x": 396.0,
         "y": 36.0,
-        "id": 100,
+        "id": 102,
         "isFinal": false
       },
       {
         "x": 576.0,
         "y": 40.0,
-        "id": 101,
+        "id": 103,
         "isFinal": true
       },
       {
         "x": 276.0,
         "y": 400.0,
-        "id": 102,
+        "id": 104,
         "isFinal": false
       },
       {
         "x": 429.0,
         "y": 402.0,
-        "id": 103,
+        "id": 105,
         "isFinal": false
       },
       {
         "x": 666.9999999999999,
         "y": 437.3333333333335,
-        "id": 104,
+        "id": 106,
         "isFinal": false
       },
       {
         "x": 760.6666666666666,
         "y": 393.0,
-        "id": 105,
+        "id": 107,
         "isFinal": false
       },
       {
         "x": 900.0,
         "y": 392.0,
-        "id": 106,
+        "id": 108,
         "isFinal": false
       },
       {
         "x": 1066.0,
         "y": 388.0,
-        "id": 107,
+        "id": 109,
         "isFinal": false
       },
       {
         "x": 1303.9999999999998,
         "y": 421.6666666666666,
-        "id": 108,
+        "id": 110,
         "isFinal": false
       },
       {
         "x": 1420.0,
         "y": 352.0,
-        "id": 109,
+        "id": 111,
         "isFinal": false
       },
       {
         "x": 1756.3333333333337,
         "y": 353.00000000000006,
-        "id": 110,
+        "id": 112,
         "isFinal": true
       },
       {
         "x": 243.0,
         "y": 490.0,
-        "id": 111,
+        "id": 113,
         "isFinal": false
       },
       {
         "x": 397.0,
         "y": 527.0,
-        "id": 112,
+        "id": 114,
         "isFinal": false
       },
       {
         "x": 554.0,
         "y": 526.0,
-        "id": 113,
+        "id": 115,
         "isFinal": false
       },
       {
         "x": 685.0,
         "y": 524.0,
-        "id": 114,
+        "id": 116,
         "isFinal": false
       },
       {
         "x": 886.0,
         "y": 525.0,
-        "id": 115,
+        "id": 117,
         "isFinal": true
       },
       {
         "x": 197.0,
         "y": 585.0,
-        "id": 116,
+        "id": 118,
         "isFinal": false
       },
       {
         "x": 390.0,
         "y": 620.0,
-        "id": 117,
+        "id": 119,
         "isFinal": false
       },
       {
         "x": 549.0,
         "y": 626.0,
-        "id": 118,
+        "id": 120,
         "isFinal": false
       },
       {
         "x": 681.0,
         "y": 626.0,
-        "id": 119,
+        "id": 121,
         "isFinal": false
       },
       {
         "x": 863.0,
         "y": 631.0,
-        "id": 120,
+        "id": 122,
         "isFinal": true
       },
       {
         "x": 166.0,
         "y": 674.0,
-        "id": 121,
+        "id": 123,
         "isFinal": false
       },
       {
         "x": 446.0,
         "y": 661.0,
-        "id": 122,
+        "id": 124,
         "isFinal": false
       },
       {
         "x": 682.0,
         "y": 687.0,
-        "id": 123,
+        "id": 125,
         "isFinal": true
       },
       {
         "x": 288.0,
         "y": 825.0,
-        "id": 124,
+        "id": 126,
         "isFinal": false
       },
       {
         "x": 530.0,
         "y": 879.0,
-        "id": 125,
+        "id": 127,
         "isFinal": false
       },
       {
         "x": 418.0,
         "y": 812.0,
-        "id": 126,
+        "id": 128,
         "isFinal": false
       },
       {
         "x": 441.0,
         "y": 704.0,
-        "id": 127,
+        "id": 129,
         "isFinal": false
       },
       {
         "x": 1013.0,
         "y": 629.0,
-        "id": 128,
+        "id": 130,
         "isFinal": false
       },
       {
         "x": 1193.0,
         "y": 636.0,
-        "id": 129,
+        "id": 131,
         "isFinal": true
       },
       {
         "x": 705.0,
         "y": 868.0,
-        "id": 130,
+        "id": 132,
         "isFinal": true
       },
       {
         "x": 529.6666666666666,
         "y": 441.66666666666663,
-        "id": 131,
+        "id": 133,
         "isFinal": false
       },
       {
         "x": 1179.9999999999995,
         "y": 457.66666666666663,
-        "id": 132,
+        "id": 134,
         "isFinal": false
       }
     ],
     "edges": [
       {
-        "start": 88,
-        "end": 89,
+        "start": 90,
+        "end": 91,
         "token": "{",
         "func": "STARTBLOCK",
         "anchorX": 73.5,
@@ -2045,8 +2077,8 @@
         "isGlobal": false
       },
       {
-        "start": 88,
-        "end": 90,
+        "start": 90,
+        "end": 92,
         "token": "Print",
         "func": "",
         "anchorX": 131.5,
@@ -2055,8 +2087,8 @@
         "isGlobal": false
       },
       {
-        "start": 88,
-        "end": 94,
+        "start": 90,
+        "end": 96,
         "token": "break",
         "func": "",
         "anchorX": 157.0,
@@ -2065,8 +2097,8 @@
         "isGlobal": false
       },
       {
-        "start": 88,
-        "end": 97,
+        "start": 90,
+        "end": 99,
         "token": "return",
         "func": "",
         "anchorX": 163.5,
@@ -2075,8 +2107,8 @@
         "isGlobal": false
       },
       {
-        "start": 88,
-        "end": 102,
+        "start": 90,
+        "end": 104,
         "token": "for",
         "func": "",
         "anchorX": 144.0,
@@ -2085,8 +2117,8 @@
         "isGlobal": false
       },
       {
-        "start": 88,
-        "end": 111,
+        "start": 90,
+        "end": 113,
         "token": "while",
         "func": "",
         "anchorX": 122.5,
@@ -2095,8 +2127,8 @@
         "isGlobal": false
       },
       {
-        "start": 88,
-        "end": 116,
+        "start": 90,
+        "end": 118,
         "token": "if",
         "func": "",
         "anchorX": 91.5,
@@ -2105,8 +2137,8 @@
         "isGlobal": false
       },
       {
-        "start": 88,
-        "end": 121,
+        "start": 90,
+        "end": 123,
         "token": "ident",
         "func": "PUSH",
         "anchorX": 36.0,
@@ -2115,8 +2147,8 @@
         "isGlobal": false
       },
       {
-        "start": 89,
-        "end": 100,
+        "start": 91,
+        "end": 102,
         "token": "STMBLOCK",
         "func": "",
         "anchorX": 264.0,
@@ -2125,8 +2157,8 @@
         "isGlobal": false
       },
       {
-        "start": 90,
-        "end": 91,
+        "start": 92,
+        "end": 93,
         "token": "(",
         "func": "",
         "anchorX": 312.5,
@@ -2135,8 +2167,8 @@
         "isGlobal": false
       },
       {
-        "start": 91,
-        "end": 92,
+        "start": 93,
+        "end": 94,
         "token": "EXP",
         "func": "",
         "anchorX": 493.5,
@@ -2145,8 +2177,8 @@
         "isGlobal": false
       },
       {
-        "start": 92,
-        "end": 93,
+        "start": 94,
+        "end": 95,
         "token": ")",
         "func": "",
         "anchorX": 674.5,
@@ -2155,8 +2187,8 @@
         "isGlobal": false
       },
       {
-        "start": 93,
-        "end": 95,
+        "start": 95,
+        "end": 97,
         "token": ";",
         "func": "PRINT",
         "anchorX": 838.0,
@@ -2165,8 +2197,8 @@
         "isGlobal": false
       },
       {
-        "start": 94,
-        "end": 96,
+        "start": 96,
+        "end": 98,
         "token": ";",
         "func": "BREAK",
         "anchorX": 341.0,
@@ -2175,8 +2207,8 @@
         "isGlobal": false
       },
       {
-        "start": 97,
-        "end": 98,
+        "start": 99,
+        "end": 100,
         "token": "EXP",
         "func": "",
         "anchorX": 324.0,
@@ -2185,8 +2217,8 @@
         "isGlobal": false
       },
       {
-        "start": 97,
-        "end": 99,
+        "start": 99,
+        "end": 101,
         "token": ";",
         "func": "RETURNNP",
         "anchorX": 385.0,
@@ -2195,8 +2227,8 @@
         "isGlobal": false
       },
       {
-        "start": 98,
-        "end": 99,
+        "start": 100,
+        "end": 101,
         "token": ";",
         "func": "RETURNP",
         "anchorX": 427.0,
@@ -2205,8 +2237,8 @@
         "isGlobal": false
       },
       {
-        "start": 100,
-        "end": 101,
+        "start": 102,
+        "end": 103,
         "token": "}",
         "func": "ENDBLOCK",
         "anchorX": 486.5,
@@ -2215,8 +2247,8 @@
         "isGlobal": false
       },
       {
-        "start": 102,
-        "end": 103,
+        "start": 104,
+        "end": 105,
         "token": "(",
         "func": "",
         "anchorX": 351.0,
@@ -2225,8 +2257,8 @@
         "isGlobal": false
       },
       {
-        "start": 103,
-        "end": 105,
+        "start": 105,
+        "end": 107,
         "token": ";",
         "func": "SAVE",
         "anchorX": 568.9999999999984,
@@ -2235,8 +2267,8 @@
         "isGlobal": false
       },
       {
-        "start": 103,
-        "end": 131,
+        "start": 105,
+        "end": 133,
         "token": "ident",
         "func": "PUSH",
         "anchorX": 479.3333333333333,
@@ -2245,8 +2277,8 @@
         "isGlobal": false
       },
       {
-        "start": 104,
-        "end": 105,
+        "start": 106,
+        "end": 107,
         "token": ";",
         "func": "SAVE",
         "anchorX": 716.6666666666646,
@@ -2255,8 +2287,8 @@
         "isGlobal": false
       },
       {
-        "start": 105,
-        "end": 106,
+        "start": 107,
+        "end": 108,
         "token": "EXP",
         "func": "DJC",
         "anchorX": 810.9999999999984,
@@ -2265,8 +2297,8 @@
         "isGlobal": false
       },
       {
-        "start": 106,
-        "end": 107,
+        "start": 108,
+        "end": 109,
         "token": ";",
         "func": "SAVE",
         "anchorX": 982.0,
@@ -2275,8 +2307,8 @@
         "isGlobal": false
       },
       {
-        "start": 107,
-        "end": 109,
+        "start": 109,
+        "end": 111,
         "token": ")",
         "func": "CJNZ",
         "anchorX": 1211.833333333333,
@@ -2285,8 +2317,8 @@
         "isGlobal": false
       },
       {
-        "start": 107,
-        "end": 132,
+        "start": 109,
+        "end": 134,
         "token": "ident",
         "func": "PUSH",
         "anchorX": 1122.666666666662,
@@ -2295,8 +2327,8 @@
         "isGlobal": false
       },
       {
-        "start": 108,
-        "end": 109,
+        "start": 110,
+        "end": 111,
         "token": ")",
         "func": "CJNZ",
         "anchorX": 1332.4999999999936,
@@ -2305,8 +2337,8 @@
         "isGlobal": false
       },
       {
-        "start": 109,
-        "end": 110,
+        "start": 111,
+        "end": 112,
         "token": "STATEMENT",
         "func": "CJZFOR",
         "anchorX": 1584.4999999999984,
@@ -2315,8 +2347,8 @@
         "isGlobal": false
       },
       {
-        "start": 111,
-        "end": 112,
+        "start": 113,
+        "end": 114,
         "token": "(",
         "func": "SAVE",
         "anchorX": 310.0,
@@ -2325,8 +2357,8 @@
         "isGlobal": false
       },
       {
-        "start": 112,
-        "end": 113,
+        "start": 114,
+        "end": 115,
         "token": "EXP",
         "func": "",
         "anchorX": 467.5,
@@ -2335,8 +2367,8 @@
         "isGlobal": false
       },
       {
-        "start": 113,
-        "end": 114,
+        "start": 115,
+        "end": 116,
         "token": ")",
         "func": "JZ",
         "anchorX": 622.0,
@@ -2345,8 +2377,8 @@
         "isGlobal": false
       },
       {
-        "start": 114,
-        "end": 115,
+        "start": 116,
+        "end": 117,
         "token": "STATEMENT",
         "func": "CWHILE",
         "anchorX": 757.0,
@@ -2355,8 +2387,8 @@
         "isGlobal": false
       },
       {
-        "start": 116,
-        "end": 117,
+        "start": 118,
+        "end": 119,
         "token": "(",
         "func": "",
         "anchorX": 293.5,
@@ -2365,8 +2397,8 @@
         "isGlobal": false
       },
       {
-        "start": 117,
-        "end": 118,
+        "start": 119,
+        "end": 120,
         "token": "EXP",
         "func": "",
         "anchorX": 461.5,
@@ -2375,8 +2407,8 @@
         "isGlobal": false
       },
       {
-        "start": 118,
-        "end": 119,
+        "start": 120,
+        "end": 121,
         "token": ")",
         "func": "JZ",
         "anchorX": 615.0,
@@ -2385,8 +2417,8 @@
         "isGlobal": false
       },
       {
-        "start": 119,
-        "end": 120,
+        "start": 121,
+        "end": 122,
         "token": "STATEMENT",
         "func": "CJZ",
         "anchorX": 733.5,
@@ -2395,8 +2427,8 @@
         "isGlobal": false
       },
       {
-        "start": 120,
-        "end": 128,
+        "start": 122,
+        "end": 130,
         "token": "else",
         "func": "JP",
         "anchorX": 931.5,
@@ -2405,8 +2437,8 @@
         "isGlobal": false
       },
       {
-        "start": 121,
-        "end": 122,
+        "start": 123,
+        "end": 124,
         "token": "ASSIGNMENT",
         "func": "",
         "anchorX": 293.5,
@@ -2415,8 +2447,8 @@
         "isGlobal": false
       },
       {
-        "start": 121,
-        "end": 124,
+        "start": 123,
+        "end": 126,
         "token": "(",
         "func": "STARTFUNC",
         "anchorX": 218.4999999999999,
@@ -2425,8 +2457,8 @@
         "isGlobal": false
       },
       {
-        "start": 122,
-        "end": 123,
+        "start": 124,
+        "end": 125,
         "token": ";",
         "func": "",
         "anchorX": 577.0,
@@ -2435,8 +2467,8 @@
         "isGlobal": false
       },
       {
-        "start": 124,
-        "end": 125,
+        "start": 126,
+        "end": 127,
         "token": ")",
         "func": "CALLFUNCNP",
         "anchorX": 360.0,
@@ -2445,8 +2477,8 @@
         "isGlobal": false
       },
       {
-        "start": 124,
-        "end": 126,
+        "start": 126,
+        "end": 128,
         "token": "EXP",
         "func": "",
         "anchorX": 356.0,
@@ -2455,8 +2487,8 @@
         "isGlobal": false
       },
       {
-        "start": 125,
-        "end": 130,
+        "start": 127,
+        "end": 132,
         "token": ";",
         "func": "",
         "anchorX": 617.5,
@@ -2465,8 +2497,8 @@
         "isGlobal": false
       },
       {
-        "start": 126,
-        "end": 125,
+        "start": 128,
+        "end": 127,
         "token": ")",
         "func": "CALLFUNCP",
         "anchorX": 487.99999999999943,
@@ -2475,8 +2507,8 @@
         "isGlobal": false
       },
       {
-        "start": 126,
-        "end": 127,
+        "start": 128,
+        "end": 129,
         "token": "colon",
         "func": "",
         "anchorX": 467.4999999999984,
@@ -2485,8 +2517,8 @@
         "isGlobal": false
       },
       {
-        "start": 127,
-        "end": 126,
+        "start": 129,
+        "end": 128,
         "token": "EXP",
         "func": "",
         "anchorX": 409.5,
@@ -2495,8 +2527,8 @@
         "isGlobal": false
       },
       {
-        "start": 128,
-        "end": 129,
+        "start": 130,
+        "end": 131,
         "token": "STATEMENT",
         "func": "CJP",
         "anchorX": 1074.5,
@@ -2505,8 +2537,8 @@
         "isGlobal": false
       },
       {
-        "start": 131,
-        "end": 104,
+        "start": 133,
+        "end": 106,
         "token": "ASSIGNMENT",
         "func": "",
         "anchorX": 564.6666666666647,
@@ -2515,8 +2547,8 @@
         "isGlobal": false
       },
       {
-        "start": 132,
-        "end": 108,
+        "start": 134,
+        "end": 110,
         "token": "ASSIGNMENT",
         "func": "",
         "anchorX": 1246.3333333333271,
@@ -2525,7 +2557,7 @@
         "isGlobal": false
       }
     ],
-    "start": 88
+    "start": 90
   },
   {
     "name": "STMBLOCK",
@@ -2533,116 +2565,116 @@
       {
         "x": 124.0,
         "y": 257.0,
-        "id": 133,
+        "id": 135,
         "isFinal": true
       },
       {
         "x": 297.0,
         "y": 303.0,
-        "id": 134,
+        "id": 136,
         "isFinal": false
       },
       {
         "x": 469.0,
         "y": 213.0,
-        "id": 135,
+        "id": 137,
         "isFinal": false
       },
       {
         "x": 655.0,
         "y": 226.0,
-        "id": 136,
+        "id": 138,
         "isFinal": false
       },
       {
         "x": 414.0,
         "y": 441.0,
-        "id": 137,
+        "id": 139,
         "isFinal": false
       },
       {
         "x": 607.0,
         "y": 482.0,
-        "id": 138,
+        "id": 140,
         "isFinal": false
       },
       {
         "x": 736.0,
         "y": 416.0,
-        "id": 139,
+        "id": 141,
         "isFinal": false
       },
       {
         "x": 832.0,
         "y": 298.0,
-        "id": 140,
+        "id": 142,
         "isFinal": false
       },
       {
         "x": 147.0,
         "y": 419.0,
-        "id": 141,
+        "id": 143,
         "isFinal": false
       },
       {
         "x": 274.0,
         "y": 529.0,
-        "id": 142,
+        "id": 144,
         "isFinal": false
       },
       {
         "x": 17.0,
         "y": 20.0,
-        "id": 143,
+        "id": 145,
         "isFinal": false
       },
       {
         "x": 135.0,
         "y": 771.0,
-        "id": 144,
+        "id": 146,
         "isFinal": true
       },
       {
         "x": 15.0,
         "y": 166.0,
-        "id": 145,
+        "id": 147,
         "isFinal": false
       },
       {
         "x": 647.0,
         "y": 684.0,
-        "id": 146,
+        "id": 148,
         "isFinal": false
       },
       {
         "x": 262.0,
         "y": 173.0,
-        "id": 147,
+        "id": 149,
         "isFinal": false
       },
       {
         "x": 303.0,
         "y": 62.0,
-        "id": 148,
+        "id": 150,
         "isFinal": false
       },
       {
         "x": 402.0,
         "y": 38.0,
-        "id": 149,
+        "id": 151,
         "isFinal": false
       },
       {
         "x": 346.0,
         "y": 144.0,
-        "id": 150,
+        "id": 152,
         "isFinal": false
       }
     ],
     "edges": [
       {
-        "start": 133,
-        "end": 134,
+        "start": 135,
+        "end": 136,
         "token": "ident",
         "func": "PUSH",
         "anchorX": 219.0,
@@ -2651,8 +2683,8 @@
         "isGlobal": false
       },
       {
-        "start": 133,
-        "end": 143,
+        "start": 135,
+        "end": 145,
         "token": "double",
         "func": "PUSH",
         "anchorX": 193.50000000000028,
@@ -2661,8 +2693,8 @@
         "isGlobal": false
       },
       {
-        "start": 133,
-        "end": 144,
+        "start": 135,
+        "end": 146,
         "token": "STATEMENTNID",
         "func": "",
         "anchorX": 31.5,
@@ -2671,8 +2703,8 @@
         "isGlobal": false
       },
       {
-        "start": 133,
-        "end": 143,
+        "start": 135,
+        "end": 145,
         "token": "bool",
         "func": "PUSH",
         "anchorX": 108.5,
@@ -2681,8 +2713,8 @@
         "isGlobal": false
       },
       {
-        "start": 133,
-        "end": 143,
+        "start": 135,
+        "end": 145,
         "token": "string",
         "func": "PUSH",
         "anchorX": 121.5,
@@ -2691,8 +2723,8 @@
         "isGlobal": false
       },
       {
-        "start": 133,
-        "end": 143,
+        "start": 135,
+        "end": 145,
         "token": "int",
         "func": "PUSH",
         "anchorX": 156.5,
@@ -2701,8 +2733,8 @@
         "isGlobal": false
       },
       {
-        "start": 134,
-        "end": 135,
+        "start": 136,
+        "end": 137,
         "token": ".",
         "func": "",
         "anchorX": 377.0,
@@ -2711,8 +2743,8 @@
         "isGlobal": false
       },
       {
-        "start": 134,
-        "end": 137,
+        "start": 136,
+        "end": 139,
         "token": "[",
         "func": "",
         "anchorX": 341.5,
@@ -2721,8 +2753,8 @@
         "isGlobal": false
       },
       {
-        "start": 134,
-        "end": 140,
+        "start": 136,
+        "end": 142,
         "token": "\u003d",
         "func": "",
         "anchorX": 581.5,
@@ -2731,8 +2763,8 @@
         "isGlobal": false
       },
       {
-        "start": 134,
-        "end": 141,
+        "start": 136,
+        "end": 143,
         "token": "ident",
         "func": "PUSH",
         "anchorX": 264.5,
@@ -2741,8 +2773,8 @@
         "isGlobal": false
       },
       {
-        "start": 134,
-        "end": 147,
+        "start": 136,
+        "end": 149,
         "token": "(",
         "func": "STARTFUNC",
         "anchorX": 279.5,
@@ -2751,8 +2783,8 @@
         "isGlobal": false
       },
       {
-        "start": 135,
-        "end": 136,
+        "start": 137,
+        "end": 138,
         "token": "ident",
         "func": "RECORDVAR",
         "anchorX": 567.5,
@@ -2761,8 +2793,8 @@
         "isGlobal": false
       },
       {
-        "start": 136,
-        "end": 140,
+        "start": 138,
+        "end": 142,
         "token": "\u003d",
         "func": "",
         "anchorX": 743.5,
@@ -2771,8 +2803,8 @@
         "isGlobal": false
       },
       {
-        "start": 137,
-        "end": 138,
+        "start": 139,
+        "end": 140,
         "token": "EXP",
         "func": "",
         "anchorX": 504.0,
@@ -2781,8 +2813,8 @@
         "isGlobal": false
       },
       {
-        "start": 137,
-        "end": 142,
+        "start": 139,
+        "end": 144,
         "token": "]",
         "func": "PUSH",
         "anchorX": 354.0,
@@ -2791,8 +2823,8 @@
         "isGlobal": false
       },
       {
-        "start": 138,
-        "end": 139,
+        "start": 140,
+        "end": 141,
         "token": "]",
         "func": "ARRAY",
         "anchorX": 678.0,
@@ -2801,8 +2833,8 @@
         "isGlobal": false
       },
       {
-        "start": 139,
-        "end": 140,
+        "start": 141,
+        "end": 142,
         "token": "\u003d",
         "func": "",
         "anchorX": 775.5,
@@ -2811,8 +2843,8 @@
         "isGlobal": false
       },
       {
-        "start": 140,
-        "end": 146,
+        "start": 142,
+        "end": 148,
         "token": "EXP",
         "func": "ASSIGN",
         "anchorX": 819.5,
@@ -2821,8 +2853,8 @@
         "isGlobal": false
       },
       {
-        "start": 141,
-        "end": 133,
+        "start": 143,
+        "end": 135,
         "token": ";",
         "func": "MDSCP",
         "anchorX": 139.5,
@@ -2831,8 +2863,8 @@
         "isGlobal": false
       },
       {
-        "start": 142,
-        "end": 141,
+        "start": 144,
+        "end": 143,
         "token": "ident",
         "func": "PUSH",
         "anchorX": 213.0,
@@ -2841,8 +2873,8 @@
         "isGlobal": false
       },
       {
-        "start": 143,
-        "end": 145,
+        "start": 145,
+        "end": 147,
         "token": "VARDCLPART",
         "func": "",
         "anchorX": 7.500000000000142,
@@ -2851,8 +2883,8 @@
         "isGlobal": false
       },
       {
-        "start": 144,
-        "end": 144,
+        "start": 146,
+        "end": 146,
         "token": "STATEMENT",
         "func": "",
         "anchorX": 125.99999999999889,
@@ -2861,8 +2893,8 @@
         "isGlobal": false
       },
       {
-        "start": 145,
-        "end": 133,
+        "start": 147,
+        "end": 135,
         "token": ";",
         "func": "MDSCP",
         "anchorX": 55.0,
@@ -2871,8 +2903,8 @@
         "isGlobal": false
       },
       {
-        "start": 146,
-        "end": 144,
+        "start": 148,
+        "end": 146,
         "token": ";",
         "func": "",
         "anchorX": 415.0,
@@ -2881,8 +2913,8 @@
         "isGlobal": false
       },
       {
-        "start": 147,
-        "end": 148,
+        "start": 149,
+        "end": 150,
         "token": "EXP",
         "func": "",
         "anchorX": 267.5,
@@ -2891,8 +2923,8 @@
         "isGlobal": false
       },
       {
-        "start": 147,
-        "end": 150,
+        "start": 149,
+        "end": 152,
         "token": ")",
         "func": "CALLFUNCNP",
         "anchorX": 311.0,
@@ -2901,8 +2933,8 @@
         "isGlobal": false
       },
       {
-        "start": 148,
-        "end": 149,
+        "start": 150,
+        "end": 151,
         "token": "colon",
         "func": "",
         "anchorX": 364.5,
@@ -2911,8 +2943,8 @@
         "isGlobal": false
       },
       {
-        "start": 148,
-        "end": 150,
+        "start": 150,
+        "end": 152,
         "token": ")",
         "func": "CALLFUNCP",
         "anchorX": 337.5,
@@ -2921,8 +2953,8 @@
         "isGlobal": false
       },
       {
-        "start": 149,
-        "end": 148,
+        "start": 151,
+        "end": 150,
         "token": "EXP",
         "func": "",
         "anchorX": 342.5,
@@ -2931,8 +2963,8 @@
         "isGlobal": false
       },
       {
-        "start": 150,
-        "end": 144,
+        "start": 152,
+        "end": 146,
         "token": ";",
         "func": "",
         "anchorX": 470.5,
@@ -2941,7 +2973,7 @@
         "isGlobal": false
       }
     ],
-    "start": 133
+    "start": 135
   },
   {
     "name": "VARDCLPART",
@@ -2949,32 +2981,32 @@
       {
         "x": 283.66666666666663,
         "y": 263.6666666666667,
-        "id": 151,
+        "id": 153,
         "isFinal": false
       },
       {
         "x": 421.66666666666663,
         "y": 267.0,
-        "id": 152,
+        "id": 154,
         "isFinal": false
       },
       {
         "x": 421.0000000000001,
         "y": 395.6666666666667,
-        "id": 153,
+        "id": 155,
         "isFinal": false
       },
       {
         "x": 281.6666666666667,
         "y": 394.3333333333333,
-        "id": 154,
+        "id": 156,
         "isFinal": true
       }
     ],
     "edges": [
       {
-        "start": 151,
-        "end": 152,
+        "start": 153,
+        "end": 154,
         "token": "[",
         "func": "",
         "anchorX": 353.33333333333326,
@@ -2983,8 +3015,8 @@
         "isGlobal": false
       },
       {
-        "start": 151,
-        "end": 154,
+        "start": 153,
+        "end": 156,
         "token": "ident",
         "func": "PUSH",
         "anchorX": 282.66666666666663,
@@ -2993,8 +3025,8 @@
         "isGlobal": false
       },
       {
-        "start": 152,
-        "end": 153,
+        "start": 154,
+        "end": 155,
         "token": "]",
         "func": "PUSH",
         "anchorX": 419.66666666666544,
@@ -3003,8 +3035,8 @@
         "isGlobal": false
       },
       {
-        "start": 153,
-        "end": 154,
+        "start": 155,
+        "end": 156,
         "token": "ident",
         "func": "PUSH",
         "anchorX": 355.3333333333324,
@@ -3013,7 +3045,7 @@
         "isGlobal": false
       }
     ],
-    "start": 151
+    "start": 153
   },
   {
     "name": "ASSIGNMENT",
@@ -3021,56 +3053,56 @@
       {
         "x": 246.0,
         "y": 288.0,
-        "id": 155,
+        "id": 157,
         "isFinal": false
       },
       {
         "x": 423.0,
         "y": 204.0,
-        "id": 156,
+        "id": 158,
         "isFinal": false
       },
       {
         "x": 687.0,
         "y": 208.0,
-        "id": 157,
+        "id": 159,
         "isFinal": false
       },
       {
         "x": 386.0,
         "y": 455.0,
-        "id": 158,
+        "id": 160,
         "isFinal": false
       },
       {
         "x": 611.0,
         "y": 496.0,
-        "id": 159,
+        "id": 161,
         "isFinal": false
       },
       {
         "x": 777.0,
         "y": 430.0,
-        "id": 160,
+        "id": 162,
         "isFinal": false
       },
       {
         "x": 850.0,
         "y": 295.0,
-        "id": 161,
+        "id": 163,
         "isFinal": false
       },
       {
         "x": 1084.0,
         "y": 288.0,
-        "id": 162,
+        "id": 164,
         "isFinal": true
       }
     ],
     "edges": [
       {
-        "start": 155,
-        "end": 156,
+        "start": 157,
+        "end": 158,
         "token": ".",
         "func": "",
         "anchorX": 352.0,
@@ -3079,8 +3111,8 @@
         "isGlobal": false
       },
       {
-        "start": 155,
-        "end": 158,
+        "start": 157,
+        "end": 160,
         "token": "[",
         "func": "",
         "anchorX": 311.5,
@@ -3089,8 +3121,8 @@
         "isGlobal": false
       },
       {
-        "start": 155,
-        "end": 161,
+        "start": 157,
+        "end": 163,
         "token": "\u003d",
         "func": "",
         "anchorX": 581.5,
@@ -3099,8 +3131,8 @@
         "isGlobal": false
       },
       {
-        "start": 156,
-        "end": 157,
+        "start": 158,
+        "end": 159,
         "token": "ident",
         "func": "RECORDVAR",
         "anchorX": 553.5,
@@ -3109,8 +3141,8 @@
         "isGlobal": false
       },
       {
-        "start": 157,
-        "end": 161,
+        "start": 159,
+        "end": 163,
         "token": "\u003d",
         "func": "",
         "anchorX": 767.5,
@@ -3119,8 +3151,8 @@
         "isGlobal": false
       },
       {
-        "start": 158,
-        "end": 159,
+        "start": 160,
+        "end": 161,
         "token": "EXP",
         "func": "",
         "anchorX": 499.0,
@@ -3129,8 +3161,8 @@
         "isGlobal": false
       },
       {
-        "start": 159,
-        "end": 160,
+        "start": 161,
+        "end": 162,
         "token": "]",
         "func": "ARRAY",
         "anchorX": 706.0,
@@ -3139,8 +3171,8 @@
         "isGlobal": false
       },
       {
-        "start": 160,
-        "end": 161,
+        "start": 162,
+        "end": 163,
         "token": "\u003d",
         "func": "",
         "anchorX": 819.5,
@@ -3149,8 +3181,8 @@
         "isGlobal": false
       },
       {
-        "start": 161,
-        "end": 162,
+        "start": 163,
+        "end": 164,
         "token": "EXP",
         "func": "ASSIGN",
         "anchorX": 920.9999999999968,
@@ -3159,7 +3191,7 @@
         "isGlobal": false
       }
     ],
-    "start": 155
+    "start": 157
   },
   {
     "name": "RECDCL",
@@ -3167,44 +3199,44 @@
       {
         "x": 82.0,
         "y": 230.0,
-        "id": 163,
+        "id": 165,
         "isFinal": false
       },
       {
         "x": 265.0,
         "y": 241.0,
-        "id": 164,
+        "id": 166,
         "isFinal": false
       },
       {
         "x": 413.0,
         "y": 245.0,
-        "id": 165,
+        "id": 167,
         "isFinal": false
       },
       {
         "x": 411.0,
         "y": 385.0,
-        "id": 166,
+        "id": 168,
         "isFinal": false
       },
       {
         "x": 618.0,
         "y": 251.0,
-        "id": 167,
+        "id": 169,
         "isFinal": false
       },
       {
         "x": 757.0,
         "y": 255.0,
-        "id": 168,
+        "id": 170,
         "isFinal": true
       }
     ],
     "edges": [
       {
-        "start": 163,
-        "end": 164,
+        "start": 165,
+        "end": 166,
         "token": "ident",
         "func": "PUSH",
         "anchorX": 147.0,
@@ -3213,8 +3245,8 @@
         "isGlobal": false
       },
       {
-        "start": 164,
-        "end": 165,
+        "start": 166,
+        "end": 167,
         "token": "{",
         "func": "STARTRECORD",
         "anchorX": 292.0000000000001,
@@ -3223,8 +3255,8 @@
         "isGlobal": false
       },
       {
-        "start": 165,
-        "end": 166,
+        "start": 167,
+        "end": 168,
         "token": "VARDCL",
         "func": "",
         "anchorX": 366.5,
@@ -3233,8 +3265,8 @@
         "isGlobal": false
       },
       {
-        "start": 165,
-        "end": 167,
+        "start": 167,
+        "end": 169,
         "token": "}",
         "func": "ENDRECORD",
         "anchorX": 479.83333333333337,
@@ -3243,8 +3275,8 @@
         "isGlobal": false
       },
       {
-        "start": 166,
-        "end": 165,
+        "start": 168,
+        "end": 167,
         "token": ";",
         "func": "MDCSP",
         "anchorX": 463.5,
@@ -3253,8 +3285,8 @@
         "isGlobal": false
       },
       {
-        "start": 167,
-        "end": 168,
+        "start": 169,
+        "end": 170,
         "token": ";",
         "func": "",
         "anchorX": 667.0,
@@ -3263,7 +3295,7 @@
         "isGlobal": false
       }
     ],
-    "start": 163
+    "start": 165
   },
   {
     "name": "STATEMENTNID",
@@ -3271,230 +3303,230 @@
       {
         "x": 28.0,
         "y": 293.0,
-        "id": 169,
+        "id": 171,
         "isFinal": false
       },
       {
         "x": 165.0,
         "y": 84.0,
-        "id": 170,
+        "id": 172,
         "isFinal": false
       },
       {
         "x": 219.0,
         "y": 144.0,
-        "id": 171,
+        "id": 173,
         "isFinal": false
       },
       {
         "x": 406.0,
         "y": 126.0,
-        "id": 172,
+        "id": 174,
         "isFinal": false
       },
       {
         "x": 596.0,
         "y": 131.0,
-        "id": 173,
+        "id": 175,
         "isFinal": false
       },
       {
         "x": 751.0,
         "y": 148.0,
-        "id": 174,
+        "id": 176,
         "isFinal": false
       },
       {
         "x": 249.0,
         "y": 195.0,
-        "id": 175,
+        "id": 177,
         "isFinal": false
       },
       {
         "x": 914.0,
         "y": 224.0,
-        "id": 176,
+        "id": 178,
         "isFinal": true
       },
       {
         "x": 413.0,
         "y": 194.0,
-        "id": 177,
+        "id": 179,
         "isFinal": true
       },
       {
         "x": 271.0,
         "y": 258.0,
-        "id": 178,
+        "id": 180,
         "isFinal": false
       },
       {
         "x": 361.0,
         "y": 332.0,
-        "id": 179,
+        "id": 181,
         "isFinal": false
       },
       {
         "x": 479.0,
         "y": 292.0,
-        "id": 180,
+        "id": 182,
         "isFinal": true
       },
       {
         "x": 396.0,
         "y": 36.0,
-        "id": 181,
+        "id": 183,
         "isFinal": false
       },
       {
         "x": 576.0,
         "y": 40.0,
-        "id": 182,
+        "id": 184,
         "isFinal": true
       },
       {
         "x": 276.0,
         "y": 400.0,
-        "id": 183,
+        "id": 185,
         "isFinal": false
       },
       {
         "x": 429.0,
         "y": 402.0,
-        "id": 184,
+        "id": 186,
         "isFinal": false
       },
       {
         "x": 675.6666666666666,
         "y": 431.33333333333337,
-        "id": 185,
+        "id": 187,
         "isFinal": false
       },
       {
         "x": 762.6666666666666,
         "y": 393.6666666666667,
-        "id": 186,
+        "id": 188,
         "isFinal": false
       },
       {
         "x": 924.0,
         "y": 391.0,
-        "id": 187,
+        "id": 189,
         "isFinal": false
       },
       {
         "x": 1066.0,
         "y": 388.0,
-        "id": 188,
+        "id": 190,
         "isFinal": false
       },
       {
         "x": 1293.3333333333333,
         "y": 439.3333333333333,
-        "id": 189,
+        "id": 191,
         "isFinal": false
       },
       {
         "x": 1420.0,
         "y": 352.0,
-        "id": 190,
+        "id": 192,
         "isFinal": false
       },
       {
         "x": 1795.0,
         "y": 351.0,
-        "id": 191,
+        "id": 193,
         "isFinal": true
       },
       {
         "x": 243.0,
         "y": 490.0,
-        "id": 192,
+        "id": 194,
         "isFinal": false
       },
       {
         "x": 397.0,
         "y": 527.0,
-        "id": 193,
+        "id": 195,
         "isFinal": false
       },
       {
         "x": 554.0,
         "y": 526.0,
-        "id": 194,
+        "id": 196,
         "isFinal": false
       },
       {
         "x": 685.0,
         "y": 524.0,
-        "id": 195,
+        "id": 197,
         "isFinal": false
       },
       {
         "x": 1001.0,
         "y": 527.0,
-        "id": 196,
+        "id": 198,
         "isFinal": true
       },
       {
         "x": 197.0,
         "y": 585.0,
-        "id": 197,
+        "id": 199,
         "isFinal": false
       },
       {
         "x": 390.0,
         "y": 620.0,
-        "id": 198,
+        "id": 200,
         "isFinal": false
       },
       {
         "x": 549.0,
         "y": 626.0,
-        "id": 199,
+        "id": 201,
         "isFinal": false
       },
       {
         "x": 681.0,
         "y": 626.0,
-        "id": 200,
+        "id": 202,
         "isFinal": false
       },
       {
         "x": 863.0,
         "y": 631.0,
-        "id": 201,
+        "id": 203,
         "isFinal": true
       },
       {
         "x": 997.0,
         "y": 629.0,
-        "id": 202,
+        "id": 204,
         "isFinal": false
       },
       {
         "x": 1193.0,
         "y": 636.0,
-        "id": 203,
+        "id": 205,
         "isFinal": true
       },
       {
         "x": 513.0,
         "y": 432.6666666666667,
-        "id": 204,
+        "id": 206,
         "isFinal": false
       },
       {
         "x": 1135.6666666666665,
         "y": 439.0,
-        "id": 205,
+        "id": 207,
         "isFinal": false
       }
     ],
     "edges": [
       {
-        "start": 169,
-        "end": 170,
+        "start": 171,
+        "end": 172,
         "token": "{",
         "func": "STARTBLOCK",
         "anchorX": 73.5,
@@ -3503,8 +3535,8 @@
         "isGlobal": false
       },
       {
-        "start": 169,
-        "end": 171,
+        "start": 171,
+        "end": 173,
         "token": "Print",
         "func": "",
         "anchorX": 131.5,
@@ -3513,8 +3545,8 @@
         "isGlobal": false
       },
       {
-        "start": 169,
-        "end": 175,
+        "start": 171,
+        "end": 177,
         "token": "break",
         "func": "",
         "anchorX": 157.0,
@@ -3523,8 +3555,8 @@
         "isGlobal": false
       },
       {
-        "start": 169,
-        "end": 178,
+        "start": 171,
+        "end": 180,
         "token": "return",
         "func": "",
         "anchorX": 163.5,
@@ -3533,8 +3565,8 @@
         "isGlobal": false
       },
       {
-        "start": 169,
-        "end": 183,
+        "start": 171,
+        "end": 185,
         "token": "for",
         "func": "",
         "anchorX": 144.0,
@@ -3543,8 +3575,8 @@
         "isGlobal": false
       },
       {
-        "start": 169,
-        "end": 192,
+        "start": 171,
+        "end": 194,
         "token": "while",
         "func": "",
         "anchorX": 122.5,
@@ -3553,8 +3585,8 @@
         "isGlobal": false
       },
       {
-        "start": 169,
-        "end": 197,
+        "start": 171,
+        "end": 199,
         "token": "if",
         "func": "",
         "anchorX": 91.5,
@@ -3563,8 +3595,8 @@
         "isGlobal": false
       },
       {
-        "start": 170,
-        "end": 181,
+        "start": 172,
+        "end": 183,
         "token": "STMBLOCK",
         "func": "",
         "anchorX": 264.0,
@@ -3573,8 +3605,8 @@
         "isGlobal": false
       },
       {
-        "start": 171,
-        "end": 172,
+        "start": 173,
+        "end": 174,
         "token": "(",
         "func": "",
         "anchorX": 312.5,
@@ -3583,8 +3615,8 @@
         "isGlobal": false
       },
       {
-        "start": 172,
-        "end": 173,
+        "start": 174,
+        "end": 175,
         "token": "EXP",
         "func": "",
         "anchorX": 493.5,
@@ -3593,8 +3625,8 @@
         "isGlobal": false
       },
       {
-        "start": 173,
-        "end": 174,
+        "start": 175,
+        "end": 176,
         "token": ")",
         "func": "",
         "anchorX": 674.5,
@@ -3603,8 +3635,8 @@
         "isGlobal": false
       },
       {
-        "start": 174,
-        "end": 176,
+        "start": 176,
+        "end": 178,
         "token": ";",
         "func": "PRINT",
         "anchorX": 838.0,
@@ -3613,8 +3645,8 @@
         "isGlobal": false
       },
       {
-        "start": 175,
-        "end": 177,
+        "start": 177,
+        "end": 179,
         "token": ";",
         "func": "BREAK",
         "anchorX": 340.33333333333326,
@@ -3623,8 +3655,8 @@
         "isGlobal": false
       },
       {
-        "start": 178,
-        "end": 179,
+        "start": 180,
+        "end": 181,
         "token": "EXP",
         "func": "",
         "anchorX": 324.0,
@@ -3633,8 +3665,8 @@
         "isGlobal": false
       },
       {
-        "start": 178,
-        "end": 180,
+        "start": 180,
+        "end": 182,
         "token": ";",
         "func": "RETURNNP",
         "anchorX": 385.0,
@@ -3643,8 +3675,8 @@
         "isGlobal": false
       },
       {
-        "start": 179,
-        "end": 180,
+        "start": 181,
+        "end": 182,
         "token": ";",
         "func": "RETURNP",
         "anchorX": 427.0,
@@ -3653,8 +3685,8 @@
         "isGlobal": false
       },
       {
-        "start": 181,
-        "end": 182,
+        "start": 183,
+        "end": 184,
         "token": "}",
         "func": "ENDBLOCK",
         "anchorX": 486.5,
@@ -3663,8 +3695,8 @@
         "isGlobal": false
       },
       {
-        "start": 183,
-        "end": 184,
+        "start": 185,
+        "end": 186,
         "token": "(",
         "func": "",
         "anchorX": 351.0,
@@ -3673,8 +3705,8 @@
         "isGlobal": false
       },
       {
-        "start": 184,
-        "end": 186,
+        "start": 186,
+        "end": 188,
         "token": ";",
         "func": "SAVE",
         "anchorX": 568.9999999999993,
@@ -3683,8 +3715,8 @@
         "isGlobal": false
       },
       {
-        "start": 184,
-        "end": 204,
+        "start": 186,
+        "end": 206,
         "token": "ident",
         "func": "PUSH",
         "anchorX": 471.0,
@@ -3693,8 +3725,8 @@
         "isGlobal": false
       },
       {
-        "start": 185,
-        "end": 186,
+        "start": 187,
+        "end": 188,
         "token": ";",
         "func": "SAVE",
         "anchorX": 716.6666666666662,
@@ -3703,8 +3735,8 @@
         "isGlobal": false
       },
       {
-        "start": 186,
-        "end": 187,
+        "start": 188,
+        "end": 189,
         "token": "EXP",
         "func": "DJC",
         "anchorX": 810.9999999999993,
@@ -3713,8 +3745,8 @@
         "isGlobal": false
       },
       {
-        "start": 187,
-        "end": 188,
+        "start": 189,
+        "end": 190,
         "token": ";",
         "func": "SAVE",
         "anchorX": 982.0,
@@ -3723,8 +3755,8 @@
         "isGlobal": false
       },
       {
-        "start": 188,
-        "end": 190,
+        "start": 190,
+        "end": 192,
         "token": ")",
         "func": "CJNZ",
         "anchorX": 1232.5,
@@ -3733,8 +3765,8 @@
         "isGlobal": false
       },
       {
-        "start": 188,
-        "end": 205,
+        "start": 190,
+        "end": 207,
         "token": "ident",
         "func": "PUSH",
         "anchorX": 1102.8333333333333,
@@ -3743,8 +3775,8 @@
         "isGlobal": false
       },
       {
-        "start": 189,
-        "end": 190,
+        "start": 191,
+        "end": 192,
         "token": ")",
         "func": "CJNZ",
         "anchorX": 1332.4999999999982,
@@ -3753,8 +3785,8 @@
         "isGlobal": false
       },
       {
-        "start": 190,
-        "end": 191,
+        "start": 192,
+        "end": 193,
         "token": "STATEMENT",
         "func": "CJZFOR",
         "anchorX": 1584.5,
@@ -3763,8 +3795,8 @@
         "isGlobal": false
       },
       {
-        "start": 192,
-        "end": 193,
+        "start": 194,
+        "end": 195,
         "token": "(",
         "func": "SAVE",
         "anchorX": 310.0,
@@ -3773,8 +3805,8 @@
         "isGlobal": false
       },
       {
-        "start": 193,
-        "end": 194,
+        "start": 195,
+        "end": 196,
         "token": "EXP",
         "func": "",
         "anchorX": 467.5,
@@ -3783,8 +3815,8 @@
         "isGlobal": false
       },
       {
-        "start": 194,
-        "end": 195,
+        "start": 196,
+        "end": 197,
         "token": ")",
         "func": "JZ",
         "anchorX": 622.0,
@@ -3793,8 +3825,8 @@
         "isGlobal": false
       },
       {
-        "start": 195,
-        "end": 196,
+        "start": 197,
+        "end": 198,
         "token": "STATEMENT",
         "func": "CWHILE",
         "anchorX": 784.0,
@@ -3803,8 +3835,8 @@
         "isGlobal": false
       },
       {
-        "start": 197,
-        "end": 198,
+        "start": 199,
+        "end": 200,
         "token": "(",
         "func": "",
         "anchorX": 293.5,
@@ -3813,8 +3845,8 @@
         "isGlobal": false
       },
       {
-        "start": 198,
-        "end": 199,
+        "start": 200,
+        "end": 201,
         "token": "EXP",
         "func": "",
         "anchorX": 461.5,
@@ -3823,8 +3855,8 @@
         "isGlobal": false
       },
       {
-        "start": 199,
-        "end": 200,
+        "start": 201,
+        "end": 202,
         "token": ")",
         "func": "JZ",
         "anchorX": 615.0,
@@ -3833,8 +3865,8 @@
         "isGlobal": false
       },
       {
-        "start": 200,
-        "end": 201,
+        "start": 202,
+        "end": 203,
         "token": "STATEMENT",
         "func": "CJZ",
         "anchorX": 745.5,
@@ -3843,8 +3875,8 @@
         "isGlobal": false
       },
       {
-        "start": 201,
-        "end": 202,
+        "start": 203,
+        "end": 204,
         "token": "else",
         "func": "JP",
         "anchorX": 931.5,
@@ -3853,8 +3885,8 @@
         "isGlobal": false
       },
       {
-        "start": 202,
-        "end": 203,
+        "start": 204,
+        "end": 205,
         "token": "STATEMENT",
         "func": "CJP",
         "anchorX": 1074.5,
@@ -3863,8 +3895,8 @@
         "isGlobal": false
       },
       {
-        "start": 204,
-        "end": 185,
+        "start": 206,
+        "end": 187,
         "token": "ASSIGNMENT",
         "func": "",
         "anchorX": 553.0,
@@ -3873,8 +3905,8 @@
         "isGlobal": false
       },
       {
-        "start": 205,
-        "end": 189,
+        "start": 207,
+        "end": 191,
         "token": "ASSIGNMENT",
         "func": "",
         "anchorX": 1186.5,
@@ -3883,6 +3915,6 @@
         "isGlobal": false
       }
     ],
-    "start": 169
+    "start": 171
   }
 ]

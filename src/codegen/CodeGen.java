@@ -17,6 +17,25 @@ import static codegen.discriptors.Dscp.typeSetter;
 import static parser.Parser.*;
 
 public class CodeGen {
+
+    public static void ARRLENGTH() throws Exception {
+        Token name = semanticStack.pop();
+        ArrayDscp nameDscp = (ArrayDscp) SymboleTable.find(name);
+        Token t = new Token(nameDscp.size, TokenType.integer);
+        semanticStack.push(t);
+    }
+
+    public static void RECORDVAR() throws Exception {
+        Token chum = semanticStack.pop();
+        Token name = semanticStack.pop();
+        Dscp nameDscp = SymboleTable.find(name);
+        if(nameDscp.dscpType == DscpType.array && chum.getValue().equals("length")){
+            semanticStack.push(name);
+            return;
+        }
+
+    }
+
     public static void NEG() throws Exception {
 
         if (token.getType() == TokenType.id || token.getType() == TokenType.real || token.getType() == TokenType.integer) {
