@@ -642,6 +642,126 @@ public class CodeGen {
         semanticStack.push(t);
     }
 
+    public static void LE() throws Exception {
+
+        Token src1 = semanticStack.pop();
+        Token src2 = semanticStack.pop();
+        VariableDscp d1 = (VariableDscp) SymboleTable.find(src1);
+        VariableDscp d2 = (VariableDscp) SymboleTable.find(src2);
+        if (d1.addr == -1 || d2.addr == -1) {
+            //error
+            throw new Exception();
+        }
+
+        VariableDscp d = new VariableDscp(new VarType(Type.Boolean), temp, false, true);
+        temp += d.type.size;
+
+        String s1 = (d1.isTemp ? "($t1)" : "($t0)");
+        String s2 = (d2.isTemp ? "($t1)" : "($t0)");
+        Token t;
+        switch (d1.type.type) {
+            case Integer:
+            case Boolean:
+                if (d2.type.type == Type.Integer || d2.type.type == Type.Boolean) {
+                    if (d1.isImm && d2.isImm) {
+                        String s = Integer.parseInt(d2.value) < Integer.parseInt(d1.value) ? "1" : "0";
+                        mipsCode.add(new Code("li", "$t3", s));
+                        mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
+                    } else {
+                        if (d1.isImm) {
+                            mipsCode.add(new Code("li", "$t3", d1.value));
+                        } else {
+                            mipsCode.add(new Code("lw", "$t3", d1.addr + s1));
+
+
+                        }
+                        if (d2.isImm) {
+                            mipsCode.add(new Code("li", "$t4", d2.value));
+                        } else {
+                            mipsCode.add(new Code("lw", "$t4", d2.addr + s2));
+                        }
+
+                        mipsCode.add(new Code("sle", "$t4", "$t4", "$t3"));
+                        mipsCode.add(new Code("sw", "$t4", d.addr + "($t1)"));
+
+                    }
+                } else if (d2.type.type == Type.Double) {
+                    if (d1.isImm && d2.isImm) {
+                        String s = Double.parseDouble(d2.value) < Double.parseDouble(d2.value) ? "1" : "0";
+                        mipsCode.add(new Code("li", "$t3", s));
+                        mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
+                    } else {
+
+                        castIntToDouble(d1, s1, "$f0");
+
+                        if (d2.isImm) {
+                            mipsCode.add(new Code("li.d", "$f2", d2.value));
+                        } else {
+                            mipsCode.add(new Code("l.d", "$f2", d2.addr + s2));
+                        }
+                        mipsCode.add(new Code("c.le.d", "$f2", "$f0"));
+                        d.type = new VarType(Type.Double);
+                    }
+                } else {
+                    //error
+                    throw new Exception();
+                }
+                break;
+            case Double:
+                if (d2.type.type == Type.Integer || d2.type.type == Type.Boolean) {
+                    if (d1.isImm && d2.isImm) {
+                        String s = Double.parseDouble(d2.value) < Double.parseDouble(d2.value) ? "1" : "0";
+                        mipsCode.add(new Code("li", "$t3", s));
+                        mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
+                    } else {
+
+                        if (d1.isImm) {
+                            mipsCode.add(new Code("li.d", "$f0", d1.value));
+                        } else {
+                            mipsCode.add(new Code("l.d", "$f0", d1.addr + s1));
+                        }
+
+                        castIntToDouble(d2, s2, "$f2");
+
+                        mipsCode.add(new Code("c.le.d", "$f2", "$f0"));
+                        d.type = new VarType(Type.Double);
+                    }
+
+                } else if (d2.type.type == Type.Double) {
+                    if (d1.isImm && d2.isImm) {
+                        String s = Double.parseDouble(d2.value) < Double.parseDouble(d2.value) ? "1" : "0";
+                        mipsCode.add(new Code("li", "$t3", s));
+                        mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
+                    } else {
+                        if (d1.isImm) {
+                            mipsCode.add(new Code("li.d", "$f0", d1.value));
+                        } else {
+                            mipsCode.add(new Code("l.d", "$f0", d1.addr + s1));
+                        }
+                        if (d2.isImm) {
+                            mipsCode.add(new Code("li.d", "$f2", d2.value));
+                        } else {
+                            mipsCode.add(new Code("l.d", "$f2", d2.addr + s2));
+                        }
+                        mipsCode.add(new Code("c.le.d", "$f2", "$f0"));
+                        d.type = new VarType(Type.Double);
+                    }
+                } else {
+                    //error
+                    throw new Exception();
+                }
+                break;
+            default:
+                //error
+                throw new Exception();
+        }
+
+
+        t = new Token("$" + mipsCode.size(), TokenType.id);
+        symboleTables.get(symboleTables.size() - 1).add(t, d);
+        semanticStack.push(t);
+    }
+
     public static void GE() throws Exception {
         Token first = semanticStack.pop();
         Token second = semanticStack.pop();

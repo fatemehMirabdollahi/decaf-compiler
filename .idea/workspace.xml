@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="bc0cd7b3-6ab6-49d1-a26f-8497a07d1e23" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chum.pgs" beforeDir="false" afterPath="$PROJECT_DIR$/chum.pgs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/ans.s" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compiler/ans.s" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Compiler/table.npt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Compiler/table.npt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ans.s" beforeDir="false" afterPath="$PROJECT_DIR$/src/ans.s" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/codegen/CodeGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/codegen/CodeGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/table.npt" beforeDir="false" afterPath="$PROJECT_DIR$/src/table.npt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scanner/DecafScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scanner/DecafScanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scanner/Scanner.flex" beforeDir="false" afterPath="$PROJECT_DIR$/src/scanner/Scanner.flex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

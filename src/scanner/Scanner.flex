@@ -35,8 +35,8 @@ charSp = [\']{1} {spChar}{1}[\']{1}
     {char}                     {yybegin(YYINITIAL);value = yytext(); return new Token("str",TokenType.str_char);}
     {charSp}                   {yybegin(YYINITIAL);return new Token(yytext() ,TokenType.str_char);}
     \"                         {yybegin(STRING);myString="\"";}
-    {starCom}                  {yybegin(YYINITIAL);return new Token(yytext(),TokenType.comment);}
-    {singleCom}                {yybegin(YYINITIAL); endl=true;return new Token(yytext(),TokenType.comment);}
+    {starCom}                  {yybegin(YYINITIAL);}
+    {singleCom}                {yybegin(YYINITIAL);}
     {keyword}                  {yybegin(YYINITIAL); return new Token(yytext(),TokenType.keyword);}
     {id}                       {yybegin(YYINITIAL);value = yytext(); return new Token("ident",TokenType.id);}
     {real}                     {yybegin(YYINITIAL);value = yytext();return new Token("rcv",TokenType.real);}
