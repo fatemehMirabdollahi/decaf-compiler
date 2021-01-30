@@ -40,6 +40,7 @@ public abstract class Dscp {
                 Token t = new Token(type, TokenType.id);
                 Dscp d = symboleTables.get(0).get(t);
                 if(d == null) {
+                    System.out.println("not declared record");
                     //error
                     throw new Exception();
                 }

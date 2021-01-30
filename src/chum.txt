@@ -1,11 +1,10 @@
-function void func(string a){
-    Print(a);
+function void sum(int n){
+   Print(n);
 }
-
-
 function int main(){
-    string a;
-    a = "dasd";
-    func(a);
+    int[] a ;
+    a = NewArray(1,int);
+    a[1] = 213;
+    sum(a[1]);
 
-}
+    }

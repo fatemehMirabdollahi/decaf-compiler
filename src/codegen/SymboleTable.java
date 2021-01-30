@@ -5,15 +5,17 @@ import scanner.DecafScanner;
 import scanner.Token;
 import scanner.TokenType;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import static Compiler.Compiler.*;
 
 
 public class SymboleTable extends HashMap<Token, Dscp> {
 
-    public static ArrayList<SymboleTable> symboleTables ;
+    public static ArrayList<SymboleTable> symboleTables;
     public Token name;
 
     public void add(Token name, Dscp dscp) throws Exception {
@@ -47,14 +49,14 @@ public class SymboleTable extends HashMap<Token, Dscp> {
             if (d != null)
                 return d;
         }
-        if (t.getType() == TokenType.str_char){
+        if (t.getType() == TokenType.str_char) {
             VariableDscp d = new VariableDscp(new VarType(Type.String), temp, true, false);
-            mipsCode.add(new Code("la","$t3","str"+stringAddr));
-            mipsCode.add(new Code("sw","$t3",temp+"($t1)"));
+            mipsCode.add(new Code("la", "$t3", "str" + stringAddr));
+            mipsCode.add(new Code("sw", "$t3", temp + "($t1)"));
             strings.add(t.getValue());
-            d.stringAddress= stringAddr;
-            stringAddr+=1;
-            temp+=4;
+            d.stringAddress = stringAddr;
+            stringAddr += 1;
+            temp += 4;
             d.value = t.getValue();
             return d;
         }
@@ -142,7 +144,7 @@ public class SymboleTable extends HashMap<Token, Dscp> {
 
     public static void castIntToDouble(VariableDscp d, String base, String dest) {
         if (d.isImm) {
-            mipsCode.add(new Code("li.d", dest, d.value+".0"));
+            mipsCode.add(new Code("li.d", dest, d.value + ".0"));
         } else {
             mipsCode.add(new Code("l.d", dest, d.addr + base));
             mipsCode.add(new Code("cvt.d.w", dest, dest));
@@ -152,7 +154,7 @@ public class SymboleTable extends HashMap<Token, Dscp> {
 
     public static void castDoubleToInt(VariableDscp d, String base, String dest) {
         if (d.isImm) {
-            mipsCode.add(new Code("li", dest, String.valueOf((int)Double.parseDouble(d.value))));
+            mipsCode.add(new Code("li", dest, String.valueOf((int) Double.parseDouble(d.value))));
         } else {
             mipsCode.add(new Code("l.d", "$f10", d.addr + base));
             mipsCode.add(new Code("cvt.w.d", "$f10", "$f10"));
@@ -181,4 +183,75 @@ public class SymboleTable extends HashMap<Token, Dscp> {
         }
     }
 
+    public static int storeNotTempInSP(SymboleTable symboleTable,int base) {
+        int size =0;
+        for (Map.Entry<Token, Dscp> me : symboleTable.entrySet()) {
+            Dscp dscp = me.getValue();
+            if (dscp.dscpType == DscpType.variable) {
+                VariableDscp variableDscp = (VariableDscp)dscp;
+                if (!variableDscp.isTemp) {
+                    String register;
+                    if(variableDscp.type.type==Type.Double)
+                    {
+                        register = "$f0";
+                        mipsCode.add(new Code("l.d",register,variableDscp.addr+"($t0)"));
+                        mipsCode.add(new Code("s.d",register,base+"($sp)"));
+
+
+                    }else
+                    {
+                        register = "$t3";
+                        mipsCode.add(new Code("lw",register,variableDscp.addr+"($t0)"));
+                        mipsCode.add(new Code("sw",register,base+"($sp)"));
+                    }
+                    base+=variableDscp.type.size;
+                    size+=variableDscp.type.size;
+                }
+
+            } else if (dscp.dscpType == DscpType.array) {
+                ArrayDscp  arrayDscp = (ArrayDscp) dscp;
+                mipsCode.add(new Code("lw","$t3",arrayDscp.addr+"($t0)"));
+                mipsCode.add(new Code("sw","$t3",base+"($sp)"));
+                base+=4;
+                size+=4;
+            }
+        }
+        return size;
+    }
+    public static int loadNotTempInSP(SymboleTable symboleTable,int base) {
+        int size =0;
+        for (Map.Entry<Token, Dscp> me : symboleTable.entrySet()) {
+            Dscp dscp = me.getValue();
+            if (dscp.dscpType == DscpType.variable) {
+                VariableDscp variableDscp = (VariableDscp)dscp;
+                if (!variableDscp.isTemp) {
+                    String register;
+                    if(variableDscp.type.type==Type.Double)
+                    {
+                        register = "$f0";
+                        mipsCode.add(new Code("l.d",register,base+"($sp)"));
+
+                        mipsCode.add(new Code("s.d",register,variableDscp.addr+"($t0)"));
+
+
+                    }else
+                    {
+                        register = "$t3";
+                        mipsCode.add(new Code("lw",register,base+"($sp)"));
+                        mipsCode.add(new Code("sw",register,variableDscp.addr+"($t0)"));
+                    }
+                    base+=variableDscp.type.size;
+                    size+=variableDscp.type.size;
+                }
+
+            } else if (dscp.dscpType == DscpType.array) {
+                ArrayDscp  arrayDscp = (ArrayDscp) dscp;
+                mipsCode.add(new Code("lw","$t3",base+"($sp)"));
+                mipsCode.add(new Code("sw","$t3",arrayDscp.addr+"($t0)"));
+                base+=4;
+                size+=4;
+            }
+        }
+        return size;
+    }
 }
