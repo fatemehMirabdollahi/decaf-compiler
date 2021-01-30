@@ -3,6 +3,7 @@ package codegen.discriptors;
 import scanner.Token;
 import scanner.TokenType;
 
+import static Compiler.Compiler.scanner;
 import static codegen.SymboleTable.symboleTables;
 
 
@@ -42,6 +43,8 @@ public abstract class Dscp {
                 if(d == null) {
                     System.out.println("not declared record");
                     //error
+                    System.out.println("line " + scanner.lineNum + " :");
+                    System.out.println("type doesn't declared");
                     throw new Exception();
                 }
         }

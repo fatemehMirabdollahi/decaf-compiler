@@ -27,6 +27,7 @@ public class Compiler {
     public static int labelNum = 0;
     public static int maxTemp = 0;
     public static int stringAddr = 0;
+    public static int falseNum = 0;
     public static ArrayList<String> strings;
 
     // t0 -> base of address

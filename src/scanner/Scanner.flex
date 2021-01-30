@@ -8,8 +8,9 @@ package scanner;
 %unicode
 %{
 public String myString = "";
-public Token token ;
+Token token ;
 public boolean endl =false;
+public int lineNum = 1;
 public static String value;
 %}
 
@@ -51,7 +52,7 @@ charSp = [\']{1} {spChar}{1}[\']{1}
     {InputCharacter}           {myString+=yytext();}
 }
 
-{enter}                         {yybegin(YYINITIAL); endl=true;}
+{enter}                         {yybegin(YYINITIAL);lineNum ++;endl=true;}
 
 \s                              {yybegin(YYINITIAL); }
 

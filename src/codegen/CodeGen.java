@@ -29,7 +29,7 @@ public class CodeGen {
         Token chum = semanticStack.pop();
         Token name = semanticStack.pop();
         Dscp nameDscp = SymboleTable.find(name);
-        if(nameDscp.dscpType == DscpType.array && chum.getValue().equals("length")){
+        if (nameDscp.dscpType == DscpType.array && chum.getValue().equals("length")) {
             semanticStack.push(name);
             return;
         }
@@ -58,9 +58,9 @@ public class CodeGen {
                 case Boolean:
                 case Record:
                 case Array:
+                    System.out.println("line " + scanner.lineNum + " :");
                     System.out.println("negetive sign can not be befor not number feild");
                     throw new Exception();
-
 
 
             }
@@ -95,6 +95,7 @@ public class CodeGen {
         Token varName = semanticStack.pop();
         Token chum = semanticStack.pop();
         if (symboleTables.get(symboleTables.size() - 1).get(varName) != null) {
+            System.out.println("line " + scanner.lineNum + " :");
             System.out.println(varName.getValue() + "is declared befor");
             //error
             throw new Exception();
@@ -121,6 +122,7 @@ public class CodeGen {
 
 
         if (dSize.dscpType != DscpType.variable || ((VariableDscp) dSize).type.type != Type.Integer) {
+            System.out.println("line " + scanner.lineNum + " :");
             System.out.println("size of array should be an integer number");
             //error
             throw new Exception();
@@ -146,19 +148,22 @@ public class CodeGen {
         Dscp indexD = SymboleTable.find(index);
         Dscp arrD = SymboleTable.find(arrayName);
         if (arrD.addr == -1 || indexD.addr == -1) {
+            System.out.println("line " + scanner.lineNum + " :");
             System.out.println("not declead array or index");
             //error
             throw new Exception();
         }
         if (arrD.dscpType != DscpType.array || indexD.dscpType != DscpType.variable) {
             //error
-            System.out.println(arrayName.getValue()+ " isnt an array or "+ arrayName.getValue()+"isn't a variable");
+            System.out.println("line " + scanner.lineNum + " :");
+            System.out.println(arrayName.getValue() + " isnt an array or " + arrayName.getValue() + "isn't a variable");
             throw new Exception();
         }
         ArrayDscp arrDscp = (ArrayDscp) arrD;
         VariableDscp indexDscp = (VariableDscp) indexD;
         if (indexDscp.type.type != Type.Integer) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
             System.out.println("index should be an integer number");
             throw new Exception();
         }
@@ -197,12 +202,12 @@ public class CodeGen {
         VariableDscp d1 = (VariableDscp) SymboleTable.find(src1);
         VariableDscp d2 = (VariableDscp) SymboleTable.find(src2);
         if (d1.addr == -1 || d2.addr == -1) {
+            System.out.println("line " + scanner.lineNum + " :");
             System.out.println("not declared reference");
-
             //error
             throw new Exception();
         }
-        VarType type = getType(d1, d2, "Arith");
+        VarType type = getType(d1, d2);
         VariableDscp d = new VariableDscp(type, temp, false, true);
         temp += type.size;
         Token t = null;
@@ -286,10 +291,11 @@ public class CodeGen {
         VariableDscp d2 = (VariableDscp) SymboleTable.find(src2);
         if (d1.addr == -1 || d2.addr == -1) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
             System.out.println("not declared reference");
             throw new Exception();
         }
-        VarType type = getType(d1, d2, "Arith");
+        VarType type = getType(d1, d2);
         VariableDscp d = new VariableDscp(type, temp, false, true);
         temp += type.size;
         Token t = null;
@@ -372,10 +378,11 @@ public class CodeGen {
         VariableDscp d2 = (VariableDscp) SymboleTable.find(src2);
         if (d1.addr == -1 || d2.addr == -1) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
             System.out.println("not declared reference");
             throw new Exception();
         }
-        VarType type = getType(d1, d2, "Arith");
+        VarType type = getType(d1, d2);
         VariableDscp d = new VariableDscp(type, temp, false, true);
         temp += type.size;
         Token t = null;
@@ -458,10 +465,11 @@ public class CodeGen {
         VariableDscp d2 = (VariableDscp) SymboleTable.find(src2);
         if (d1.addr == -1 || d2.addr == -1) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
             System.out.println("not declared reference");
             throw new Exception();
         }
-        VarType type = getType(d1, d2, "Arith");
+        VarType type = getType(d1, d2);
         VariableDscp d = new VariableDscp(type, temp, false, true);
         temp += type.size;
         Token t = null;
@@ -545,6 +553,7 @@ public class CodeGen {
         VariableDscp d2 = (VariableDscp) SymboleTable.find(src2);
         if (d1.addr == -1 || d2.addr == -1) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
             System.out.println("not declared reference");
             throw new Exception();
         }
@@ -594,10 +603,13 @@ public class CodeGen {
                             mipsCode.add(new Code("l.d", "$f2", d2.addr + s2));
                         }
                         mipsCode.add(new Code("c.lt.d", "$f2", "$f0"));
+                        doubleCompare("$t3", "f");
+                        mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
                         d.type = new VarType(Type.Double);
                     }
                 } else {
                     //error
+                    System.out.println("line " + scanner.lineNum + " :");
                     System.out.println("can't compare this types");
                     throw new Exception();
                 }
@@ -619,6 +631,8 @@ public class CodeGen {
                         castIntToDouble(d2, s2, "$f2");
 
                         mipsCode.add(new Code("c.lt.d", "$f2", "$f0"));
+                        doubleCompare("$t3", "f");
+                        mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
                         d.type = new VarType(Type.Double);
                     }
 
@@ -639,19 +653,21 @@ public class CodeGen {
                             mipsCode.add(new Code("l.d", "$f2", d2.addr + s2));
                         }
                         mipsCode.add(new Code("c.lt.d", "$f2", "$f0"));
+                        doubleCompare("$t3", "f");
+                        mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
                         d.type = new VarType(Type.Double);
                     }
                 } else {
                     //error
+                    System.out.println("line " + scanner.lineNum + " :");
                     System.out.println("can't compare this types");
-
                     throw new Exception();
                 }
                 break;
             default:
                 //error
+                System.out.println("line " + scanner.lineNum + " :");
                 System.out.println("can't compare this types");
-
                 throw new Exception();
         }
 
@@ -669,6 +685,8 @@ public class CodeGen {
         VariableDscp d2 = (VariableDscp) SymboleTable.find(src2);
         if (d1.addr == -1 || d2.addr == -1) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
+            System.out.println("not declared reference");
             throw new Exception();
         }
 
@@ -719,10 +737,14 @@ public class CodeGen {
                             mipsCode.add(new Code("l.d", "$f2", d2.addr + s2));
                         }
                         mipsCode.add(new Code("c.le.d", "$f2", "$f0"));
+                        doubleCompare("$t3", "f");
+                        mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
                         d.type = new VarType(Type.Double);
                     }
                 } else {
                     //error
+                    System.out.println("line " + scanner.lineNum + " :");
+                    System.out.println("can't compare this types");
                     throw new Exception();
                 }
                 break;
@@ -743,6 +765,8 @@ public class CodeGen {
                         castIntToDouble(d2, s2, "$f2");
 
                         mipsCode.add(new Code("c.le.d", "$f2", "$f0"));
+                        doubleCompare("$t3", "f");
+                        mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
                         d.type = new VarType(Type.Double);
                     }
 
@@ -763,15 +787,21 @@ public class CodeGen {
                             mipsCode.add(new Code("l.d", "$f2", d2.addr + s2));
                         }
                         mipsCode.add(new Code("c.le.d", "$f2", "$f0"));
+                        doubleCompare("$t3", "f");
+                        mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
                         d.type = new VarType(Type.Double);
                     }
                 } else {
                     //error
+                    System.out.println("line " + scanner.lineNum + " :");
+                    System.out.println("can't compare this types");
                     throw new Exception();
                 }
                 break;
             default:
                 //error
+                System.out.println("line " + scanner.lineNum + " :");
+                System.out.println("can't compare this types");
                 throw new Exception();
         }
 
@@ -789,6 +819,14 @@ public class CodeGen {
         LE();
     }
 
+    public static void GT() throws Exception {
+        Token first = semanticStack.pop();
+        Token second = semanticStack.pop();
+        semanticStack.push(first);
+        semanticStack.push(second);
+        LT();
+    }
+
     public static void EQUAL() throws Exception {
 
         Token src1 = semanticStack.pop();
@@ -797,6 +835,8 @@ public class CodeGen {
         VariableDscp d2 = (VariableDscp) SymboleTable.find(src2);
         if (d1.addr == -1 || d2.addr == -1) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
+            System.out.println("not declared reference");
             throw new Exception();
         }
         VariableDscp d = new VariableDscp(new VarType(Type.Boolean), temp, false, true);
@@ -845,6 +885,8 @@ public class CodeGen {
                     mipsCode.add(new Code("l.d", "$f2", d2.addr + s2));
                 }
                 mipsCode.add(new Code("c.eq.d", "$f2", "$f0"));
+                doubleCompare("$t3", "f");
+                mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
                 d.type = new VarType(Type.Double);
             }
         } else if (d1.type.type == Type.String && d2.type.type == Type.String) {
@@ -867,6 +909,8 @@ public class CodeGen {
             mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
         } else {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
+            System.out.println("can't compare this types");
             throw new Exception();
         }
 
@@ -883,6 +927,9 @@ public class CodeGen {
         VariableDscp d2 = (VariableDscp) SymboleTable.find(src2);
         if (d1.addr == -1 || d2.addr == -1) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
+            System.out.println("not declared reference");
+
             throw new Exception();
         }
         VariableDscp d = new VariableDscp(new VarType(Type.Boolean), temp, false, true);
@@ -931,28 +978,32 @@ public class CodeGen {
                     mipsCode.add(new Code("l.d", "$f2", d2.addr + s2));
                 }
                 mipsCode.add(new Code("c.eq.d", "$f2", "$f0"));
+                doubleCompare("$t3", "t");
+                mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
                 d.type = new VarType(Type.Double);
             }
         } else if (d1.type.type == Type.String && d2.type.type == Type.String) {
             String s;
             if (d1.isImm && d2.isImm) {
-                s = (d1.value.equals(d2.value)) ? "1" : "0";
+                s = (d1.value.equals(d2.value)) ? "0" : "1";
             } else {
-                s = (d1.addr == d2.addr) ? "1" : "0";
+                s = (d1.addr == d2.addr) ? "0" : "1";
             }
             mipsCode.add(new Code("li", "$t3", s));
             mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
 
         } else if (d1.type.type == Type.Record && d2.type.type == Type.Record) {
-            String s = (d1.addr == d2.addr) ? "1" : "0";
+            String s = (d1.addr == d2.addr) ? "0" : "1";
             mipsCode.add(new Code("li", "$t3", s));
             mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
         } else if (d1.type.type == Type.Array && d2.type.type == Type.Array) {
-            String s = (d1.addr == d2.addr) ? "1" : "0";
+            String s = (d1.addr == d2.addr) ? "0" : "1";
             mipsCode.add(new Code("li", "$t3", s));
             mipsCode.add(new Code("sw", "$t3", d.addr + "($t1)"));
         } else {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
+            System.out.println("can't compare this types");
             throw new Exception();
         }
 
@@ -969,6 +1020,8 @@ public class CodeGen {
         VariableDscp d2 = (VariableDscp) SymboleTable.find(src2);
         if (d1.addr == -1 || d2.addr == -1) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
+            System.out.println("not declared reference");
             throw new Exception();
         }
 
@@ -981,6 +1034,8 @@ public class CodeGen {
         if (!(((d1.type.type == Type.Boolean) || (d1.type.type == Type.Integer) || (d1.type.type == Type.Double)) &&
                 ((d2.type.type == Type.Boolean) || (d2.type.type == Type.Integer) || (d2.type.type == Type.Double)))) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
+            System.out.println("can't compare this types");
             throw new Exception();
         }
 
@@ -1028,6 +1083,8 @@ public class CodeGen {
         VariableDscp d2 = (VariableDscp) SymboleTable.find(src2);
         if (d1.addr == -1 || d2.addr == -1) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
+            System.out.println("not declared reference");
             throw new Exception();
         }
 
@@ -1040,6 +1097,8 @@ public class CodeGen {
         if (!(((d1.type.type == Type.Boolean) || (d1.type.type == Type.Integer) || (d1.type.type == Type.Double)) &&
                 ((d2.type.type == Type.Boolean) || (d2.type.type == Type.Integer) || (d2.type.type == Type.Double)))) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
+            System.out.println("can't compare this types");
             throw new Exception();
         }
 
@@ -1087,6 +1146,8 @@ public class CodeGen {
 
         if (d1.addr == -1) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
+            System.out.println("not declared reference");
             throw new Exception();
         }
 
@@ -1098,6 +1159,8 @@ public class CodeGen {
 
         if (!((d1.type.type == Type.Boolean) || (d1.type.type == Type.Integer) || (d1.type.type == Type.Double))) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
+            System.out.println("can't compare this types");
             throw new Exception();
         }
 
@@ -1159,9 +1222,8 @@ public class CodeGen {
         String base;
         if (d.addr == -1) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
             System.out.println("not declared reference");
-
-
             throw new Exception();
         }
         switch (d.type.type) {
@@ -1211,8 +1273,8 @@ public class CodeGen {
         String base;
         String baseL = "($t0)";
         if (dRight.addr == -1) {
+            System.out.println("line " + scanner.lineNum + " :");
             System.out.println("not declared reference");
-
             //error
             throw new Exception();
         }
@@ -1223,17 +1285,16 @@ public class CodeGen {
 
             if (dL.isImm) { //?
                 //error
+                System.out.println("line " + scanner.lineNum + " :");
                 System.out.println("left parameter of assign can't be immediate");
-
                 throw new Exception();
             }
             if (dL.isTemp) {
-                if (dL.refAddress == -1)
-                {//error
+                if (dL.refAddress == -1) {//error
+                    System.out.println("line " + scanner.lineNum + " :");
                     System.out.println("not declared reference");
-
-                    throw new Exception();}
-                else {
+                    throw new Exception();
+                } else {
                     mipsCode.add(new Code("lw", "$t8", dL.refAddress + "($t1)"));
                     mipsCode.add(new Code("add", "$t8", "$t8", "$t0"));
                     baseL = "($t8)";
@@ -1264,7 +1325,8 @@ public class CodeGen {
 
                     default:
                         //error
-
+                        System.out.println("line " + scanner.lineNum + " :");
+                        System.out.println("can't assign " + dR.type.type.toString() + " to integer");
                         throw new Exception();
                 }
             } else if (dL.type.type == Type.Double) {
@@ -1285,6 +1347,8 @@ public class CodeGen {
 
                 } else {
                     //error
+                    System.out.println("line " + scanner.lineNum + " :");
+                    System.out.println("can't assign " + dR.type.type.toString() + " to double");
                     throw new Exception();
                 }
             } else if (dL.type.type == Type.Boolean) {
@@ -1312,6 +1376,8 @@ public class CodeGen {
 
                 } else {
                     //error
+                    System.out.println("line " + scanner.lineNum + " :");
+                    System.out.println("can't assign " + dR.type.type.toString() + " to boolean");
                     throw new Exception();
                 }
             } else if (dL.type.type == Type.Record) {
@@ -1320,6 +1386,8 @@ public class CodeGen {
                     dL.addr = dR.addr;
                 } else {
                     //error
+                    System.out.println("line " + scanner.lineNum + " :");
+                    System.out.println("can't assign " + dR.type.type.toString() + " to record");
                     throw new Exception();
                 }
             } else if (dL.type.type == Type.String) {
@@ -1327,10 +1395,14 @@ public class CodeGen {
                     dL.addr = dR.addr;
                 } else {
                     //error
+                    System.out.println("line " + scanner.lineNum + " :");
+                    System.out.println("can't assign " + dR.type.type.toString() + " to string");
                     throw new Exception();
                 }
             } else {
                 //error
+                System.out.println("line " + scanner.lineNum + " :");
+                System.out.println("can't use assign for " + dL.type.type.toString());
                 throw new Exception();
             }
 
@@ -1342,6 +1414,8 @@ public class CodeGen {
 
         } else {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
+            System.out.println("can't use assign for " + dLeft.dscpType);
             throw new Exception();
         }
 
@@ -1370,6 +1444,7 @@ public class CodeGen {
         Token token = semanticStack.pop();
         if (token.getType() == TokenType.undefined) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
             System.out.println("use return value of a void function");
             throw new Exception();
         }
@@ -1380,8 +1455,8 @@ public class CodeGen {
             VariableDscp varBe = (VariableDscp) SymboleTable.find(token);
             if (varBe.addr == -2) {
                 //error
+                System.out.println("line " + scanner.lineNum + " :");
                 System.out.println("not declared reference");
-
                 throw new Exception();
             }
             String src;
@@ -1409,8 +1484,9 @@ public class CodeGen {
                     mipsCode.add(new Code("bc1t"));
                 }
             } else {
-                System.out.println("not suitable type for condition");
                 //error
+                System.out.println("line " + scanner.lineNum + " :");
+                System.out.println("not suitable type for condition");
                 throw new Exception();
             }
 
@@ -1501,8 +1577,8 @@ public class CodeGen {
         Token token = semanticStack.pop();
         if (token.getType() == TokenType.undefined) {
             //error
+            System.out.println("line " + scanner.lineNum + " :");
             System.out.println("use return value of a void function");
-
             throw new Exception();
         }
         if (token.getType() == TokenType.keyword || token.getType() == TokenType.integer || token.getType() == TokenType.real || token.getType() == TokenType.str_char) {
@@ -1512,8 +1588,8 @@ public class CodeGen {
             VariableDscp varBe = (VariableDscp) SymboleTable.find(token);
             if (varBe.addr == -1) {
                 //error
+                System.out.println("line " + scanner.lineNum + " :");
                 System.out.println("not declared reference");
-
                 throw new Exception();
             }
             String src;
@@ -1542,8 +1618,8 @@ public class CodeGen {
                 }
             } else {
                 //error? :/
+                System.out.println("line " + scanner.lineNum + " :");
                 System.out.println("not suitable type for condition");
-
                 throw new Exception();
             }
         }
@@ -1555,8 +1631,8 @@ public class CodeGen {
             VariableDscp varBe = (VariableDscp) SymboleTable.find(token);
             if (varBe.addr == -1) {
                 //error
+                System.out.println("line " + scanner.lineNum + " :");
                 System.out.println("not declared reference");
-
                 throw new Exception();
             }
             String src;
@@ -1588,8 +1664,8 @@ public class CodeGen {
             } else {
 
                 //error? :/
+                System.out.println("line " + scanner.lineNum + " :");
                 System.out.println("not suitable type for condition");
-
                 throw new Exception();
             }
 
@@ -1647,6 +1723,7 @@ public class CodeGen {
         Token name = token;
         Token returnType = semanticStack.pop();
         if (symboleTables.get(0).get(name) != null) {
+            System.out.println("line " + scanner.lineNum + " :");
             System.out.println("duplicate name function");
             throw new Exception();
         } else {
@@ -1670,6 +1747,7 @@ public class CodeGen {
         Token inputName = semanticStack.pop();
         Token type = semanticStack.pop();
         if (symboleTables.get(symboleTables.size() - 1).get(inputName) != null) {
+            System.out.println("line " + scanner.lineNum + " :");
             System.out.println("duplicate input name for function");
             throw new Exception();
         } else {
@@ -1696,8 +1774,8 @@ public class CodeGen {
                 RecordDscp d = (RecordDscp) symboleTables.get(0).get(type);
                 if (d == null) {
                     //error
+                    System.out.println("line " + scanner.lineNum + " :");
                     System.out.println("not deaclared record type");
-
                     throw new Exception();
                 }
                 VarType v = new VarType(Type.Record);
@@ -1751,7 +1829,8 @@ public class CodeGen {
         Token token = symboleTables.get(symboleTables.size() - 1).name;
         FuncDscp dscp = (FuncDscp) symboleTables.get(0).get(token);
         if (!dscp.returnType.equals("void") && !dscp.hasReturn && !token.getValue().equals("main")) {
-            System.out.println(token.getValue() +"function need return type");
+            System.out.println("line " + scanner.lineNum + " :");
+            System.out.println(token.getValue() + "function need return type");
             throw new Exception();
         }
         if (dscp.returnType.equals("void") && !dscp.hasReturn) {
@@ -1770,7 +1849,8 @@ public class CodeGen {
 
         if (funcDscp.returnType.equals("void")) {
             //error ->void
-            System.out.println(funcName.getValue()+"function is void don't need return value");
+            System.out.println("line " + scanner.lineNum + " :");
+            System.out.println(funcName.getValue() + "function is void don't need return value");
             throw new Exception();
         }
         Token chum = semanticStack.pop();
@@ -1780,8 +1860,8 @@ public class CodeGen {
             case record:
             case array:
                 //error
-            System.out.println("return type isn't ok for "+funcName.getValue());
-
+                System.out.println("line " + scanner.lineNum + " :");
+                System.out.println("return type isn't ok for " + funcName.getValue());
                 throw new Exception();
 
             case variable:
@@ -1792,23 +1872,24 @@ public class CodeGen {
                     case Boolean:
                         if (!(type == Type.Integer || type == Type.Double || type == Type.Boolean)) {
                             //error
-                            System.out.println("return type is incorrect and can't be casted for" +funcName.getValue());
+                            System.out.println("line "+scanner.lineNum+" :");
+                            System.out.println("return type is incorrect and can't be casted for" + funcName.getValue());
                             throw new Exception();
                         }
                         break;
                     case String:
                         if (!(type == Type.String || type == Type.Boolean)) {
                             //error
-                            System.out.println("return type is incorrect and can't be casted for" +funcName.getValue());
-
+                            System.out.println("line "+scanner.lineNum+" :");
+                            System.out.println("return type is incorrect and can't be casted for" + funcName.getValue());
                             throw new Exception();
                         }
                         break;
                     case Record:
                         if (((VariableDscp) dscp).refType != funcDscp.returnType) {
                             //error
-                            System.out.println("return type is incorrect and can't be casted for" +funcName.getValue());
-
+                            System.out.println("line "+scanner.lineNum+" :");
+                            System.out.println("return type is incorrect and can't be casted for" + funcName.getValue());
                             throw new Exception();
                         }
                         break;
@@ -1873,8 +1954,9 @@ public class CodeGen {
         Token funcName = symboleTables.get(symboleTables.size() - 1).name;
         FuncDscp funcDscp = (FuncDscp) symboleTables.get(0).get(funcName);
         if (!funcDscp.returnType.equals("void")) {
-            System.out.println(funcName.getValue()+" isn't void and need return value");
             //error
+            System.out.println("line "+scanner.lineNum+" :");
+            System.out.println(funcName.getValue() + " isn't void and need return value");
             throw new Exception();
         } else {
             mipsCode.add(new Code("jr", "$ra"));
@@ -1887,7 +1969,8 @@ public class CodeGen {
         Dscp funcDscp = symboleTables.get(0).get(funcName);
         if (funcDscp == null || funcDscp.dscpType != DscpType.funcion) {
             //error
-            System.out.println(funcName.getValue() +"is not decleard");
+            System.out.println("line "+scanner.lineNum+" :");
+            System.out.println(funcName.getValue() + "is not decleard");
             throw new Exception();
         }
         semanticStack.push(funcName);
@@ -1903,24 +1986,24 @@ public class CodeGen {
         System.out.println(funcDscp.inputNames);
         if (funcDscp.inputNames.size() != 0) {
             //error
-            System.out.println(funcName.getValue() +"need input argument");
-
+            System.out.println("line "+scanner.lineNum+" :");
+            System.out.println(funcName.getValue() + "need input argument");
             throw new Exception();
         }
         int add = mipsCode.size();
-        mipsCode.add(new Code("addi", "$sp", "$sp" ));
-        int a = storeNotTempInSP(symboleTables.get(symboleTables.size()-1),4);
-        mipsCode.get(add).src2 = "-"+(a+4);
+        mipsCode.add(new Code("addi", "$sp", "$sp"));
+        int a = storeNotTempInSP(symboleTables.get(symboleTables.size() - 1), 4);
+        mipsCode.get(add).src2 = "-" + (a + 4);
         mipsCode.add(new Code("sw", "$ra", "0($sp)"));
         mipsCode.add(new Code("jal", funcName.getValue()));
         int size;
-       int ra=0;
+        int ra = 0;
         if (funcDscp.returnType.equals("void")) {
             semanticStack.push(new Token("void", TokenType.undefined));
-            size =loadNotTempInSP(symboleTables.get(symboleTables.size()-1),4);
+            size = loadNotTempInSP(symboleTables.get(symboleTables.size() - 1), 4);
         } else {
             VarType type = typeSetter(funcDscp.returnType);
-            size =loadNotTempInSP(symboleTables.get(symboleTables.size()-1),4+type.size);
+            size = loadNotTempInSP(symboleTables.get(symboleTables.size() - 1), 4 + type.size);
             if (type.type != Type.Record) {
                 variableDscp = new VariableDscp(type, temp, false, true);
                 if (type.type == Type.Double) {
@@ -1942,8 +2025,8 @@ public class CodeGen {
             }
 
         }
-        mipsCode.add(new Code("lw", "$ra", ra+"($sp)"));
-        mipsCode.add(new Code("addi", "$sp", "$sp", String.valueOf(ra + 4+size)));
+        mipsCode.add(new Code("lw", "$ra", ra + "($sp)"));
+        mipsCode.add(new Code("addi", "$sp", "$sp", String.valueOf(ra + 4 + size)));
 
     }
 
@@ -1959,13 +2042,15 @@ public class CodeGen {
         FuncDscp funcDscp = (FuncDscp) symboleTables.get(0).get(funcName);
         if (tokens.size() != funcDscp.inputNames.size()) {
             //error
+            System.out.println("line "+scanner.lineNum+" :");
+            System.out.println("input number doesn't match function inputs");
             throw new Exception();
         }
         int Sbase = funcDscp.size;
         int add = mipsCode.size();
-        mipsCode.add(new Code("addi", "$sp", "$sp" ));
-        int a = storeNotTempInSP(symboleTables.get(symboleTables.size()-1),Sbase);
-        mipsCode.get(add).src2 = "-"+(a+Sbase);
+        mipsCode.add(new Code("addi", "$sp", "$sp"));
+        int a = storeNotTempInSP(symboleTables.get(symboleTables.size() - 1), Sbase);
+        mipsCode.get(add).src2 = "-" + (a + Sbase);
         Sbase -= 4;
         mipsCode.add(new Code("sw", "$ra", Sbase + "($sp)"));
         for (int i = tokens.size() - 1; i >= 0; i--) {
@@ -1974,18 +2059,26 @@ public class CodeGen {
             Dscp in = SymboleTable.find(tokens.get(i));
             if (in.addr == -1) {
                 //error
+                System.out.println("line "+scanner.lineNum+" :");
+                System.out.println("not declared refrence");
                 throw new Exception();
             }
             if (funIn.dscpType != in.dscpType) {
                 //error
+                System.out.println("line "+scanner.lineNum+" :");
+                System.out.println("input type doesn't match function input type");
                 throw new Exception();
             }
             if (in.dscpType == DscpType.funcion || in.dscpType == DscpType.record) {
                 //error
+                System.out.println("line "+scanner.lineNum+" :");
+                System.out.println("can't pass "+in.dscpType.toString()+" to function");
                 throw new Exception();
             } else if (in.dscpType == DscpType.array) {
                 if (((ArrayDscp) funIn).type.type != ((ArrayDscp) in).type.type) {
                     //error
+                    System.out.println("line "+scanner.lineNum+" :");
+                    System.out.println("input type doesn't match function input type");
                     throw new Exception();
                 } else {
                     mipsCode.add(new Code("lw", "$t3", in.addr + "($t0)"));
@@ -2006,6 +2099,8 @@ public class CodeGen {
                         mipsCode.add(new Code("lw", "$t3", var.addr + base));
                     } else {
                         //error
+                        System.out.println("line "+scanner.lineNum+" :");
+                        System.out.println("can't cast "+ var.type.type.toString()+" to boolean");
                         throw new Exception();
                         //string and record
                     }
@@ -2020,6 +2115,8 @@ public class CodeGen {
                         castDoubleToInt(var, base, "$t3");
                     } else {
                         //error
+                        System.out.println("line "+scanner.lineNum+" :");
+                        System.out.println("can't cast "+ var.type.type.toString()+" to integer");
                         throw new Exception();
                         //string and record
                     }
@@ -2034,6 +2131,8 @@ public class CodeGen {
                         mipsCode.add(new Code("l.d", "$f0", var.addr + base));
                     } else {
                         //error
+                        System.out.println("line "+scanner.lineNum+" :");
+                        System.out.println("can't cast "+ var.type.type.toString()+" to double");
                         throw new Exception();
                         //string and record
                     }
@@ -2046,15 +2145,15 @@ public class CodeGen {
         mipsCode.add(new Code("jal", funcName.getValue()));
         VariableDscp variableDscp = null;
         int ra = 0;
-        int size=0;
+        int size = 0;
         if (funcDscp.returnType.equals("void")) {
             semanticStack.push(new Token("void", TokenType.undefined));
-            size =loadNotTempInSP(symboleTables.get(symboleTables.size()-1),4);
+            size = loadNotTempInSP(symboleTables.get(symboleTables.size() - 1), 4);
         } else {
 
             VarType type = typeSetter(funcDscp.returnType);
             if (type.type != Type.Record) {
-                size =loadNotTempInSP(symboleTables.get(symboleTables.size()-1),4+type.size);
+                size = loadNotTempInSP(symboleTables.get(symboleTables.size() - 1), 4 + type.size);
                 variableDscp = new VariableDscp(type, temp, false, true);
                 if (type.type == Type.Double) {
                     mipsCode.add(new Code("l.d", "$f0", 0 + "($sp)"));
@@ -2075,7 +2174,7 @@ public class CodeGen {
             }
         }
         mipsCode.add(new Code("lw", "$ra", ra + "($sp)"));
-        mipsCode.add(new Code("addi", "$sp", "$sp", String.valueOf(ra + 4+size)));
+        mipsCode.add(new Code("addi", "$sp", "$sp", String.valueOf(ra + 4 + size)));
 
     }
 

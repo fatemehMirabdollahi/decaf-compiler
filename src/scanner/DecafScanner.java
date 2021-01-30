@@ -433,8 +433,9 @@ public class DecafScanner {
 
   /* user code: */
 public String myString = "";
-public Token token ;
+Token token ;
 public boolean endl =false;
+public int lineNum = 1;
 public static String value;
 
 
@@ -786,7 +787,7 @@ public static String value;
             // fall through
           case 17: break;
           case 3:
-            { yybegin(YYINITIAL); endl=true;
+            { yybegin(YYINITIAL);lineNum ++;endl=true;
             }
             // fall through
           case 18: break;
